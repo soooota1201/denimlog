@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('height')->nullable();
             $table->integer('weight')->nullable();
-            $table->string('user_profile');
+            $table->string('user_profile')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
