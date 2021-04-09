@@ -55,7 +55,7 @@ class DenimController extends Controller
      */
     public function show(Denim $denim)
     {
-        return view('denim.show')->with('denim', $denim);
+        return view('denim.show', compact('denim'));
     }
 
     /**
