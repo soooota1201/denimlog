@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\Denims\CreateDenimRequest;
+use Illuminate\Support\Facades\Auth;
+use App\Denim;
 
 class DenimController extends Controller
 {
@@ -23,7 +26,7 @@ class DenimController extends Controller
      */
     public function create()
     {
-        //
+        return view('denim.create');
     }
 
     /**
@@ -32,9 +35,16 @@ class DenimController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateDenimRequest $request)
     {
-        //
+        $denim = Denim::create([
+          'user_id' => Auth::id(),
+          'bland_type' => $request->bland_type,
+          'waist' => $request->waist,
+          'wearing_count' => $request->wearing_count,
+        ]);
+
+        return redirect('home');
     }
 
     /**
