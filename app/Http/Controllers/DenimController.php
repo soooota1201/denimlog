@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\Denims\CreateDenimRequest;
+use App\Http\Requests\Denims\UpdateDenimRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Denim;
 
@@ -64,9 +65,9 @@ class DenimController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Denim $denim)
     {
-        //
+        return view('denim.edit', compact('denim'));
     }
 
     /**
@@ -76,9 +77,16 @@ class DenimController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateDenimRequest $request, Denim $denim)
     {
-        //
+        $denim->update([
+          'user_id' => Auth::id(),
+          'bland_type' => $request->bland_type,
+          'waist' => $request->waist,
+          'wearing_count' => $request->wearing_count
+        ]);
+
+        return redirect(route('denims.show', $denim->id))->with('success', '編集が完了しました！');
     }
 
     /**
@@ -87,8 +95,8 @@ class DenimController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        
     }
 }

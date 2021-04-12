@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+@include('layouts._flash_message')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -23,8 +26,8 @@
               </tbody>
             </table>
             
-            <a href="#" class="btn btn-lg btn-block btn-outline-dark">編集する</a>
-            <a href="#" class="btn btn-lg btn-block  btn-outline-dark mt4">削除する</a>
+            <a href="{{route('denims.edit', $denim->id)}}" class="btn btn-lg btn-block btn-outline-dark">編集する</a>
+            <a href="{{route('denims.destroy', $denim->id)}}" class="btn btn-lg btn-block  btn-outline-dark mt4">削除する</a>
         </div>
     </div>
 </div>
