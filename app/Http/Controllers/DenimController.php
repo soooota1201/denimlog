@@ -17,7 +17,7 @@ class DenimController extends Controller
      */
     public function index()
     {
-        
+        return view('denim.index');
     }
 
     /**
@@ -45,7 +45,7 @@ class DenimController extends Controller
           'wearing_count' => $request->wearing_count,
         ]);
 
-        return redirect('home');
+        return redirect(route('denims.show', $denim->id))->with('success', '登録が完了しました！');
     }
 
     /**
@@ -95,8 +95,10 @@ class DenimController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy(Denim $denim)
     {
-        
+        $denim->delete();
+
+        return redirect(route('denims.index'))->with('alert', 'デニムが削除されました');
     }
 }
