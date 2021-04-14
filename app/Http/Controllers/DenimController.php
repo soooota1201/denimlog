@@ -7,17 +7,25 @@ use App\Http\Requests\Denims\CreateDenimRequest;
 use App\Http\Requests\Denims\UpdateDenimRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Denim;
+use App\User;
 
 class DenimController extends Controller
 {
+
+    public function __construct() {
+      $this->middleware('auth')->except(['index', 'show']);
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
-        return view('denim.index');
+        $denims = Denim::where('user_id', $user->id)->get();
+        // dd($denims);
+        return view('denim.index', compact('denims'));
     }
 
     /**
@@ -25,9 +33,9 @@ class DenimController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(User $user)
     {
-        return view('denim.create');
+        return view('denim.create', compact('user'));
     }
 
     /**
@@ -36,7 +44,7 @@ class DenimController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateDenimRequest $request)
+    public function store(CreateDenimRequest $request, User $user, Denim $denim)
     {
         $denim = Denim::create([
           'user_id' => Auth::id(),
@@ -45,7 +53,7 @@ class DenimController extends Controller
           'wearing_count' => $request->wearing_count,
         ]);
 
-        return redirect(route('denims.show', $denim->id))->with('success', '登録が完了しました！');
+        return redirect(route('users.denims.show', [$user->id, $denim->id]))->with('success', '登録が完了しました！');
     }
 
     /**
@@ -54,9 +62,9 @@ class DenimController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Denim $denim)
+    public function show(User $user, Denim $denim)
     {
-        return view('denim.show', compact('denim'));
+        return view('denim.show', compact('user', 'denim'));
     }
 
     /**
@@ -65,9 +73,9 @@ class DenimController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Denim $denim)
+    public function edit(User $user, Denim $denim)
     {
-        return view('denim.edit', compact('denim'));
+        return view('denim.edit', compact('user', 'denim'));
     }
 
     /**
@@ -77,7 +85,7 @@ class DenimController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDenimRequest $request, Denim $denim)
+    public function update(UpdateDenimRequest $request, User $user, Denim $denim)
     {
         $denim->update([
           'user_id' => Auth::id(),
@@ -86,7 +94,7 @@ class DenimController extends Controller
           'wearing_count' => $request->wearing_count
         ]);
 
-        return redirect(route('denims.show', $denim->id))->with('success', '編集が完了しました！');
+        return redirect(route('users.denims.show', [$user->id, $denim->id]))->with('success', '編集が完了しました！');
     }
 
     /**
@@ -95,10 +103,10 @@ class DenimController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Denim $denim)
+    public function destroy(User $user, Denim $denim)
     {
         $denim->delete();
 
-        return redirect(route('denims.index'))->with('alert', 'デニムが削除されました');
+        return redirect(route('users.denims.index', $user->id))->with('alert', 'デニムが削除されました');
     }
 }

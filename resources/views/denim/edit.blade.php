@@ -12,7 +12,7 @@
             <form 
             method="POST" 
             action="{{
-              isset($denim) ? route('denims.update', $denim->id) : route('denims.store')
+              isset($denim) ? route('users.denims.update',[$user->id, $denim->id]) : route('users.denims.store')
             }}" 
             class="mt5">
               @csrf

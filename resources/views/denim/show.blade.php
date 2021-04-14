@@ -26,7 +26,7 @@
               </tbody>
             </table>
 
-            <form method="POST" action="{{ route('denims.destroy', $denim->id)}}">
+            <form method="POST" action="{{ route('users.denims.destroy', [$user->id, $denim->id])}}">
               @csrf
 
               @method('DELETE')
@@ -54,12 +54,9 @@
                     </div>
                 </div>
             </form>
-
             
-            <a href="{{route('denims.edit', $denim->id)}}" class="btn btn-lg btn-block btn-outline-dark">編集する</a>
+            <a href="{{route('users.denims.edit', [$user->id, $denim->id])}}" class="btn btn-lg btn-block btn-outline-dark">編集する</a>
             <a type="button" data-toggle="modal" data-target="#modal{{$denim->id}}" class="btn btn-lg btn-block  btn-outline-dark mt4">削除する</a>
-
-            
 
             
         </div>

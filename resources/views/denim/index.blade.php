@@ -7,8 +7,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h2>Home</h2>
+            <h2>デニム一覧</h2>
               
+            @foreach ($denims as $denim)
+              {{$denim->waist}}
+            @endforeach
             
         </div>
     </div>

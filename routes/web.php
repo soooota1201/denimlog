@@ -19,8 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::middleware(['auth'])->group(function () {
-  Route::resource('denims', 'DenimController');
-    
+
+Route::group(['prefix' => 'users/{user}', 'as' => 'users.'], function () {
+    Route::resource('denims', 'DenimController');
 });
 
