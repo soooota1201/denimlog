@@ -55,8 +55,10 @@
                 </div>
             </form>
             
-            <a href="{{route('users.denims.edit', [$user->id, $denim->id])}}" class="btn btn-lg btn-block btn-outline-dark">編集する</a>
-            <a type="button" data-toggle="modal" data-target="#modal{{$denim->id}}" class="btn btn-lg btn-block  btn-outline-dark mt4">削除する</a>
+            @if (Auth::id() === $user->id)
+              <a href="{{route('users.denims.edit', [$user->id, $denim->id])}}" class="btn btn-lg btn-block btn-outline-dark">編集する</a>
+              <a type="button" data-toggle="modal" data-target="#modal{{$denim->id}}" class="btn btn-lg btn-block  btn-outline-dark mt4">削除する</a>
+            @endif
 
             
         </div>
