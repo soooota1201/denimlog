@@ -24,8 +24,8 @@ class DenimController extends Controller
     public function index(User $user)
     {
         $denims = Denim::where('user_id', $user->id)->get();
-        // dd($denims);
-        return view('denim.index', compact('denims'));
+        
+        return view('denims.index', compact('user', 'denims'));
     }
 
     /**
@@ -35,7 +35,11 @@ class DenimController extends Controller
      */
     public function create(User $user)
     {
-        return view('denim.create', compact('user'));
+        if($user->id !== Auth::id())
+        {
+          return redirect()->route('users.denims.create', Auth::id());
+        };
+        return view('denims.create', compact('user'));
     }
 
     /**
@@ -46,6 +50,8 @@ class DenimController extends Controller
      */
     public function store(CreateDenimRequest $request, User $user, Denim $denim)
     {
+        $this->authorize('create', [Denim::class, $user]);
+
         $denim = Denim::create([
           'user_id' => Auth::id(),
           'bland_type' => $request->bland_type,
@@ -64,7 +70,7 @@ class DenimController extends Controller
      */
     public function show(User $user, Denim $denim)
     {
-        return view('denim.show', compact('user', 'denim'));
+      return view('denims.show', compact('user', 'denim'));
     }
 
     /**
@@ -75,7 +81,9 @@ class DenimController extends Controller
      */
     public function edit(User $user, Denim $denim)
     {
-        return view('denim.edit', compact('user', 'denim'));
+        $this->authorize('update', $denim);
+
+        return view('denims.edit', compact('user', 'denim'));
     }
 
     /**
@@ -105,8 +113,8 @@ class DenimController extends Controller
      */
     public function destroy(User $user, Denim $denim)
     {
+        $this->authorize('delete', $denim);
         $denim->delete();
-
         return redirect(route('users.denims.index', $user->id))->with('alert', 'デニムが削除されました');
     }
 }
