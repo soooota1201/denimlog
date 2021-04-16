@@ -11,4 +11,4 @@ jobs:
         uses: technote-space/create-project-card-action@v1
         with:
           PROJECT: backlog
-          COLUMN: To do
+          COLUMN: NEXT
