@@ -12,4 +12,9 @@ class Denim extends Model
       'waist',
       'wearing_count'
     ];
+
+    public function denimRecords()
+    {
+      return $this->hasMany(DenimRecord::class);
+    }
 }

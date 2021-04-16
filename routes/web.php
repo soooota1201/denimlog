@@ -22,8 +22,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'users/{user}', 'as' => 'users.'], function () {
     Route::resource('denims', 'DenimController');
-});
 
-Route::group(['prefix' => 'users/{user}/denims/{denim}', 'as' => 'users.denims.'], function () {
+    Route::group(['prefix' => 'denims/{denim}'], function () {
     Route::resource('records', 'DenimRecordController');
+});
 });
