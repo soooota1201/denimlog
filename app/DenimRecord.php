@@ -12,4 +12,9 @@ class DenimRecord extends Model
       'wearing_place',
       'body'
     ];
+
+    public function denim()
+    {
+      return $this->belongsTo(Denim::class);
+    }
 }

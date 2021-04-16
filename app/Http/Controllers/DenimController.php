@@ -8,6 +8,7 @@ use App\Http\Requests\Denims\UpdateDenimRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Denim;
 use App\User;
+use App\DenimRecord;
 
 class DenimController extends Controller
 {
@@ -70,7 +71,14 @@ class DenimController extends Controller
      */
     public function show(User $user, Denim $denim)
     {
-      return view('denims.show', compact('user', 'denim'));
+      if($user->id !== Auth::id())
+      {
+        abort(403);
+      };
+
+      $records = DenimRecord::where('denim_id', $denim->id)->get();
+
+      return view('denims.show', compact('user', 'denim', 'records'));
     }
 
     /**
@@ -96,7 +104,6 @@ class DenimController extends Controller
     public function update(UpdateDenimRequest $request, User $user, Denim $denim)
     {
         $denim->update([
-          'user_id' => Auth::id(),
           'bland_type' => $request->bland_type,
           'waist' => $request->waist,
           'wearing_count' => $request->wearing_count

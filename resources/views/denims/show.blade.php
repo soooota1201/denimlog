@@ -2,12 +2,15 @@
 
 @section('content')
 
-@include('layouts._flash_message')
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <div class="d-flex justify-content-between mb-3">
             <h2>デニム個別（SHOW）</h2>
+            @if (Auth::id() === $user->id)
+              <a href="{{route('users.records.create', [$user->id, $denim->id])}}" class="btn btn-success">記録する</a>
+            @endif
+          </div>
               
             <table class="table">
               <tbody>
@@ -59,9 +62,28 @@
               <a href="{{route('users.denims.edit', [$user->id, $denim->id])}}" class="btn btn-lg btn-block btn-outline-dark">編集する</a>
               <a type="button" data-toggle="modal" data-target="#modal{{$denim->id}}" class="btn btn-lg btn-block  btn-outline-dark mt4">削除する</a>
             @endif
-
-            
+              <a href="{{route('users.denims.index', $user->id)}}" class="btn btn-lg btn-block  btn-outline-dark mt4">デニム一覧へ戻る</a>
         </div>
     </div>
+
+    @foreach ($records as $record)
+        
+      <div class="row justify-content-center mt-4">
+        <a href="{{route('users.records.show', [$user->id, $denim->id, $record->id])}}" class="col-md-8">
+          <div class="card">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="450px"  xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect fill="#868e96" width="100%" height="100%"/><text fill="#dee2e6" dy=".3em" x="50%" y="50%">Image cap</text></svg>
+            <div class="card-body">
+              <h6 class="card-subtitle mb-2 text-muted">{{$record->wearing_day}}</h6>
+              <h6 class="card-subtitle mb-2 text-muted">{{$record->wearing_place}}</h6>
+              <p class="card-text">{{$record->body}}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+    @endforeach
+
+
+
 </div>
 @endsection

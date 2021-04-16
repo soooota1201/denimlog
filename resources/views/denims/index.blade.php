@@ -2,8 +2,6 @@
 
 @section('content')
 
-@include('layouts._flash_message')
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\DenimRecords\CreateDenimRecordRequest;
+use App\Http\Requests\DenimRecords\UpdateDenimRecordRequest;
+use Illuminate\Support\Facades\Auth;
 
 use App\User;
 use App\Denim;
@@ -22,7 +24,7 @@ class DenimRecordController extends Controller
      */
     public function index()
     {
-        //
+    
     }
 
     /**
@@ -43,14 +45,32 @@ class DenimRecordController extends Controller
      */
     public function store(CreateDenimRecordRequest $request, User $user, Denim $denim)
     {
-        $denimRecord = DenimRecord::create([
+      \DB::beginTransaction();
+
+      try {
+
+        $record = DenimRecord::create([
           'denim_id' => $denim->id,
           'wearing_day' => $request->wearing_day,
           'wearing_place' => $request->wearing_place,
           'body' => $request->body
         ]);
 
-        return redirect(route('home'))->with('success', '記録が登録されました！');
+        $denim->wearing_count++;
+        $denim->save();
+
+        \DB::commit();
+        
+      } catch (Exception $e) {
+
+        \Log::error($e);
+        \DB::rollBack();
+        return redirect(route('users.records.create', compact('user', 'denim')))->with('alert', '記録の保存に失敗しました。')->withInput();
+        
+      }
+        
+      return redirect()->route('users.records.show', compact('user', 'denim', 'record'))->with('success', '記録が登録されました！');
+
     }
 
     /**
@@ -59,9 +79,14 @@ class DenimRecordController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user, Denim $denim, DenimRecord $record)
     {
-        //
+        if($user->id !== Auth::id())
+      {
+        abort(403);
+      };
+
+      return view('denim_records.show', compact('user', 'denim', 'record'));
     }
 
     /**
@@ -70,9 +95,9 @@ class DenimRecordController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user, Denim $denim, DenimRecord $record)
     {
-        //
+        return view('denim_records.edit', compact('user', 'denim', 'record'));
     }
 
     /**
@@ -82,9 +107,15 @@ class DenimRecordController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateDenimRecordRequest $request, User $user, Denim $denim, DenimRecord $record)
     {
-        //
+        $record->update([
+          'wearing_day' => $request->wearing_day,
+          'wearing_place' => $request->wearing_place,
+          'body' => $request->body
+        ]);
+
+        return redirect(route('users.records.show', [$user->id, $denim->id, $record->id]))->with('success', '編集が完了しました！');
     }
 
     /**
@@ -93,8 +124,10 @@ class DenimRecordController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user, Denim $denim, DenimRecord $record)
     {
-        //
+        $record->delete();
+
+        return redirect()->route('users.denims.show', compact('user', 'denim'))->with('alert', 'デニム記録が削除されました');
     }
 }

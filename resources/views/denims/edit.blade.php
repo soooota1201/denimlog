@@ -2,12 +2,10 @@
 
 @section('content')
 
-@include('layouts._flash_message')
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h2>デニムの情報を入力してください（Create, Store）</h2>
+            <h2>デニムの情報を更新してください</h2>
 
             <form 
             method="POST" 
