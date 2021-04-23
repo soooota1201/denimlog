@@ -11,19 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/users', function() {
+  if(! Auth::user()) {
+    return redirect('login');
+  }
+  return redirect()->route('users.show', Auth::id());
+});
 
+Route::resource('users', 'UserController')->only('show', 'edit', 'update');
 
-Route::group(['prefix' => 'users/{user}', 'as' => 'users.'], function () {
+Route::group(['prefix' => 'users/{user}', 'as' => 'users.'], function() {
     Route::resource('denims', 'DenimController');
 
     Route::group(['prefix' => 'denims/{denim}'], function () {
     Route::resource('records', 'DenimRecordController');
-});
+  });
 });

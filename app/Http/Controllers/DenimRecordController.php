@@ -24,7 +24,7 @@ class DenimRecordController extends Controller
      */
     public function index()
     {
-    
+      
     }
 
     /**
@@ -50,6 +50,7 @@ class DenimRecordController extends Controller
       try {
 
         $record = DenimRecord::create([
+          'user_id' => Auth::id(),
           'denim_id' => $denim->id,
           'wearing_day' => $request->wearing_day,
           'wearing_place' => $request->wearing_place,
@@ -81,9 +82,9 @@ class DenimRecordController extends Controller
      */
     public function show(User $user, Denim $denim, DenimRecord $record)
     {
-        if($user->id !== Auth::id())
+      if($user->id !== $denim->user_id || $denim->id !== $record->denim_id)
       {
-        abort(403);
+        abort(404);
       };
 
       return view('denim_records.show', compact('user', 'denim', 'record'));

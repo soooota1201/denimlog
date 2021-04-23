@@ -71,9 +71,9 @@ class DenimController extends Controller
      */
     public function show(User $user, Denim $denim)
     {
-      if($user->id !== Auth::id())
+      if($user->id !== $denim->user_id)
       {
-        abort(403);
+        abort(404);
       };
 
       $records = DenimRecord::where('denim_id', $denim->id)->get();
