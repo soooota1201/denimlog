@@ -14,7 +14,6 @@
           </div>
 
             @foreach ($denims as $denim)
-
               <a href="{{route('users.denims.show', [$user->id, $denim->id])}}" class="card mb-3" style="">
                 <div class="row no-gutters">
                   <div class="col-md-4">

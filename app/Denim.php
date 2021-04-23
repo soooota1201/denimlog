@@ -13,6 +13,11 @@ class Denim extends Model
       'wearing_count'
     ];
 
+    public function user()
+    {
+      return $this->belongsTo(User::class);
+    }
+
     public function denimRecords()
     {
       return $this->hasMany(DenimRecord::class);
