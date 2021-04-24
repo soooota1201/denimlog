@@ -80,7 +80,6 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-
         $user->update([
           'name' => $request->name,
           'height' => $request->height,

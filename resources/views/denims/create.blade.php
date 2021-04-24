@@ -20,6 +20,7 @@
             method="POST" 
             action="{{isset($denim) ? route('users.denims.update', [$user->id, $denim->id]) : route('users.denims.store', [$user->id])
             }}" 
+            enctype="multipart/form-data"
             class="mt5">
               @csrf
 
@@ -39,7 +40,11 @@
                 <label for="">履き込み回数（任意、新品は空欄）</label>
                 <input type="text" class="form-control" placeholder="30" name="wearing_count" value="">
               </div>
-              
+              <div class="form-group">
+                <label for="">デニム画像</label>
+                <input type="file" class="form-control" placeholder="" name="denim_image" value="">
+              </div>
+
               <button type="submit" class="btn btn-primary">登録する</button>
             </form>
         </div>

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\DenimImage;
 
 class Denim extends Model
 {
@@ -10,7 +11,7 @@ class Denim extends Model
       'user_id',
       'bland_type',
       'waist',
-      'wearing_count'
+      'wearing_count',
     ];
 
     public function user()
@@ -21,5 +22,10 @@ class Denim extends Model
     public function denimRecords()
     {
       return $this->hasMany(DenimRecord::class);
+    }
+
+    public function denimImages()
+    {
+      return $this->hasMany(DenimImage::class);
     }
 }
