@@ -74,7 +74,7 @@
         </div>
     </div>
 
-    @foreach ($denim->denimRecords as $record)
+    @foreach ($records as $record)
         
       <div class="row justify-content-center mt-4">
         <a href="{{route('users.records.show', [$user->id, $denim->id, $record->id])}}" class="col-md-8">
@@ -88,9 +88,13 @@
           </div>
         </a>
       </div>
-
     @endforeach
 
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-8">
+        {{ $records->links() }}
+      </div><!-- /.col-md-8 -->
+    </div><!-- /.row -->
 
 
 </div>

@@ -31,6 +31,7 @@
                 </div>
               </a>
             @endforeach
+            {{ $denims->links() }}
             
         </div>
     </div>
