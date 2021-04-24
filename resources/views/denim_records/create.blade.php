@@ -10,6 +10,7 @@
             method="POST" 
             action="{{route('users.records.store', [$user->id, $denim->id])
             }}" 
+            enctype="multipart/form-data"
             class="mt5">
               @csrf
 
@@ -24,6 +25,10 @@
               <div class="form-group">
                 <label for="">テキスト</label>
                 <input type="text" class="form-control" placeholder="" name="body" value="{{ old("body") }}">
+              </div>
+              <div class="form-group">
+                <label for="">デニム画像</label>
+                <input type="file" class="form-control" placeholder="" name="denim_record_image" value="">
               </div>
               
               <button type="submit" class="btn btn-primary">登録する</button>

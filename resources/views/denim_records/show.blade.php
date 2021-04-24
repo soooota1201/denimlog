@@ -9,6 +9,14 @@
               
             <table class="table">
               <tbody>
+                @if (!$record->denimRecordImages->isEmpty())
+                  <tr>
+                    <td></td>
+                    <td>
+                      <img src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" alt="">
+                    </td>
+                  </tr>  
+                @endif
                 <tr>
                   <td>履いた日</td>
                   <td>{{$record->wearing_day}}</td>

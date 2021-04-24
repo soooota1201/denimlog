@@ -27,6 +27,8 @@ class DenimController extends Controller
     public function index(User $user)
     {
         $denims = Denim::where('user_id', $user->id)->get();
+
+        $denims->load('denimImages');
         
         return view('denims.index', compact('user', 'denims'));
     }

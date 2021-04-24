@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\DenimRecordImage;
 
 class DenimRecord extends Model
 {
@@ -17,5 +18,15 @@ class DenimRecord extends Model
     public function denim()
     {
       return $this->belongsTo(Denim::class);
+    }
+
+    /**
+     * Get all of the comments for the DenimRecord
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function denimRecordImages()
+    {
+        return $this->hasMany(DenimRecordImage::class);
     }
 }

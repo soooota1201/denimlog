@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Requests\DenimRecords\CreateDenimRecordRequest;
 use App\Http\Requests\DenimRecords\UpdateDenimRecordRequest;
 use Illuminate\Support\Facades\Auth;
+use JD\Cloudder\Facades\Cloudder;
 
 use App\User;
 use App\Denim;
 use App\DenimRecord;
+use App\DenimRecordImage;
 
 class DenimRecordController extends Controller
 {
@@ -57,6 +59,21 @@ class DenimRecordController extends Controller
           'body' => $request->body
         ]);
 
+        if($image = $request->file('denim_record_image')) {
+          $image_path = $image->getRealPath();
+          Cloudder::upload($image_path, null);
+          $publicId = Cloudder::getPublicId();
+          $logoUrl = Cloudder::secureShow($publicId, [
+            'width' => 200,
+            'height' => 200
+          ]);
+          $denimRecordImage = DenimRecordImage::create([
+            'denim_record_id' => $record->id,
+            'cloud_record_image_path' => $logoUrl,
+            'cloud_record_image_id' => $publicId
+          ]);
+        };
+
         $denim->wearing_count++;
         $denim->save();
 
@@ -86,6 +103,8 @@ class DenimRecordController extends Controller
       {
         abort(404);
       };
+
+      $record->load('denimRecordImages');
 
       return view('denim_records.show', compact('user', 'denim', 'record'));
     }
