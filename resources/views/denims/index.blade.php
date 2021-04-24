@@ -17,8 +17,10 @@
               <a href="{{route('users.denims.show', [$user->id, $denim->id])}}" class="card mb-3" style="">
                 <div class="row no-gutters">
                   <div class="col-md-4">
-                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image"><title>Placeholder</title><rect fill="#868e96" width="100%" height="100%"/><text fill="#dee2e6" dy=".3em" x="50%" y="50%">Image</text></svg>
-                  </div>
+                      @if (!$denim->denimImages->isEmpty())
+                      <img width="180" height="160" src="{{$denim->denimImages[0]->cloud_image_path}}" alt="">
+                      @endif
+                    </div>
                   <div class="col-md-8">
                     <div class="card-body">
                       <h5 class="card-title">{{$denim->bland_type}}</h5>
