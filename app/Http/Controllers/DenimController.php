@@ -26,7 +26,7 @@ class DenimController extends Controller
      */
     public function index(User $user)
     {
-        $denims = Denim::where('user_id', $user->id)->get();
+        $denims = Denim::where('user_id', $user->id)->paginate(5);
 
         $denims->load('denimImages');
         
@@ -109,9 +109,9 @@ class DenimController extends Controller
         abort(404);
       };
 
-      $denim->load('denimImages', 'denimRecords');
-      
-      return view('denims.show', compact('user', 'denim'));
+      $denim->load('denimImages');
+      $records = DenimRecord::where('denim_id', $denim->id)->latest()->paginate(10);
+      return view('denims.show', compact('user', 'denim', 'records'));
       
     }
 
