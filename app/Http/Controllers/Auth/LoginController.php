@@ -33,7 +33,7 @@ class LoginController extends Controller
           return '/login';
       }
       return route('users.show', Auth::id());
-  }
+    }
 
     /**
      * Create a new controller instance.

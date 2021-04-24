@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Denim;
 use App\User;
 use App\DenimRecord;
+use App\DenimImage;
+use JD\Cloudder\Facades\Cloudder;
 
 class DenimController extends Controller
 {
@@ -51,16 +53,45 @@ class DenimController extends Controller
      */
     public function store(CreateDenimRequest $request, User $user, Denim $denim)
     {
-        $this->authorize('create', [Denim::class, $user]);
+      \DB::beginTransaction();
 
+      try {
+
+        $this->authorize('create', [Denim::class, $user]);
+  
         $denim = Denim::create([
           'user_id' => Auth::id(),
           'bland_type' => $request->bland_type,
           'waist' => $request->waist,
           'wearing_count' => $request->wearing_count,
         ]);
+  
+        if ($image = $request->file('denim_image')) {
+            $image_path = $image->getRealPath();
+            Cloudder::upload($image_path, null);
+            //直前にアップロードされた画像のpublicIdを取得する。
+            $publicId = Cloudder::getPublicId();
+            $logoUrl = Cloudder::secureShow($publicId, [
+                'width'     => 200,
+                'height'    => 200
+            ]);
+            $denimImage = DenimImage::create([
+              'denim_id' => $denim->id,
+              'cloud_image_path' => $logoUrl,
+              'cloud_image_id'  => $publicId
+            ]);
+        }
 
-        return redirect(route('users.denims.show', [$user->id, $denim->id]))->with('success', '登録が完了しました！');
+        \DB::commit();
+  
+      } catch (Exception $e) {
+        \Log::error($e);
+        \DB::rollBack();
+        return redirect(route('users.denim.create', compact('user')))->with('alert', '記録の保存に失敗しました。')->withInput();
+      }
+
+      return redirect(route('users.denims.show', [$user->id, $denim->id]))->with('success', '登録が完了しました！');
+
     }
 
     /**
@@ -76,9 +107,10 @@ class DenimController extends Controller
         abort(404);
       };
 
-      $records = DenimRecord::where('denim_id', $denim->id)->get();
-
-      return view('denims.show', compact('user', 'denim', 'records'));
+      $denim->load('denimImages', 'denimRecords');
+      
+      return view('denims.show', compact('user', 'denim'));
+      
     }
 
     /**

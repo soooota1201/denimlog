@@ -14,6 +14,14 @@
               
             <table class="table">
               <tbody>
+                @if (!$denim->denimImages->isEmpty())
+                  <tr>
+                    <td>デニム</td>
+                    <td>
+                      <img src="{{$denim->denimImages[0]->cloud_image_path}}" alt="">
+                    </td>
+                  </tr>
+                @endif
                 <tr>
                   <td>ブランド</td>
                   <td>{{$denim->bland_type}}</td>
@@ -66,7 +74,7 @@
         </div>
     </div>
 
-    @foreach ($records as $record)
+    @foreach ($denim->denimRecords as $record)
         
       <div class="row justify-content-center mt-4">
         <a href="{{route('users.records.show', [$user->id, $denim->id, $record->id])}}" class="col-md-8">
