@@ -29,3 +29,5 @@ Route::group(['prefix' => 'users/{user}', 'as' => 'users.'], function() {
     Route::resource('records', 'DenimRecordController');
   });
 });
+
+Route::get('/search', 'SearchController@searchRecord');

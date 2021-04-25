@@ -49,6 +49,12 @@
                                 </li>
                             @endif
                         @else
+                            <form class="input-group mr-3" action="{{url('/search')}}" method="GET">
+                              <input type="text" class="form-control" name="denim" placeholder="デニムを検索" value="{{ request()->query('denim') }}">
+                            </form>
+                            <form class="input-group mr-3" action="{{url('/search')}}" method="GET">
+                              <input type="text" class="form-control" name="record" placeholder="記録を検索" value="{{ request()->query('record') }}">
+                            </form>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
