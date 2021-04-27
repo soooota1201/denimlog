@@ -30,4 +30,5 @@ Route::group(['prefix' => 'users/{user}', 'as' => 'users.'], function() {
   });
 });
 
-Route::get('/search', 'SearchController@searchRecord');
+Route::get('/search/records', 'SearchController@searchRecord');
+Route::get('/search/denims', 'SearchController@searchDenim');

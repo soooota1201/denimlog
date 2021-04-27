@@ -24,6 +24,22 @@ class SearchController extends Controller
       return view('denim_records.index')
       ->with('records', $records);
     }
+    
+    public function searchDenim(Request $request)
+    {
+      $denim = request()->query('denim');
+      if($denim)
+      {
+        $denims = Denim::where('bland_type', 'LIKE', "%{$denim}%")
+        ->orWhere('waist','LIKE', "%{$denim}%")
+        ->orWhere('wearing_count','LIKE', "%{$denim}%")
+        ->simplePaginate(1);
+
+      } else {
+        $denims = Denim::simplePaginate(3);
+      };
+      return view('denims.index')->with('denims', $denims);
+    }
 }
 
 
