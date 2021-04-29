@@ -10,7 +10,7 @@ use App\Like;
 class RepliesController extends Controller
 {
     public function __construct() {
-      $this->middleware('auth')->except(['like', 'unlike']);
+      $this->middleware('auth')->only(['like', 'unlike']);
     }
 
     public function like($record) {

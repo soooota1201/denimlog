@@ -24,7 +24,6 @@ Route::resource('users', 'UserController')->only('show', 'edit', 'update');
 
 Route::group(['prefix' => 'users/{user}', 'as' => 'users.'], function() {
     Route::resource('denims', 'DenimController');
-
     Route::group(['prefix' => 'denims/{denim}'], function () {
     Route::resource('records', 'DenimRecordController');
   });
@@ -35,3 +34,6 @@ Route::get('/search/denims', 'SearchController@searchDenim');
 
 Route::get('/reply/like/{record}', 'RepliesController@like')->name('reply.like');
 Route::get('/reply/unlike/{record}', 'RepliesController@unlike')->name('reply.unlike');
+
+Route::post('comments/{id}', 'CommentController@store')->name('comments.store');
+Route::delete('comments/{id}', 'CommentController@destroy')->name('comments.destroy');

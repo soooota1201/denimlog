@@ -50,4 +50,9 @@ class DenimRecord extends Model
         return false;
       }
   }
+
+  public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
