@@ -13,6 +13,7 @@ use App\Denim;
 use App\DenimRecord;
 use App\DenimRecordImage;
 use App\Like;
+use App\Comment;
 
 class DenimRecordController extends Controller
 {
@@ -104,10 +105,9 @@ class DenimRecordController extends Controller
       {
         abort(404);
       };
-
       $record->load('denimRecordImages');
-
-      return view('denim_records.show', compact('user', 'denim', 'record'));
+      $comments = Comment::where('denim_record_id', $record->id)->orderBy('created_at', 'desc')->get();
+      return view('denim_records.show', compact('user', 'denim', 'record', 'comments'));
     }
 
     /**
