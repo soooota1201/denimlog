@@ -6,6 +6,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h2>デニム記録個別（SHOW）</h2>
+
+            <div>
+              @if($record->is_liked_by_auth_user())
+                <a href="{{ route('reply.unlike', $record->id) }}" class="btn btn-success btn-sm">いいね<span class="badge">{{ $record->likes->count() }}</span></a>
+              @else
+                <a href="{{ route('reply.like', $record->id) }}" class="btn btn-secondary btn-sm">いいね<span class="badge">{{ $record->likes->count() }}</span></a>
+              @endif
+            </div>
               
             <table class="table">
               <tbody>
