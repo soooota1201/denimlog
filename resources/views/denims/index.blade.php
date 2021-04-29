@@ -30,12 +30,11 @@
                       <p class="card-text">ウエスト：{{$denim->waist}}インチ</p>
                       <p class="card-text">履き込み回数：{{$denim->wearing_count}}回</p>
                     </div>
-                  </div>
+                  </div> 
                 </div>
               </a>
             @endforeach
             {{$denims->appends(['denim' => request()->query('denim')])->links()}}
-
           @else
             @foreach ($denims as $denim)
               <a href="{{route('users.denims.show', [$user->id, $denim->id])}}" class="card mb-3" style="">
@@ -57,7 +56,6 @@
             @endforeach
             {{ $denims->links() }}
           @endif
-            
         </div>
     </div>
 </div>

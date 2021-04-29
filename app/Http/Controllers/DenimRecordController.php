@@ -12,6 +12,7 @@ use App\User;
 use App\Denim;
 use App\DenimRecord;
 use App\DenimRecordImage;
+use App\Like;
 
 class DenimRecordController extends Controller
 {
