@@ -24,9 +24,11 @@ Route::resource('users', 'UserController')->only('show', 'edit', 'update');
 
 Route::group(['prefix' => 'users/{user}', 'as' => 'users.'], function() {
     Route::resource('denims', 'DenimController');
+    Route::post('follow', 'FollowController@store')->name('follow');
+    Route::delete('unfollow', 'FollowController@destroy')->name('unfollow');
     Route::group(['prefix' => 'denims/{denim}'], function () {
-    Route::resource('records', 'DenimRecordController');
-  });
+      Route::resource('records', 'DenimRecordController');
+    });
 });
 
 Route::get('/search/records', 'SearchController@searchRecord');

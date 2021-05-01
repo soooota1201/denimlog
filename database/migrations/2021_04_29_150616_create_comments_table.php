@@ -18,8 +18,8 @@ class CreateCommentsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('denim_record_id');
             $table->text('body');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); ;
-            $table->foreign('denim_record_id')->references('id')->on('denim_records')->onDelete('cascade'); ;
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('denim_record_id')->references('id')->on('denim_records')->onDelete('cascade');
             $table->timestamps();
         });
     }
