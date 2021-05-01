@@ -6,7 +6,33 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="mb-4">
+              
               <h2>ユーザープロフィール画面</h2>
+              <span>
+                following {{$user->followings()->count()}}
+              </span>
+              <span>
+                follower {{$user->followers()->count()}}
+              </span>
+              
+              @if (Auth::id() != $user->id)
+                @if (!Auth::user()->is_following($user->id))
+                  <form action="{{route('users.follow', $user->id)}}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-primary">
+                      follow
+                    </button>
+                  </form>
+                @else
+                  <form action="{{route('users.unfollow', $user->id)}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-success">
+                      following
+                    </button>
+                  </form>
+                @endif 
+              @endif
               <p>user_name : {{$user->name}}</p>
               <figure><img src="{{$user->thumbnail_image_path}}" alt=""></figure>
               <p><span class="mr-4">身長：{{$user->height}}cm</span><span>体重：{{$user->weight}}kg</span></p>

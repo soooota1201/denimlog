@@ -41,4 +41,37 @@ class User extends Authenticatable
     {
       return $this->hasMany(Denim::class);
     }
+    
+    public function followings()
+    {
+      return $this->belongsToMany(User::class, 'user_follows', 'following_id', 'followed_id')->withTimestamps();
+    }
+    
+    public function followers()
+    {
+      return $this->belongsToMany(User::class, 'user_follows', 'followed_id', 'following_id')->withTimestamps();
+    }
+
+    public function is_following($userId)
+    {
+      return $this->followings()->where('followed_id', $userId)->exists();
+    }
+    
+    public function follow($userId)
+    {
+      $existing = $this->is_following($userId);
+      $myself = $this->id == $userId;
+      if (!$existing && !$myself) {
+          $this->followings()->attach($userId);
+      }
+    }
+    
+    public function unfollow($userId)
+    {
+      $existing = $this->is_following($userId);
+      $myself = $this->id == $userId;
+      if ($existing && !$myself) {
+        $this->followings()->detach($userId);
+      }
+    }
 }
