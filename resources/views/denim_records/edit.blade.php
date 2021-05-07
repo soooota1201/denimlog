@@ -5,8 +5,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h2>デニム記録の情報を更新してください</h2>
-
+            <h3 class="mb-4">{{$record->denim->bland_type}}</h3>
             <form 
             method="POST" 
             action="{{route('users.records.update',[$user->id, $denim->id, $record->id])
