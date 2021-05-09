@@ -72,7 +72,7 @@ body {
   line-height: 1.6;
   color: #212529;
   text-align: left;
-  background-color: #f8fafc;
+  background-color: #fff;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -510,7 +510,7 @@ mark,
 
 .img-thumbnail {
   padding: 0.25rem;
-  background-color: #f8fafc;
+  background-color: #fff;
   border: 1px solid #dee2e6;
   border-radius: 0.25rem;
   max-width: 100%;
@@ -4256,15 +4256,15 @@ input[type=button].btn-block {
 }
 
 .custom-range:focus::-webkit-slider-thumb {
-  box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
 }
 
 .custom-range:focus::-moz-range-thumb {
-  box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
 }
 
 .custom-range:focus::-ms-thumb {
-  box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
 }
 
 .custom-range::-moz-focus-outer {
@@ -4467,8 +4467,8 @@ input[type=button].btn-block {
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
   color: #495057;
-  background-color: #f8fafc;
-  border-color: #dee2e6 #dee2e6 #f8fafc;
+  background-color: #fff;
+  border-color: #dee2e6 #dee2e6 #fff;
 }
 
 .nav-tabs .dropdown-menu {
@@ -10975,22 +10975,77 @@ p {
 }
 
 .profile-denim-btn {
-  background-color: #f6993f;
+  background-color: #F1AC56;
+  padding: 2px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.profile-img img {
+.profile-img {
   width: 110px;
   height: 110px;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 50%;
 }
 
+.profile-img--wrapper {
+  text-align: center;
+}
+
+#attachment label {
+  /* ボタン部分の見た目（任意） */
+  display: inline-block;
+  position: relative;
+  background: #666;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 18px;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+#attachment label:hover {
+  background: #888;
+  transition: all 0.4s;
+}
+
+#attachment label input {
+  /* 今回のポイント */
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#attachment .filename {
+  font-weight: 16px;
+  margin: 0 0 0 10px;
+}
+
 .record-card {
-  padding: 5px;
+  padding: 5px 10px 10px 10px;
   color: #333333 !important;
 }
 
 .record-card-user_name {
   padding: 5px 0;
+}
+
+.record-card-img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.record-card-img--wrapper {
+  position: relative;
+  padding-top: 70.25%;
+  overflow: hidden;
 }
 
 .record-card-body {
@@ -11016,5 +11071,10 @@ p {
 
 .record-card-place {
   font-size: 12px;
+}
+
+.record-denim {
+  margin-bottom: 0;
+  font-size: 16px;
 }
 
