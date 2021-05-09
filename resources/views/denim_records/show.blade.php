@@ -5,13 +5,17 @@
 <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
-        <h3 class="mb-4">{{$record->denim->bland_type}}</h3>
+        <div class="mb-3">
+          <a href="{{route('users.denims.show', [$user->id, $denim->id])}}" class="text-dark mr-2"><i class="fas fa-arrow-left"></i><span class="record-denim ml-2">{{$record->denim->bland_type}}</span></a>
+        </div>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="card record-card col-12" href="{{route('users.records.show', [$user->id, $denim->id, $record->id])}}">
-                  <p class="record-card-user_name">{{$record->user->name}}</p>
+                  <p class="record-card-user_name d-inline-block">{{$record->user->name}}</p>
                   @if (!$record->denimRecordImages->isEmpty())
-                    <img class="bd-placeholder-img card-img-top" src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" alt="">
+                  <figure class="record-card-img--wrapper">
+                    <img class="bd-placeholder-img record-card-img" src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" alt="">
+                  </figure>
                   @endif
                   <div class="card-body record-card-body">
                     <div>
@@ -32,8 +36,6 @@
       </div>
     </div>
 </div>
-      
-
 
 <div class="container mt-3">
   <div class="row justify-content-center">
@@ -99,8 +101,7 @@
         <a href="{{route('users.records.edit', [$user->id, $denim->id, $record->id])}}" class="btn btn-lg btn-block btn-outline-dark">編集する</a>
         <a type="button" data-toggle="modal" data-target="#modal{{$record->id}}" class="btn btn-lg btn-block  btn-outline-dark mt4">削除する</a>
       @endif
-    
-      <a href="{{route('users.denims.show', [$user->id, $denim->id])}}" class="btn btn-lg btn-block  btn-outline-dark mt4">戻る</a>
+
       <a type="button" data-toggle="modal" data-target="#modal-comment{{$record->id}}" class="btn btn-lg btn-block  btn-outline-dark mt4">コメントする</a>
     
       <ul class="list-unstyled mt-4">

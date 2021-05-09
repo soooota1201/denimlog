@@ -11017,12 +11017,25 @@ p {
 }
 
 .record-card {
-  padding: 5px;
+  padding: 5px 10px 10px 10px;
   color: #333333 !important;
 }
 
 .record-card-user_name {
   padding: 5px 0;
+}
+
+.record-card-img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.record-card-img--wrapper {
+  position: relative;
+  padding-top: 70.25%;
+  overflow: hidden;
 }
 
 .record-card-body {
@@ -11048,5 +11061,10 @@ p {
 
 .record-card-place {
   font-size: 12px;
+}
+
+.record-denim {
+  margin-bottom: 0;
+  font-size: 16px;
 }
 

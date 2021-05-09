@@ -4,7 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h3 class="mb-4">{{$denim->bland_type}}</h3>
+            <div class="d-flex align-items-center mb-3">
+              <a href="{{route('users.denims.show', [$user->id, $denim->id])}}" class="text-dark mr-2"><i class="fas fa-arrow-left"></i><span class="d-inline-block ml-2">{{$denim->bland_type}}へ戻る</span></a>
+            </div>
             <form 
             method="POST" 
             action="{{route('users.records.store', [$user->id, $denim->id])
@@ -28,7 +30,7 @@
                 <label for="">テキスト</label>
                 <textarea cols="10" rows="10" type="text" class="form-control" placeholder="" name="body" value="{{ old("body") }}"></textarea>
               </div>
-              <button type="submit" class="btn btn-primary">登録する</button>
+              <button type="submit" class="btn btn-lg btn-block btn-outline-dark">登録する<i class="fas fa-angle-right ml-4"></i></button>
             </form>
         </div>
     </div>

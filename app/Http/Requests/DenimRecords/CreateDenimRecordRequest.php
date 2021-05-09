@@ -24,7 +24,8 @@ class CreateDenimRecordRequest extends FormRequest
     public function rules()
     {
         return [
-            'wearing_day' => 'before:"now"|required',
+          'denim_record_image' => 'required',
+          'wearing_day' => 'before:"now"|required',
         ];
     }
 }

@@ -6,6 +6,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
+          <div class="mb-3">
+            <a href="{{route('users.show', [$user->id])}}" class="text-dark mr-2"><i class="fas fa-arrow-left"></i><span class="d-inline-block ml-2">プロフィールへ戻る</span></a>
+          </div>
+
           @if (!request()->query('denim'))
           <div class="d-flex justify-content-between mb-3">
             <h2>{{$user->name}}のデニム一覧</h2>

@@ -75,9 +75,13 @@
             <div class="container">
               @foreach ($records as $record)
                 <div class="row justify-content-center">
-                    <a class="card record-card col-12" href="{{route('users.records.show', [$user->id, $denim->id, $record->id])}}">
+                    <div class="card record-card col-12 mb-4">
                       <p class="record-card-user_name">{{$record->user->name}}</p>
-                      <svg class="bd-placeholder-img card-img-top" width="100%" height="300px"  xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect fill="#868e96" width="100%" height="100%"/><text fill="#dee2e6" dy=".3em" x="50%" y="50%">Image cap</text></svg>
+                      @if (!$record->denimRecordImages->isEmpty())
+                      <a href="{{route('users.records.show', [$user->id, $denim->id, $record->id])}}" class="record-card-img--wrapper">
+                        <img class="bd-placeholder-img record-card-img" src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" alt="">
+                      </a>
+                      @endif
                       <div class="card-body record-card-body">
                         <span class="btn btn-sm btn-success record-card-like mb-1">いいね</span>
                         <p class="record-card-user_name">{{$record->user->name}}</p>
@@ -85,8 +89,7 @@
                         <p class="mt-3 record-card-date">記録日：{{$record->wearing_day}}</p>
                         <p class="record-card-place">履き込み地：{{$record->wearing_place}}</p>
                       </div>
-                    </a>
-                  
+                    </div>
                 </div>
               @endforeach
             </div><!-- /.container -->
