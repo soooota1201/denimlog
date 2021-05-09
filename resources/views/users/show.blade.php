@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="mb-5">
@@ -24,8 +24,8 @@
                   </form>
                 @endif 
               @endif
-              <div class="d-flex justify-content-between align-items-center">
-                <figure class="col-md-4 profile-img--wrapper mr-2"><img class="profile-img" src="{{$user->thumbnail_image_path}}" alt=""></figure>
+              <div class="row justify-content-between align-items-center">
+                <figure class="col-md-4 col-4 profile-img--wrapper"><img class="profile-img" src="{{$user->thumbnail_image_path}}" alt=""></figure>
                 <div class="col-8">
                   <p class="profile-name">{{$user->name}}</p>
                   <p class=" profile-data"><span class="mr-2">身長：{{$user->height}}cm</span><span>体重：{{$user->weight}}kg</span></p>
@@ -40,7 +40,7 @@
                   <p class="profile-text mt-2">{{$user->user_profile}}</p>
                   <a href="{{route('users.edit', $user->id)}}" class="btn btn-lg btn-block btn-outline-dark profile-edit">プロフィールを編集する</a>
                 </div>
-              </div><!-- /.d-flex -->
+              </div>
             </div>
 
             <div class="d-flex justify-content-between align-items-center mb-3">
