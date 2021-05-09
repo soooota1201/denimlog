@@ -10946,6 +10946,16 @@ p {
   margin-bottom: 0;
 }
 
+.l-header {
+  background: url(/images/denim-header-bg.png?64bcb297a871247a0055fe392a59b6bf);
+  width: 100%;
+}
+
+.header-logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
 .profile-name {
   font-size: 20px;
   font-weight: bold;

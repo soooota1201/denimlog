@@ -6,9 +6,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-          <div class="mb-3">
-            <a href="{{route('users.show', [$user->id])}}" class="text-dark mr-2"><i class="fas fa-arrow-left"></i><span class="d-inline-block ml-2">プロフィールへ戻る</span></a>
-          </div>
+          @if (!request()->query('denim'))
+            <div class="mb-3">
+              <a href="{{route('users.show', $user->id)}}" class="text-dark mr-2"><i class="fas fa-arrow-left"></i><span class="d-inline-block ml-2">プロフィールへ戻る</span></a>
+            </div>
+          @endif
 
           @if (!request()->query('denim'))
           <div class="d-flex justify-content-between mb-3">
@@ -20,7 +22,7 @@
           @endif
 
           @if (request()->query('denim'))
-              @foreach ($denims as $denim)
+              @forelse ($denims as $denim)
               <a href="{{route('users.denims.show', [$denim->user_id, $denim->id])}}" class="card mb-3" style="">
                 <div class="row no-gutters">
                   <div class="col-md-4">
@@ -37,7 +39,11 @@
                   </div> 
                 </div>
               </a>
-            @endforeach
+            @empty
+              <p class="text-center">
+                No results found for query <strong>{{ request()->query('denim')}}</strong>
+              </p>
+            @endforelse
             {{$denims->appends(['denim' => request()->query('denim')])->links()}}
           @else
             @foreach ($denims as $denim)

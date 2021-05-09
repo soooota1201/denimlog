@@ -24,9 +24,9 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm l-header fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="/users">
+                <a class="navbar-brand text-white header-logo" href="/users">
                     {{ config('app.name', '') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -59,7 +59,7 @@
                               <input type="text" class="form-control" name="record" placeholder="記録を検索" value="{{ request()->query('record') }}">
                             </form>
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white font-weight-bold" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
@@ -83,7 +83,7 @@
 
         @include('layouts._flash_message')
         
-        <main class="py-4">
+        <main class="py-4" style="margin-top: 70px;">
             @yield('content')
         </main>
     </div>
