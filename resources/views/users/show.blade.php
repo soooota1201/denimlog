@@ -24,9 +24,9 @@
                   </form>
                 @endif 
               @endif
-              <div class="d-flex">
-                <figure class="col-4 profile-img mr-2"><img src="{{$user->thumbnail_image_path}}" alt=""></figure>
-                <div class="col-8">
+              <div class="d-flex align-items-center">
+                <figure class=" profile-img--wrapper mr-2"><img class="profile-img" src="{{$user->thumbnail_image_path}}" alt=""></figure>
+                <div class="col-md-10 col-8">
                   <p class="profile-name">{{$user->name}}</p>
                   <p class=" profile-data"><span class="mr-2">身長：{{$user->height}}cm</span><span>体重：{{$user->weight}}kg</span></p>
                   <p>
@@ -45,7 +45,7 @@
 
             <div class="d-flex justify-content-between align-items-center mb-3">
               <p class="profile-denim">デニム一覧</p>  
-              <a href="" class="btn text-white profile-denim-btn">登録する＞</a>
+              <a href="" class="btn text-white profile-denim-btn">登録する<i class="fas fa-chevron-right ml-2"></i></a>
             </div><!-- /.d-flex -->
             @foreach ($denims as $denim)
               <a href="{{route('users.denims.show', [$user->id, $denim->id])}}" class="card mb-3" style="">
@@ -65,12 +65,12 @@
             @endforeach
 
             <div class="mb-5 text-center">
-              <a href="{{route('users.denims.index', Auth::id())}}" class="btn btn-outline-dark mt4">デニム一覧へ</a>
+              <a href="{{route('users.denims.index', Auth::id())}}" class="btn btn-outline-dark mt4">デニム一覧へ<i class="fas fa-chevron-right ml-2"></i></a>
             </div>
             
             <div class="d-flex justify-content-between align-items-center mb-3">
             <p class="profile-denim">記録一覧</p>  
-            <a href="" class="btn text-white profile-denim-btn">一覧へ</a>
+            <a href="" class="btn text-white profile-denim-btn">一覧へ<i class="fas fa-chevron-right ml-2"></i></a>
           </div><!-- /.d-flex -->
             <div class="container">
               @foreach ($records as $record)
@@ -83,7 +83,13 @@
                       </a>
                       @endif
                       <div class="card-body record-card-body">
-                        <span class="btn btn-sm btn-success record-card-like mb-1">いいね</span>
+                        <div>
+                          @if($record->is_liked_by_auth_user())
+                            <a href="{{ route('reply.unlike', $record->id) }}" class="btn btn-success btn-sm">いいね<span class="badge">{{ $record->likes->count() }}</span></a>
+                          @else
+                            <a href="{{ route('reply.like', $record->id) }}" class="btn btn-secondary btn-sm">いいね<span class="badge">{{ $record->likes->count() }}</span></a>
+                          @endif
+                        </div>
                         <p class="record-card-user_name">{{$record->user->name}}</p>
                         <p class="card-text record-card-text">{{$record->body}}</p>
                         <p class="mt-3 record-card-date">記録日：{{$record->wearing_day}}</p>

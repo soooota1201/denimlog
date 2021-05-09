@@ -10975,13 +10975,23 @@ p {
 }
 
 .profile-denim-btn {
-  background-color: #f6993f;
+  background-color: #F1AC56;
+  padding: 2px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.profile-img img {
+.profile-img {
   width: 110px;
   height: 110px;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 50%;
+}
+
+.profile-img--wrapper {
+  text-align: center;
 }
 
 #attachment label {
