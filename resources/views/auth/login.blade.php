@@ -41,7 +41,7 @@
                           </div>
   
                           <div class="form-group">
-                              <div class="">
+                              <div class="d-flex justify-content-between align-items-center">
                                   <div class="form-check">
                                       <input class="form-check-input text-white" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
   
@@ -49,6 +49,11 @@
                                           {{ __('Remember Me') }}
                                       </label>
                                   </div>
+                                  @if (Route::has('password.request'))
+                                      <a class="btn btn-link text-white" href="{{ route('password.request') }}">
+                                          {{ __('Forgot Your Password?') }}
+                                      </a>
+                                  @endif
                               </div>
                           </div>
   
@@ -57,11 +62,9 @@
                                   <button type="submit" class="btn btn-primary btn-block">
                                       {{ __('Login') }}
                                   </button>
-  
-                                  @if (Route::has('password.request'))
-                                      <a class="btn btn-link text-white" href="{{ route('password.request') }}">
-                                          {{ __('Forgot Your Password?') }}
-                                      </a>
+
+                                  @if (Route::has('register'))
+                                    <a style="background: #F1AC56;" class="btn btn-block text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
                                   @endif
                               </div>
                           </div>

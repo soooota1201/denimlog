@@ -24,9 +24,9 @@
 </head>
 <body>
     <div id="app">
-      @auth
+      
         @include('layouts.header')  
-      @endauth
+      
 
         @include('layouts._flash_message')
         

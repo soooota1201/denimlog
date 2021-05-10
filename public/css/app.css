@@ -11038,14 +11038,14 @@ p {
 
 .login {
   height: 100vh;
-  background: url(/images/login-bg.png?11f105ceb91b79804e0f6df8dd83a743);
+  background: url(/images/login-bg.png?d68d88fa158835e2e02b410c0310e3cb);
 }
 
 .login-title {
   font-size: 20px;
   color: #fff;
   margin-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .app-name {
