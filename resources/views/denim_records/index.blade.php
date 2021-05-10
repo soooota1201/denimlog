@@ -22,7 +22,7 @@
             @empty
               <p class="text-center">
                 No results found for query <strong>{{ request()->query('record')}}</strong>
-                </p>
+              </p>
             @endforelse
             
             {{$records->appends(['record' => request()->query('record')])->links()}}

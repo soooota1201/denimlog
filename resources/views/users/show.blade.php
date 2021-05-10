@@ -24,9 +24,9 @@
                   </form>
                 @endif 
               @endif
-              <div class="d-flex align-items-center">
-                <figure class=" profile-img--wrapper mr-2"><img class="profile-img" src="{{$user->thumbnail_image_path}}" alt=""></figure>
-                <div class="col-md-10 col-8">
+              <div class="row justify-content-between align-items-center">
+                <figure class="col-md-4 col-4 profile-img--wrapper"><img class="profile-img" src="{{$user->thumbnail_image_path}}" alt=""></figure>
+                <div class="col-8">
                   <p class="profile-name">{{$user->name}}</p>
                   <p class=" profile-data"><span class="mr-2">身長：{{$user->height}}cm</span><span>体重：{{$user->weight}}kg</span></p>
                   <p>
@@ -40,7 +40,7 @@
                   <p class="profile-text mt-2">{{$user->user_profile}}</p>
                   <a href="{{route('users.edit', $user->id)}}" class="btn btn-lg btn-block btn-outline-dark profile-edit">プロフィールを編集する</a>
                 </div>
-              </div><!-- /.d-flex -->
+              </div>
             </div>
 
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -68,10 +68,9 @@
               <a href="{{route('users.denims.index', Auth::id())}}" class="btn btn-outline-dark mt4">デニム一覧へ<i class="fas fa-chevron-right ml-2"></i></a>
             </div>
             
-            <div class="d-flex justify-content-between align-items-center mb-3">
-            <p class="profile-denim">記録一覧</p>  
-            <a href="" class="btn text-white profile-denim-btn">一覧へ<i class="fas fa-chevron-right ml-2"></i></a>
-          </div><!-- /.d-flex -->
+            <div class="mb-3">
+              <p class="profile-denim">記録一覧</p>  
+            </div>
             <div class="container">
               @foreach ($records as $record)
                 <div class="row justify-content-center">
