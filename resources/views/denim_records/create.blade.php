@@ -16,7 +16,7 @@
               @csrf
               <div class="form-group">
                 <label for="">デニム画像</label>
-                <input type="file" class="form-control" placeholder="" name="denim_record_image" value="">
+                <input type="file" class="form-control" placeholder="" name="denim_record_image" value="" multiple>
               </div>
               <div class="form-group">
                 <label for="">履いた日</label>

@@ -13,9 +13,11 @@
                 <div class="card record-card col-12" href="{{route('users.records.show', [$user->id, $denim->id, $record->id])}}">
                   <p class="record-card-user_name d-inline-block">{{$record->user->name}}</p>
                   @if (!$record->denimRecordImages->isEmpty())
+                  @foreach ($record->denimRecordImages as $denimRecordImage)
                   <figure class="record-card-img--wrapper">
                     <img class="bd-placeholder-img record-card-img" src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" alt="">
                   </figure>
+                  @endforeach
                   @endif
                   <div class="card-body record-card-body">
                     <div>
