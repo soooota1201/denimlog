@@ -61,20 +61,23 @@ class DenimRecordController extends Controller
           'body' => $request->body
         ]);
 
-        if($image = $request->file('denim_record_image')) {
-          $image_path = $image->getRealPath();
-          Cloudder::upload($image_path, null);
-          $publicId = Cloudder::getPublicId();
-          $logoUrl = Cloudder::secureShow($publicId, [
-            'width' => 200,
-            'height' => 200
-          ]);
-          $denimRecordImage = DenimRecordImage::create([
-            'denim_record_id' => $record->id,
-            'cloud_record_image_path' => $logoUrl,
-            'cloud_record_image_id' => $publicId
-          ]);
-        };
+        $images = $request->file('denim_record_image');
+        foreach($images as $image) {
+          if($image) {
+            $image_path = $image->getRealPath();
+            Cloudder::upload($image_path, null);
+            $publicId = Cloudder::getPublicId();
+            $logoUrl = Cloudder::secureShow($publicId, [
+              'width' => 200,
+              'height' => 200
+            ]);
+            $denimRecordImage = DenimRecordImage::create([
+              'denim_record_id' => $record->id,
+              'cloud_record_image_path' => $logoUrl,
+              'cloud_record_image_id' => $publicId
+            ]);
+          };
+        }
 
         $denim->wearing_count++;
         $denim->save();
