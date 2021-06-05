@@ -13,8 +13,10 @@
                 <div class="card record-card col-12" href="{{route('users.records.show', [$user->id, $denim->id, $record->id])}}">
                   <p class="record-card-user_name d-inline-block">{{$record->user->name}}</p>
                   
-                  @if (!$record->denimRecordImages->isEmpty())
+                  @if (!$record->denimRecordImages->isEmpty() && count($record->denimRecordImages) != 1)
                     <swiper-component :records="{{ json_encode($record->denimRecordImages) }}"></swiper-component>
+                  @else
+                    <img src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" class="">
                   @endif
 
                   <div class="card-body record-card-body">

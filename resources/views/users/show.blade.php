@@ -45,13 +45,17 @@
 
             <div class="d-flex justify-content-between align-items-center mb-3">
               <p class="profile-denim">デニム一覧</p>  
-              <a href="" class="btn text-white profile-denim-btn">登録する<i class="fas fa-chevron-right ml-2"></i></a>
+              @if (Auth::id() === $user->id)
+                <a href="{{route('users.denims.create', $user->id)}}" class="btn text-white profile-denim-btn">登録する<i class="fas fa-chevron-right ml-2"></i></a>
+              @endif
             </div><!-- /.d-flex -->
             @foreach ($denims as $denim)
               <a href="{{route('users.denims.show', [$user->id, $denim->id])}}" class="card mb-3" style="">
                 <div class="row no-gutters">
                   <div class="col-4">
-                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image"><title>Placeholder</title><rect fill="#868e96" width="100%" height="100%"/><text fill="#dee2e6" dy=".3em" x="50%" y="50%">Image</text></svg>
+                    @if (!$denim->denimImages->isEmpty())
+                    <img width="180" height="160" src="{{$denim->denimImages[0]->cloud_image_path}}" alt="">
+                    @endif
                   </div>
                   <div class="col-8">
                     <div class="card-body">

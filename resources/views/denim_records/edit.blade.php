@@ -21,7 +21,7 @@
                 @if (!$record->denimRecordImages->isEmpty())
                   <img class="bd-placeholder-img card-img-top mb-3" src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" alt="">
                 @endif
-                <input type="file" class="form-control" placeholder="" name="denim_record_image" value="">
+                <input type="file" class="form-control" placeholder="" name="denim_record_image[]" value="" multiple>
               </div>
               <div class="form-group">
                 <label for="">履いた日</label>
