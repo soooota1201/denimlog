@@ -25,9 +25,8 @@
 <body>
     <div id="app">
       
-        @include('layouts.header')  
+        @yield('header')
       
-
         @include('layouts._flash_message')
         
         <main>
