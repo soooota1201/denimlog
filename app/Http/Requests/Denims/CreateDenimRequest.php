@@ -27,7 +27,7 @@ class CreateDenimRequest extends FormRequest
             'bland_type' => 'required',
             'waist' => 'integer|digits:2',
             'wearing_count' => 'integer',
-            'denim_record_image' = 'required'
+            'denim_image' => 'required'
         ];
     }
 }

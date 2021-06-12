@@ -1,7 +1,9 @@
 <template>
     <swiper :options="swiperOption" ref="mySwiper1">
     <swiper-slide v-for="record in records" :key="record.cloud_record_image_path">
-        <img :src="record.cloud_record_image_path" class="">
+        <figure class="record-card-img--wrapper">
+          <img :src="record.cloud_record_image_path" class="record-card-img">
+        </figure>
     </swiper-slide>
     <div class="swiper-button-prev" slot="button-prev"></div>
     <div class="swiper-button-next" slot="button-next"></div>

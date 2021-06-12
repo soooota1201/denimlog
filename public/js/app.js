@@ -1968,6 +1968,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["records"],
   data: function data() {
@@ -50935,7 +50937,12 @@ var render = function() {
     [
       _vm._l(_vm.records, function(record) {
         return _c("swiper-slide", { key: record.cloud_record_image_path }, [
-          _c("img", { attrs: { src: record.cloud_record_image_path } })
+          _c("figure", { staticClass: "record-card-img--wrapper" }, [
+            _c("img", {
+              staticClass: "record-card-img",
+              attrs: { src: record.cloud_record_image_path }
+            })
+          ])
         ])
       }),
       _vm._v(" "),

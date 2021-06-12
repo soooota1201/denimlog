@@ -48,40 +48,52 @@
             </div>
 
             <div class="d-flex justify-content-between align-items-center mb-3">
-              <p class="profile-denim">デニム一覧</p>  
-              @if (Auth::id() === $user->id)
-                <a href="{{route('users.denims.create', $user->id)}}" class="btn text-white profile-denim-btn">登録する<i class="fas fa-chevron-right ml-2"></i></a>
+              <p class="profile-denim">デニム一覧</p>
+              @if (!$denims->count() == 0)
+                @if (Auth::id() === $user->id)
+                  <a href="{{route('users.denims.create', $user->id)}}" class="btn text-white profile-denim-btn">登録する<i class="fas fa-chevron-right ml-2"></i></a>
+                @endif
               @endif
             </div><!-- /.d-flex -->
-            @foreach ($denims as $denim)
-              <a href="{{route('users.denims.show', [$user->id, $denim->id])}}" class="card mb-3" style="">
-                <div class="row no-gutters">
-                  <div class="col-4">
-                    @if (!$denim->denimImages->isEmpty())
-                    <img width="180" height="160" src="{{$denim->denimImages[0]->cloud_image_path}}" alt="">
-                    @endif
-                  </div>
-                  <div class="col-8">
-                    <div class="card-body">
-                      <h5 class="card-title">{{$denim->bland_type}}</h5>
-                      <p class="card-text">ウエスト：{{$denim->waist}}インチ</p>
-                      <p class="card-text">履き込み回数：{{$denim->wearing_count}}回</p>
+            {{-- {{dd($denims->count())}} --}}
+            @if (!$denims->count() == 0)
+              @foreach ($denims as $denim)
+                <a href="{{route('users.denims.show', [$user->id, $denim->id])}}" class="card mb-3" style="">
+                  <div class="row no-gutters">
+                    <div class="col-4">
+                      @if (!$denim->denimImages->isEmpty())
+                      <img src="{{$denim->denimImages[0]->cloud_image_path}}" alt="">
+                      @endif
+                    </div>
+                    <div class="col-8">
+                      <div class="card-body">
+                        <h5 class="card-title">{{$denim->bland_type}}</h5>
+                        <p class="card-text">ウエスト：{{$denim->waist}}インチ</p>
+                        <p class="card-text">履き込み回数：{{$denim->wearing_count}}回</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </a>
-            @endforeach
-
-            <div class="mb-5 text-center">
-              <a href="{{route('users.denims.index', Auth::id())}}" class="btn btn-outline-dark mt4">デニム一覧へ<i class="fas fa-chevron-right ml-2"></i></a>
-            </div>
+                </a>
+              @endforeach
+              <div class="mb-5 text-center">
+                <a href="{{route('users.denims.index', Auth::id())}}" class="btn btn-outline-dark mt4">デニム一覧へ<i class="fas fa-chevron-right ml-2"></i></a>
+              </div>
+            @else
+              <p>お気に入りのデニムを登録しましょう！</p>
+              <br>
+              @if (Auth::id() === $user->id)
+              <a href="{{route('users.denims.create', $user->id)}}" class="btn text-white profile-denim-btn">登録する<i class="fas fa-chevron-right ml-2"></i></a>
+              @endif
+              <br>
+            @endif
             
-            <div class="mb-3">
-              <p class="profile-denim">記録一覧</p>  
-            </div>
-            <div class="container">
-              @foreach ($records as $record)
-                <div class="row justify-content-center">
+            @if (!$denims->count() == 0 && !$records->count() == 0)
+              <div class="mb-3">
+                <p class="profile-denim">記録一覧</p>  
+              </div>
+              <div class="container">
+                @foreach ($records as $record)
+                  <div class="row justify-content-center">
                     <div class="card record-card col-12 mb-4">
                       <p class="record-card-user_name">{{$record->user->name}}</p>
                       @if (!$record->denimRecordImages->isEmpty())
@@ -103,10 +115,10 @@
                         <p class="record-card-place">履き込み地：{{$record->wearing_place}}</p>
                       </div>
                     </div>
-                </div>
-              @endforeach
-            </div><!-- /.container -->
-
+                  </div>
+                @endforeach
+              </div><!-- /.container -->
+            @endif
         </div>
     </div>
 </div>

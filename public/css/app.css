@@ -11036,6 +11036,21 @@ p {
   margin: 0 0 0 10px;
 }
 
+.denim-img {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transform: translateY(-50%);
+}
+
+.denim-img--wrapper {
+  position: relative;
+  padding-top: 80%;
+}
+
 .login {
   height: 100vh;
   background: url(/images/login-bg.png?d68d88fa158835e2e02b410c0310e3cb);
@@ -11069,6 +11084,7 @@ p {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  height: initial !important;
 }
 
 .record-card-img--wrapper {

@@ -20,7 +20,9 @@
                   @if (!$record->denimRecordImages->isEmpty() && count($record->denimRecordImages) != 1)
                     <swiper-component :records="{{ json_encode($record->denimRecordImages) }}"></swiper-component>
                   @else
-                    <img src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" class="">
+                    <figure class="record-card-img--wrapper">
+                      <img src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" class="record-card-img">
+                    </figure>
                   @endif
 
                   <div class="card-body record-card-body">
