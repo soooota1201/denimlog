@@ -11,9 +11,6 @@
         <div class="col-md-8">
           <div class="d-flex justify-content-between mb-3">
             <h2>{{$denim->bland_type}}</h2>
-            @if (Auth::id() === $user->id)
-              <a href="{{route('users.records.create', [$user->id, $denim->id])}}" class="btn btn-success">記録する</a>
-            @endif
           </div>
           <div class="row mb-3">
             <div class="col-md-5">
@@ -24,6 +21,19 @@
               @endif
             </div>
             <div class="col-md-7">
+              @if (Auth::id() === $user->id)
+                <div class="btn-group float-right" role="group" aria-label="Button group with nested dropdown">
+                  <div class="" role="group">
+                    <button class="btn text-dark denim-edit-btn"  data-toggle="dropdown">
+                      <i class="fas fa-ellipsis-h"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
+                      <a class="dropdown-item"href="{{route('users.denims.edit', [$user->id, $denim->id])}}">編集する</a>
+                      <a class="dropdown-item"type="button" data-toggle="modal" data-target="#modal{{$denim->id}}">削除する</a>
+                    </div>
+                  </div>
+                </div>
+              @endif  
               <div class="mb-2">
                 <p>ウエスト：{{$denim->waist}} インチ</p>
               </div>
@@ -58,21 +68,10 @@
                   </div>
               </div>
             </form>
-            
+
             @if (Auth::id() === $user->id)
-              <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-              <div class="btn-group" role="group">
-                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  編集する
-                </button>
-                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                  <a class="dropdown-item"href="{{route('users.denims.edit', [$user->id, $denim->id])}}">編集する</a>
-                  <a class="dropdown-item"type="button" data-toggle="modal" data-target="#modal{{$denim->id}}">削除する</a>
-                </div>
-              </div>
-            </div>
+              <a href="{{route('users.records.create', [$user->id, $denim->id])}}" class="btn btn-success">記録する</a>
             @endif
-              <a href="{{route('users.denims.index', $user->id)}}" class="btn btn-lg btn-block  btn-outline-dark mt4">デニム一覧へ戻る</a>
             </div>
           </div><!-- /.row -->
         </div>
@@ -91,7 +90,13 @@
                   </a>
                   @endif
                   <div class="card-body record-card-body">
-                    <span class="btn btn-sm btn-success record-card-like mb-1">いいね</span>
+                    <div>
+                      @if($record->is_liked_by_auth_user())
+                        <a href="{{ route('reply.unlike', $record->id) }}" class="btn btn-success btn-sm">いいね<span class="badge">{{ $record->likes->count() }}</span></a>
+                      @else
+                        <a href="{{ route('reply.like', $record->id) }}" class="btn btn-secondary btn-sm">いいね<span class="badge">{{ $record->likes->count() }}</span></a>
+                      @endif
+                    </div>
                     <p class="record-card-user_name">{{$record->user->name}}</p>
                     <p class="card-text record-card-text">{{$record->body}}</p>
                     <p class="mt-3 record-card-date">記録日：{{$record->wearing_day}}</p>

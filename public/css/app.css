@@ -11051,6 +11051,10 @@ p {
   padding-top: 80%;
 }
 
+.denim-edit-btn {
+  font-size: 20px;
+}
+
 .login {
   height: 100vh;
   background: url(/images/login-bg.png?d68d88fa158835e2e02b410c0310e3cb);

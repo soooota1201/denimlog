@@ -37,6 +37,10 @@
                               @if (Auth::id() === $user->id)
                                 <a class="dropdown-item" href="{{route('users.show', $user->id)}}">プロフィール</a>
                               @endif
+                              @if (Auth::id() === $user->id)
+                                <a class="dropdown-item" href="{{route('users.denims.index', $user->id)}}">デニム一覧</a>
+                              @endif
+                              
                               <a class="dropdown-item" href="{{ route('logout') }}"
                                   onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">

@@ -26,6 +26,20 @@
                   @endif
 
                   <div class="card-body record-card-body">
+                    <div class="btn-group float-right" role="group" aria-label="Button group with nested dropdown">
+                    <div class="" role="group">
+                      <button class="btn text-dark denim-edit-btn"  data-toggle="dropdown">
+                        <i class="fas fa-ellipsis-h"></i>
+                      </button>
+                      
+                      @if (Auth::id() === $user->id)
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
+                          <a class="dropdown-item" href="{{route('users.records.edit', [$user->id, $denim->id, $record->id])}}">編集する</a>
+                          <a class="dropdown-item"type="button" data-toggle="modal" data-target="#modal{{$record->id}}">削除する</a>
+                        </div>
+                      @endif
+                    </div>
+                  </div>
                     <div>
                       @if($record->is_liked_by_auth_user())
                         <a href="{{ route('reply.unlike', $record->id) }}" class="btn btn-success btn-sm">いいね<span class="badge">{{ $record->likes->count() }}</span></a>
@@ -104,11 +118,6 @@
               </div>
           </div>
       </form>
-      
-      @if (Auth::id() === $user->id)
-        <a href="{{route('users.records.edit', [$user->id, $denim->id, $record->id])}}" class="btn btn-lg btn-block btn-outline-dark">編集する</a>
-        <a type="button" data-toggle="modal" data-target="#modal{{$record->id}}" class="btn btn-lg btn-block  btn-outline-dark mt4">削除する</a>
-      @endif
 
       <a type="button" data-toggle="modal" data-target="#modal-comment{{$record->id}}" class="btn btn-lg btn-block  btn-outline-dark mt4">コメントする</a>
     
