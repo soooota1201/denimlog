@@ -26,6 +26,7 @@ Vue.use(VueAwesomeSwiper)
 
 Vue.component('swiper-component', require('./components/SwiperComponent.vue').default);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('denim-google-map-component', require('./components/DenimGoogleMapComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

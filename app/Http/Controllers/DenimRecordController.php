@@ -140,8 +140,8 @@ class DenimRecordController extends Controller
         ]);
 
         $images = $request->file('denim_record_image');
-        foreach($images as $image) {
-          if($image) {
+        if($images) {
+          foreach($images as $image) {
             $image_path = $image->getRealPath();
             Cloudder::upload($image_path, null);
             $publicId = Cloudder::getPublicId();
