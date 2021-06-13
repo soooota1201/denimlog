@@ -111,9 +111,15 @@ class DenimController extends Controller
 
       $denim->load('denimImages');
       $denim_wearing_place = $denim->with('denimRecords');
-      $hoge = DenimRecord::where('denim_id', $denim->id)->get(['wearing_place']);
+      $hoge_array = [];
+      $hoges = DenimRecord::where('denim_id', $denim->id)->select('wearing_place')->get();
+      foreach ($hoges as $hoge) {
+        $hoge_array[] = $hoge->wearing_place;
+      }
+      // var_dump($hoge_array);
+      // var_dump($hoge_array);
       $records = DenimRecord::where('denim_id', $denim->id)->latest()->paginate(10);
-      return view('denims.show', compact('user', 'denim', 'records', 'denim_wearing_place', 'hoge'));
+      return view('denims.show', compact('user', 'denim', 'records', 'denim_wearing_place', 'hoge_array'));
       
     }
 
