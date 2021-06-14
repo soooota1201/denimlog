@@ -118,10 +118,9 @@
 @endsection
 
 @section('script')
-  {{-- {{dd($hoge_array)}} --}}
   <script>
     function initMap() {
-      var addresses = @json($hoge_array);
+      var addresses = @json($wearing_places);
 
       var latlng = []; //緯度経度の値をセット
       var marker = []; //マーカーの位置情報をセット
@@ -142,8 +141,8 @@
                 if (status === google.maps.GeocoderStatus.OK) { // ステータスがOKの場合
                   latlng[i]=results[0].geometry.location;// マーカーを立てる位置をセット
                   marker[i] = new google.maps.Marker({
-                      position: results[0].geometry.location, // マーカーを立てる位置を指定
-                      map: map // マーカーを立てる地図を指定
+                    position: results[0].geometry.location, // マーカーを立てる位置を指定
+                    map: map // マーカーを立てる地図を指定
                   });
                 } else { // 失敗した場合
                 }//if文の終了。ifは文なので;はいらない

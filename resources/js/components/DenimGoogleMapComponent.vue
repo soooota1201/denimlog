@@ -1,7 +1,7 @@
 <template>
     <div>
         test
-        <div ref="map"></div>
+        <div id="map"></div>
     </div>
 </template>
 
