@@ -52,6 +52,19 @@
                     <p class="mt-3 record-card-date">記録日：{{$record->wearing_day}}</p>
                     <p class="record-card-place">履き込み地：{{$record->wearing_place}}</p>
                   </div>
+                  <div class="text-center">
+                    {{-- google map --}}
+                    <iframe
+                    width="600"
+                    height="200"
+                    style="border:0"
+                    loading="lazy"
+                    allowfullscreen
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBtJhHnPZnXP58-WPu_pz8CvW-hxw7BhHo
+                      &q={{$record->wearing_place}}">
+                    </iframe>
+                  {{-- google map --}}
+                  </div>
                 </div>
             </div>
         </div><!-- /.container -->

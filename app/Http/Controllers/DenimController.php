@@ -110,8 +110,15 @@ class DenimController extends Controller
       };
 
       $denim->load('denimImages');
+      $denim_wearing_place = $denim->with('denimRecords');
       $records = DenimRecord::where('denim_id', $denim->id)->latest()->paginate(10);
-      return view('denims.show', compact('user', 'denim', 'records'));
+      $wearing_places = [];
+      $wearing_places_query = DenimRecord::where('denim_id', $denim->id)->select('wearing_place')->get();
+      foreach ($wearing_places_query as $wearing_place) {
+        $wearing_places[] = $wearing_place->wearing_place;
+      }
+      
+      return view('denims.show', compact('user', 'denim', 'records', 'wearing_places'));
       
     }
 
