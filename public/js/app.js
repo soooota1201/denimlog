@@ -94763,24 +94763,34 @@ var calendarHeatmap = {
           }).on('mouseout', function (d, i) {
             tooltip.remove();
           });
-        }
+        } // if (chart.legendEnabled()) {
+        //   let colorRange = [color(0)]
+        //   for (let i = 3; i > 0; i--) {
+        //     colorRange.push(color(max / i))
+        //   }
+        //   let legendGroup = svg.append('g')
+        //   legendGroup.selectAll('.calendar-heatmap-legend')
+        //   .data(colorRange)
+        //   .enter()
+        //   .append('rect')
+        //   .attr('class', 'calendar-heatmap-legend')
+        //   .attr('width', SQUARE_LENGTH)
+        //   .attr('height', SQUARE_LENGTH)
+        //   .attr('x', function (d, i) { return (width - legendWidth) + (i + 1) * 13 })
+        //   .attr('y', height + SQUARE_PADDING)
+        //   .attr('fill', function (d) { return d })
+        //   legendGroup.append('text')
+        //   .attr('class', 'calendar-heatmap-legend-text calendar-heatmap-legend-text-less')
+        //   .attr('x', width - legendWidth - 13)
+        //   .attr('y', height + SQUARE_LENGTH)
+        //   .text(locale.Less)
+        //   legendGroup.append('text')
+        //   .attr('class', 'calendar-heatmap-legend-text calendar-heatmap-legend-text-more')
+        //   .attr('x', (width - legendWidth + SQUARE_PADDING) + (colorRange.length + 1) * 13)
+        //   .attr('y', height + SQUARE_LENGTH)
+        //   .text(locale.More)
+        // }
 
-        if (chart.legendEnabled()) {
-          var _colorRange = [color(0)];
-
-          for (var i = 3; i > 0; i--) {
-            _colorRange.push(color(max / i));
-          }
-
-          var legendGroup = svg.append('g');
-          legendGroup.selectAll('.calendar-heatmap-legend').data(_colorRange).enter().append('rect').attr('class', 'calendar-heatmap-legend').attr('width', SQUARE_LENGTH).attr('height', SQUARE_LENGTH).attr('x', function (d, i) {
-            return width - legendWidth + (i + 1) * 13;
-          }).attr('y', height + SQUARE_PADDING).attr('fill', function (d) {
-            return d;
-          });
-          legendGroup.append('text').attr('class', 'calendar-heatmap-legend-text calendar-heatmap-legend-text-less').attr('x', width - legendWidth - 13).attr('y', height + SQUARE_LENGTH).text(locale.Less);
-          legendGroup.append('text').attr('class', 'calendar-heatmap-legend-text calendar-heatmap-legend-text-more').attr('x', width - legendWidth + SQUARE_PADDING + (_colorRange.length + 1) * 13).attr('y', height + SQUARE_LENGTH).text(locale.More);
-        }
 
         dayRects.exit().remove();
         var monthLabels = svg.selectAll('.month').data(monthRange).enter().append('text').attr('class', 'month-name').style().text(function (d) {

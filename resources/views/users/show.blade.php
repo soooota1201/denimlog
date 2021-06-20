@@ -48,17 +48,12 @@
             </div>
 
             <vuejs-heatmap
-            :entries="[[{'counting': 400,'created_at': '2021-03-21'},{'counting': 500,'created_at': '2021-05-20'}]]" 
+            :entries="[{'counting': 500,'created_at': '2021-03-21'},{'counting': 500,'created_at': '2021-05-20'}]" 
             :color-range="['#c9ecec', '#09b3af']"
             :tooltip-enabled="true"
-            :tooltip-unit=Star
+            :tooltip-unit="Star"
             :locale="{months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            days: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-            No: 'No',
-            on: 'on',
-            Less: 'Less',
-            More: 'More'}"
-            :max="700"
+            days: ['S', 'M', 'T', 'W', 'T', 'F', 'S']}"
             :on-click=test
             ></vuejs-heatmap>
 
