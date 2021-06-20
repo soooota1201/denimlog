@@ -47,6 +47,8 @@
               </div>
             </div>
 
+            @include('users.calendar')
+
             <div class="d-flex justify-content-between align-items-center mb-3">
               <p class="profile-denim">デニム一覧</p>
               @if (!$denims->count() == 0)
@@ -55,6 +57,7 @@
                 @endif
               @endif
             </div><!-- /.d-flex -->
+
             {{-- {{dd($denims->count())}} --}}
             @if (!$denims->count() == 0)
               @foreach ($denims as $denim)
