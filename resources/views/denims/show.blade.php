@@ -11,6 +11,9 @@
           <div class="d-flex justify-content-between mb-3">
             <h2>{{$denim->bland_type}}</h2>
           </div>
+
+          
+
           <div class="row mb-3">
             <div class="col-md-5">
               @if (!$denim->denimImages->isEmpty())
@@ -165,5 +168,5 @@
       }//function aftergeo終了
   };//function initMap終了
   </script>
-  <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3iosZfOZCCpAbq-RhbWCH0Fg9NUbXUUU&callback=initMap" defer></script>
+  <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3iosZfOZCCpAbq-RhbWCH0Fg9NUbXUUU&callback=initMap"></script>
 @endsection

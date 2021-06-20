@@ -1,0 +1,2 @@
+{{ $calendar->getTitle() }}
+{!! $calendar->render() !!}
