@@ -57,8 +57,7 @@ class UserController extends Controller
     {
       $denims = Denim::where('user_id', $user->id)->take(3)->latest()->get();
       $records = DenimRecord::where('user_id', $user->id)->get();
-      $calendar = new Calendar('2021/02/07');
-      var_dump(date('Y/m/d', time()));
+      $calendar = new Calendar(time());
       return view('users.show', compact('user', 'denims', 'records', 'calendar'));
     }
 

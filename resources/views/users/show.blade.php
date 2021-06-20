@@ -47,7 +47,22 @@
               </div>
             </div>
 
-            @include('users.calendar')
+            <vuejs-heatmap
+            :entries="[[{'counting': 400,'created_at': '2021-03-21'},{'counting': 500,'created_at': '2021-05-20'}]]" 
+            :color-range="['#c9ecec', '#09b3af']"
+            :tooltip-enabled="true"
+            :tooltip-unit=Star
+            :locale="{months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            days: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+            No: 'No',
+            on: 'on',
+            Less: 'Less',
+            More: 'More'}"
+            :max="700"
+            :on-click=test
+            ></vuejs-heatmap>
+
+            {{-- @include('users.calendar') --}}
 
             <div class="d-flex justify-content-between align-items-center mb-3">
               <p class="profile-denim">デニム一覧</p>
