@@ -7,7 +7,7 @@ use App\Http\Requests\Users\UpdateUserRequest;
 use App\User;
 use App\Denim;
 use App\DenimRecord;
-use App\Calendar;
+use App\Calendar\Calendar;
 use JD\Cloudder\Facades\Cloudder;
 
 class UserController extends Controller
@@ -57,7 +57,8 @@ class UserController extends Controller
     {
       $denims = Denim::where('user_id', $user->id)->take(3)->latest()->get();
       $records = DenimRecord::where('user_id', $user->id)->get();
-      $calendar = new Calendar(time());
+      $calendar = new Calendar('2021/02/07');
+      var_dump(date('Y/m/d', time()));
       return view('users.show', compact('user', 'denims', 'records', 'calendar'));
     }
 
