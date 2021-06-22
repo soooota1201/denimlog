@@ -2025,27 +2025,23 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     renderHeatMap: function renderHeatMap() {
-      var entries = this.entries || [{
-        "counting": 2070,
-        "created_at": "2017-06-21"
-      }, {
-        "counting": 3493,
-        "created_at": "2017-06-22"
-      }];
+      var entries = this.entries;
       var now = moment__WEBPACK_IMPORTED_MODULE_0___default()().endOf('day').toDate();
       var yearAgo = moment__WEBPACK_IMPORTED_MODULE_0___default()().startOf('day').subtract(1, 'year').toDate();
       var data = d3__WEBPACK_IMPORTED_MODULE_2__["time"].days(yearAgo, now).map(function (dateElement) {
         var entry = function (dateElement) {
           var heatmapEntry = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.find(entries, {
-            created_at: moment__WEBPACK_IMPORTED_MODULE_0___default()(dateElement).format('YYYY-MM-DD')
+            wearing_day: moment__WEBPACK_IMPORTED_MODULE_0___default()(dateElement).format('YYYY-MM-DD')
           });
 
           if (!heatmapEntry) {
             return {
-              counting: 0
+              counting: 100
             };
           } else {
-            return heatmapEntry;
+            return {
+              counting: 500
+            };
           }
         }(dateElement);
 

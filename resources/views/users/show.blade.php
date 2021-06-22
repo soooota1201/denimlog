@@ -46,10 +46,9 @@
                 </div>
               </div>
             </div>
-
             <vuejs-heatmap
-            :entries="[{'counting': 500,'created_at': '2021-03-21'},{'counting': 500,'created_at': '2021-05-20'}]" 
-            :color-range="['#c9ecec', '#09b3af']"
+            :entries="{{$wearing_days}}"
+            {{-- :color-range="['#c9ecec', '#09b3af']" --}}
             :tooltip-enabled="true"
             :tooltip-unit="Star"
             :locale="{months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],

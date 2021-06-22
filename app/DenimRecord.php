@@ -60,4 +60,10 @@ class DenimRecord extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
 }
