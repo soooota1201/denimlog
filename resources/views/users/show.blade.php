@@ -46,8 +46,17 @@
                 </div>
               </div>
             </div>
+            <vuejs-heatmap
+            :entries="{{$wearing_days}}"
+            {{-- :color-range="['#c9ecec', '#09b3af']" --}}
+            :tooltip-enabled="true"
+            :tooltip-unit="Star"
+            :locale="{months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            days: ['S', 'M', 'T', 'W', 'T', 'F', 'S']}"
+            :on-click=test
+            ></vuejs-heatmap>
 
-            @include('users.calendar')
+            {{-- @include('users.calendar') --}}
 
             <div class="d-flex justify-content-between align-items-center mb-3">
               <p class="profile-denim">デニム一覧</p>

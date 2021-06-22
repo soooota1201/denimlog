@@ -57,9 +57,10 @@ class UserController extends Controller
     {
       $denims = Denim::where('user_id', $user->id)->take(3)->latest()->get();
       $records = DenimRecord::where('user_id', $user->id)->get();
-      $calendar = new Calendar('2021/02/07');
-      var_dump(date('Y/m/d', time()));
-      return view('users.show', compact('user', 'denims', 'records', 'calendar'));
+      $wearing_days = [];
+      $wearing_days_query = DenimRecord::where('user_id', $user->id)->select('wearing_day')->get();
+      $wearing_days = json_encode($wearing_days_query);
+      return view('users.show', compact('user', 'denims', 'records', 'wearing_days'));
     }
 
     /**
