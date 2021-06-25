@@ -133,8 +133,6 @@
 
       var map = new google.maps.Map(document.getElementById('map'));//地図を作成する
 
-      geo(aftergeo);
-
       function geo(callback){
         var cRef = addresses.length;
         for (var i = 0; i < addresses.length; i++) {
@@ -158,6 +156,8 @@
         }//for文の終了
       }//function geo終了
 
+      geo(aftergeo);
+
       function aftergeo(){
         myLatLng = latlng[0];//最初の住所を地図の中心点に設定
         var opt = {
@@ -166,7 +166,7 @@
         };//地図作成のオプションのうちcenterとzoomは必須
         map.setOptions(opt);//オプションをmapにセット
       }//function aftergeo終了
-  };//function initMap終了
+  };
   </script>
-  <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3iosZfOZCCpAbq-RhbWCH0Fg9NUbXUUU&callback=initMap"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3iosZfOZCCpAbq-RhbWCH0Fg9NUbXUUU&callback=initMap" defer></script>
 @endsection

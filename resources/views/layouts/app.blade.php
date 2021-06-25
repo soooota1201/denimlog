@@ -30,7 +30,7 @@
         @include('layouts._flash_message')
         
         <main>
-            @yield('content')
+          @yield('content')
         </main>
     </div>
     @yield('script')
