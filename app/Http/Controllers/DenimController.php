@@ -67,6 +67,9 @@ class DenimController extends Controller
           'waist' => $request->waist,
           'wearing_count' => $request->wearing_count,
         ]);
+
+        $image = $request->file('denim_image');
+        dd($image);
   
         if ($image = $request->file('denim_image')) {
             $image_path = $image->getRealPath();
