@@ -53,17 +53,7 @@
                     <p class="record-card-place">履き込み地：{{$record->wearing_place}}</p>
                   </div>
                   <div class="text-center">
-                    {{-- google map --}}
-                    <iframe
-                    width="600"
-                    height="200"
-                    style="border:0"
-                    loading="lazy"
-                    allowfullscreen
-                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBtJhHnPZnXP58-WPu_pz8CvW-hxw7BhHo
-                      &q={{$record->wearing_place}}">
-                    </iframe>
-                  {{-- google map --}}
+                    <div id="map" style="height: 200px"></div>
                   </div>
                 </div>
             </div>
@@ -179,4 +169,32 @@
 
 </div><!-- /.container -->
 
+@endsection
+
+@section('script')
+<script>
+  var map;
+  var marker;
+  var geocoder;
+  function initMap() {
+    geocoder = new google.maps.Geocoder();
+    geocoder.geocode({
+        'address': '福岡' // TAM 東京
+    }, function(results, status) { // 結果
+          if (status === google.maps.GeocoderStatus.OK) { // ステータスがOKの場合
+            map = new google.maps.Map(document.getElementById('map'), {
+              center: results[0].geometry.location, // 地図の中心を指定
+                zoom: 19 // 地図のズームを指定
+            });
+          marker = new google.maps.Marker({
+            position: results[0].geometry.location, // マーカーを立てる位置を指定
+            map: map // マーカーを立てる地図を指定
+          });
+      } else { // 失敗した場合
+          alert(status);
+        }
+    });
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3iosZfOZCCpAbq-RhbWCH0Fg9NUbXUUU&callback=initMap" defer></script>
 @endsection

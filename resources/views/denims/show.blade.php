@@ -12,8 +12,6 @@
             <h2>{{$denim->bland_type}}</h2>
           </div>
 
-          
-
           <div class="row mb-3">
             <div class="col-md-5">
               @if (!$denim->denimImages->isEmpty())
