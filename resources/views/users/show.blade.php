@@ -46,9 +46,9 @@
                 </div>
               </div>
             </div>
+
             <vuejs-heatmap
             :entries="{{$wearing_days}}"
-            {{-- :color-range="['#c9ecec', '#09b3af']" --}}
             :tooltip-enabled="true"
             :tooltip-unit="Star"
             :locale="{months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -56,8 +56,7 @@
             :on-click=test
             ></vuejs-heatmap>
 
-            {{-- @include('users.calendar') --}}
-
+            {{-- デニム一覧 --}}
             <div class="d-flex justify-content-between align-items-center mb-3">
               <p class="profile-denim">デニム一覧</p>
               @if (!$denims->count() == 0)
@@ -66,9 +65,7 @@
                 @endif
               @endif
             </div><!-- /.d-flex -->
-
-            {{-- {{dd($denims->count())}} --}}
-            @if (!$denims->count() == 0)
+            @if (!$denims->count() == 0) {{-- デニムが登録されている場合 --}}
               @foreach ($denims as $denim)
                 <a href="{{route('users.denims.show', [$user->id, $denim->id])}}" class="card mb-3" style="">
                   <div class="row no-gutters">
@@ -90,15 +87,16 @@
               <div class="mb-5 text-center">
                 <a href="{{route('users.denims.index', Auth::id())}}" class="btn btn-outline-dark mt4">デニム一覧へ<i class="fas fa-chevron-right ml-2"></i></a>
               </div>
-            @else
+            @else {{-- デニムが登録されていない場合 --}}
               <p>お気に入りのデニムを登録しましょう！</p>
               <br>
               @if (Auth::id() === $user->id)
-              <a href="{{route('users.denims.create', $user->id)}}" class="btn text-white profile-denim-btn">登録する<i class="fas fa-chevron-right ml-2"></i></a>
+                <a href="{{route('users.denims.create', $user->id)}}" class="btn text-white profile-denim-btn">登録する<i class="fas fa-chevron-right ml-2"></i></a>
               @endif
               <br>
             @endif
             
+            {{-- 記録一覧 --}}
             @if (!$denims->count() == 0 && !$records->count() == 0)
               <div class="mb-3">
                 <p class="profile-denim">記録一覧</p>  
@@ -134,4 +132,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+    
 @endsection
