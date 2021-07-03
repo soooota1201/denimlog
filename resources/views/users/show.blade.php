@@ -56,79 +56,92 @@
             :on-click=test
             ></vuejs-heatmap>
 
-            {{-- デニム一覧 --}}
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <p class="profile-denim">デニム一覧</p>
-              @if (!$denims->count() == 0)
-                @if (Auth::id() === $user->id)
-                  <a href="{{route('users.denims.create', $user->id)}}" class="btn text-white profile-denim-btn">登録する<i class="fas fa-chevron-right ml-2"></i></a>
-                @endif
-              @endif
-            </div><!-- /.d-flex -->
-            @if (!$denims->count() == 0) {{-- デニムが登録されている場合 --}}
-              @foreach ($denims as $denim)
-                <a href="{{route('users.denims.show', [$user->id, $denim->id])}}" class="card mb-3" style="">
-                  <div class="row no-gutters">
-                    <div class="col-4">
-                      @if (!$denim->denimImages->isEmpty())
-                      <img src="{{$denim->denimImages[0]->cloud_image_path}}" alt="">
-                      @endif
-                    </div>
-                    <div class="col-8">
-                      <div class="card-body">
-                        <h5 class="card-title">{{$denim->bland_type}}</h5>
-                        <p class="card-text">ウエスト：{{$denim->waist}}インチ</p>
-                        <p class="card-text">履き込み回数：{{$denim->wearing_count}}回</p>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              @endforeach
-              <div class="mb-5 text-center">
-                <a href="{{route('users.denims.index', Auth::id())}}" class="btn btn-outline-dark mt4">デニム一覧へ<i class="fas fa-chevron-right ml-2"></i></a>
-              </div>
-            @else {{-- デニムが登録されていない場合 --}}
-              <p>お気に入りのデニムを登録しましょう！</p>
-              <br>
-              @if (Auth::id() === $user->id)
-                <a href="{{route('users.denims.create', $user->id)}}" class="btn text-white profile-denim-btn">登録する<i class="fas fa-chevron-right ml-2"></i></a>
-              @endif
-              <br>
-            @endif
-            
-            {{-- 記録一覧 --}}
-            @if (!$denims->count() == 0 && !$records->count() == 0)
-              <div class="mb-3">
-                <p class="profile-denim">記録一覧</p>  
-              </div>
-              <div class="container">
-                @foreach ($records as $record)
-                  <div class="row justify-content-center">
-                    <div class="card record-card col-12 mb-4">
-                      <p class="record-card-user_name">{{$record->user->name}}</p>
-                      @if (!$record->denimRecordImages->isEmpty())
-                      <a href="{{route('users.records.show', [$user->id, $denim->id, $record->id])}}" class="record-card-img--wrapper">
-                        <img class="bd-placeholder-img record-card-img" src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" alt="">
-                      </a>
-                      @endif
-                      <div class="card-body record-card-body">
-                        <div>
-                          @if($record->is_liked_by_auth_user())
-                            <a href="{{ route('reply.unlike', $record->id) }}" class="btn btn-success btn-sm">いいね<span class="badge">{{ $record->likes->count() }}</span></a>
-                          @else
-                            <a href="{{ route('reply.like', $record->id) }}" class="btn btn-secondary btn-sm">いいね<span class="badge">{{ $record->likes->count() }}</span></a>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                {{-- 記録一覧 --}}
+                @if (!$denims->count() == 0 && !$records->count() == 0)
+                  <div class="container mt-3">
+                    @foreach ($records as $record)
+                      <div class="row justify-content-center">
+                        <div class="card record-card col-12 mb-4">
+                          <p class="record-card-user_name">{{$record->user->name}}</p>
+                          @if (!$record->denimRecordImages->isEmpty())
+                          <a href="{{route('users.records.show', [$user->id, $record->denim_id, $record->id])}}" class="record-card-img--wrapper">
+                            <img class="bd-placeholder-img record-card-img" src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" alt="">
+                          </a>
                           @endif
+                          <div class="card-body record-card-body">
+                            <div>
+                              @if($record->is_liked_by_auth_user())
+                                <a href="{{ route('reply.unlike', $record->id) }}" class="btn btn-success btn-sm">いいね<span class="badge">{{ $record->likes->count() }}</span></a>
+                              @else
+                                <a href="{{ route('reply.like', $record->id) }}" class="btn btn-secondary btn-sm">いいね<span class="badge">{{ $record->likes->count() }}</span></a>
+                              @endif
+                            </div>
+                            <p class="record-card-user_name">{{$record->user->name}}</p>
+                            <p class="card-text record-card-text">{{$record->body}}</p>
+                            <p class="mt-3 record-card-date">記録日：{{$record->wearing_day}}</p>
+                            <p class="record-card-place">履き込み地：{{$record->wearing_place}}</p>
+                          </div>
                         </div>
-                        <p class="record-card-user_name">{{$record->user->name}}</p>
-                        <p class="card-text record-card-text">{{$record->body}}</p>
-                        <p class="mt-3 record-card-date">記録日：{{$record->wearing_day}}</p>
-                        <p class="record-card-place">履き込み地：{{$record->wearing_place}}</p>
                       </div>
+                    @endforeach
+                  </div><!-- /.container -->
+                @endif
+              </div>
+              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                {{-- デニム一覧 --}}
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                  <p class="profile-denim">デニム一覧</p>
+                  @if (!$denims->count() == 0)
+                    @if (Auth::id() === $user->id)
+                      <a href="{{route('users.denims.create', $user->id)}}" class="btn text-white profile-denim-btn">登録する<i class="fas fa-chevron-right ml-2"></i></a>
+                    @endif
+                  @endif
+                </div><!-- /.d-flex -->
+                <div class="mt-3">
+                  @if (!$denims->count() == 0) {{-- デニムが登録されている場合 --}}
+                    @foreach ($denims as $denim)
+                      <a href="{{route('users.denims.show', [$user->id, $denim->id])}}" class="card mb-3" style="">
+                        <div class="row no-gutters">
+                          <div class="col-4">
+                            @if (!$denim->denimImages->isEmpty())
+                            <img style="width: 100%; height: 120px; object-fit: cover;" src="{{$denim->denimImages[0]->cloud_image_path}}" alt="">
+                            @endif
+                          </div>
+                          <div class="col-8">
+                            <div class="card-body">
+                              <h5 class="card-title">{{$denim->bland_type}}</h5>
+                              <p class="card-text">ウエスト：{{$denim->waist}}インチ</p>
+                              <p class="card-text">履き込み回数：{{$denim->wearing_count}}回</p>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    @endforeach
+                    <div class="mb-5 text-center">
+                      <a href="{{route('users.denims.index', Auth::id())}}" class="btn btn-outline-dark mt4">デニム一覧へ<i class="fas fa-chevron-right ml-2"></i></a>
                     </div>
-                  </div>
-                @endforeach
-              </div><!-- /.container -->
-            @endif
+                  @else {{-- デニムが登録されていない場合 --}}
+                    <p>お気に入りのデニムを登録しましょう！</p>
+                    <br>
+                    @if (Auth::id() === $user->id)
+                      <a href="{{route('users.denims.create', $user->id)}}" class="btn text-white profile-denim-btn">登録する<i class="fas fa-chevron-right ml-2"></i></a>
+                    @endif
+                    <br>
+                  @endif
+                </div>
+              </div>
+            </div>
+            
         </div>
     </div>
 </div>
