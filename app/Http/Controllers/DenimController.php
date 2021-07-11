@@ -69,7 +69,7 @@ class DenimController extends Controller
         ]);
 
         $image = $request->file('denim_image');
-        dd($image);
+        // dd($image);
   
         if ($image = $request->file('denim_image')) {
             $image_path = $image->getRealPath();
