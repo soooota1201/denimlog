@@ -196,5 +196,5 @@
     });
   }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3iosZfOZCCpAbq-RhbWCH0Fg9NUbXUUU&callback=initMap" defer></script>
+<script src="{{ config('services.google-map.apikey') }}" defer></script>
 @endsection
