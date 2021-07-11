@@ -26,7 +26,7 @@ class CreateDenimRequest extends FormRequest
         return [
             'bland_type' => 'required',
             'waist' => 'integer|digits:2',
-            'wearing_count' => 'integer',
+            'wearing_count' => 'integer|nullable',
             'denim_image' => 'required'
         ];
     }

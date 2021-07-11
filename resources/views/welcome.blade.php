@@ -17,7 +17,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/lp.css') }}" rel="stylesheet">
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -46,7 +46,8 @@
                     </div>
                     <div class="col-lg-8 align-self-baseline">
                         <p class="text-white-75 mb-5">「お気に入りのデニムの成長を記録しよう」</p>
-                        <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>
+                        <a class="btn btn-primary btn-xl" href="#about">ログイン</a>
+                        <a class="btn btn-primary btn-xl" href="#about">新規登録</a>
                     </div>
                 </div>
             </div>
