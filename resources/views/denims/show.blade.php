@@ -166,5 +166,5 @@
       }//function aftergeo終了
   };
   </script>
-  <script src="{{ config('services.google-map.apikey') }}" defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google-map.apikey') }}&callback=initMap" defer></script>
 @endsection
