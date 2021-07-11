@@ -13,6 +13,10 @@
 
 Auth::routes();
 
+Route::get('/', function() {
+  return view('welcome');
+});
+
 Route::get('/users', function() {
   if(! Auth::user()) {
     return redirect('login');

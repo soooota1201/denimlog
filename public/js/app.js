@@ -95210,8 +95210,8 @@ var swiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiper-contain
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/nakaisota/dev/denim_log/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/nakaisota/dev/denim_log/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/nakaisota/dev/denimlog/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/nakaisota/dev/denimlog/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
