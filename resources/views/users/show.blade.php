@@ -58,14 +58,32 @@
 
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item">
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Record</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Your Denim</a>
               </li>
             </ul>
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                @if ($denims->count() == 0)
+                  <div class="mt-3">
+                    <p>お気に入りのデニムを登録しましょう！</p>
+                    <br>
+                    @if (Auth::id() === $user->id)
+                      <a href="{{route('users.denims.create', $user->id)}}" class="btn text-white profile-denim-btn">登録する<i class="fas fa-chevron-right ml-2"></i></a>
+                  </div><!-- /.mt-3 -->
+                  @endif
+                @endif
+                @if (!$denims->count() == 0 && $records->count() == 0)
+                  <div class="mt-3">
+                    <p>登録したデニムの成長を記録しましょう！</p>
+                    <br>
+                    @if (Auth::id() === $user->id)
+                      <a href="{{route('users.denims.index', $user->id)}}" class="btn text-white profile-denim-btn">デニム一覧へ<i class="fas fa-chevron-right ml-2"></i></a>
+                    @endif
+                  </div><!-- /.mt-3 -->
+                @endif
                 {{-- 記録一覧 --}}
                 @if (!$denims->count() == 0 && !$records->count() == 0)
                   <div class="container mt-3">
@@ -99,14 +117,15 @@
               </div>
               <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 {{-- デニム一覧 --}}
+
+                @if (!$denims->count() == 0)
                 <div class="d-flex justify-content-between align-items-center mt-3">
                   <p class="profile-denim">デニム一覧</p>
-                  @if (!$denims->count() == 0)
                     @if (Auth::id() === $user->id)
                       <a href="{{route('users.denims.create', $user->id)}}" class="btn text-white profile-denim-btn">登録する<i class="fas fa-chevron-right ml-2"></i></a>
                     @endif
-                  @endif
-                </div><!-- /.d-flex -->
+                  </div><!-- /.d-flex -->
+                @endif
                 <div class="mt-3">
                   @if (!$denims->count() == 0) {{-- デニムが登録されている場合 --}}
                     @foreach ($denims as $denim)
