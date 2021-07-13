@@ -265,7 +265,7 @@ export let calendarHeatmap = {
       function tooltipHTMLForDate(d) {
         let dateStr = moment(d).format('ddd, MMM Do YYYY')
         let count = countForDate(d)
-        return '<span><strong>' + (count ? count : locale.No) + ' ' + pluralizedTooltipUnit(count) + '</strong> ' + locale.on + ' ' + dateStr + '</span>'
+        return '<span>' + dateStr + '</span>'
       }
 
       function countForDate(d) {

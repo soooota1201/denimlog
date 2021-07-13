@@ -41,9 +41,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
   el: '#app',
   methods: {
-    test: function (e) {
-      console.log('test', e);
-    }
+    
   },
   components: { 
     VuejsHeatmap

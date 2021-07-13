@@ -94467,11 +94467,7 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 
 var app = new Vue({
   el: '#app',
-  methods: {
-    test: function test(e) {
-      console.log('test', e);
-    }
-  },
+  methods: {},
   components: {
     VuejsHeatmap: _components_VuejsHeatmap_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
@@ -94831,7 +94827,7 @@ var calendarHeatmap = {
       function tooltipHTMLForDate(d) {
         var dateStr = moment__WEBPACK_IMPORTED_MODULE_0___default()(d).format('ddd, MMM Do YYYY');
         var count = countForDate(d);
-        return '<span><strong>' + (count ? count : locale.No) + ' ' + pluralizedTooltipUnit(count) + '</strong> ' + locale.on + ' ' + dateStr + '</span>';
+        return '<span>' + dateStr + '</span>';
       }
 
       function countForDate(d) {

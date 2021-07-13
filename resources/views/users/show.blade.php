@@ -50,10 +50,10 @@
             <vuejs-heatmap
             :entries="{{$wearing_days}}"
             :tooltip-enabled="true"
-            :tooltip-unit="Star"
+            {{-- :tooltip-unit="Star" --}}
             :locale="{months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             days: ['S', 'M', 'T', 'W', 'T', 'F', 'S']}"
-            :on-click=test
+            :max="700"
             ></vuejs-heatmap>
 
             <ul class="nav nav-tabs" id="myTab" role="tablist">
