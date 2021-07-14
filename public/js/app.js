@@ -82251,7 +82251,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "vuejs-heatmap", class: _vm.selector })
+  return _c("div", {
+    staticClass: "vuejs-heatmap",
+    class: _vm.selector,
+    staticStyle: { "overflow-x": "scroll", direction: "rtl" }
+  })
 }
 var staticRenderFns = []
 render._withStripped = true
