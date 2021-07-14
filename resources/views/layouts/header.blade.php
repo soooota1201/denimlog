@@ -22,15 +22,11 @@
                           <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                       </li>
                   @else
-                      <form class="input-group mr-3" action="{{url('/search/records')}}" method="GET">
-                        <input type="text" class="form-control" name="record" placeholder="他ユーザーの記録を検索" value="{{ request()->query('record') }}">
-                      </form>
                       <li class="nav-item dropdown">
                           <a id="navbarDropdown" class="nav-link dropdown-toggle text-white font-weight-bold" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                               {{ Auth::user()->name }} <span class="caret"></span>
                           </a>
-                          {{-- {{dd($user->id)}} --}}
-  
+                          
                           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                               @if (Auth::id() == $user->id)
                                 <a class="dropdown-item" href="{{route('users.show', $user->id)}}">プロフィール</a>

@@ -35,7 +35,8 @@ Route::group(['prefix' => 'users/{user}', 'as' => 'users.'], function() {
     });
 });
 
-Route::get('/search/records', 'SearchController@searchRecord');
+Route::get('/search', 'SearchController@index')->name('search');
+Route::get('/search/records', 'SearchController@searchRecord')->name('search.records');
 
 Route::get('/reply/like/{record}', 'RepliesController@like')->name('reply.like');
 Route::get('/reply/unlike/{record}', 'RepliesController@unlike')->name('reply.unlike');
