@@ -104,27 +104,27 @@
                   @else 
                     @foreach ($records as $record)
                       <div class="row justify-content-center p-record">
-                          <div class="card record-card col-12 mb-4">
-                            <p class="record-card-user_name">{{$record->user->name}}</p>
-                            @if (!$record->denimRecordImages->isEmpty())
-                            <a href="{{route('users.records.show', [$user->id, $denim->id, $record->id])}}" class="record-card-img--wrapper">
-                              <img class="bd-placeholder-img record-card-img" src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" alt="">
-                            </a>
-                            @endif
-                            <div class="card-body record-card-body">
-                              <div>
-                                @if($record->is_liked_by_auth_user())
-                                  <a href="{{ route('reply.unlike', $record->id) }}" class="btn btn-success btn-sm">いいね<span class="badge">{{ $record->likes->count() }}</span></a>
-                                @else
-                                  <a href="{{ route('reply.like', $record->id) }}" class="btn btn-secondary btn-sm">いいね<span class="badge">{{ $record->likes->count() }}</span></a>
-                                @endif
-                              </div>
-                              <p class="record-card-user_name">{{$record->user->name}}</p>
-                              <p class="card-text record-card-text">{{$record->body}}</p>
-                              <p class="mt-3 record-card-date">記録日：{{$record->wearing_day}}</p>
-                              <p class="record-card-place">履き込み地：{{$record->wearing_place}}</p>
+                        <div class="card record-card col-12 mb-4">
+                          <p class="record-card-user_name">{{$record->user->name}}</p>
+                          @if (!$record->denimRecordImages->isEmpty())
+                          <a href="{{route('users.records.show', [$user->id, $denim->id, $record->id])}}" class="record-card-img--wrapper">
+                            <img class="bd-placeholder-img record-card-img" src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" alt="">
+                          </a>
+                          @endif
+                          <div class="card-body record-card-body">
+                            <div>
+                              @if($record->is_liked_by_auth_user())
+                                <a href="{{ route('reply.unlike', $record->id) }}" class="btn btn-success btn-sm">いいね<span class="badge">{{ $record->likes->count() }}</span></a>
+                              @else
+                                <a href="{{ route('reply.like', $record->id) }}" class="btn btn-secondary btn-sm">いいね<span class="badge">{{ $record->likes->count() }}</span></a>
+                              @endif
                             </div>
+                            <p class="record-card-user_name">{{$record->user->name}}</p>
+                            <p class="card-text record-card-text">{{$record->body}}</p>
+                            <p class="mt-3 record-card-date">記録日：{{$record->wearing_day}}</p>
+                            <p class="record-card-place">履き込み地：{{$record->wearing_place}}</p>
                           </div>
+                        </div>
                       </div><!-- /.p-record -->
                     @endforeach
                   @endif
@@ -153,7 +153,7 @@
               </div><!-- /.container -->
             </div><!-- /.p-denim__map -->
           </div>
-        </div>        
+        </div><!-- /.col-md-8 -->
       </div><!-- /.col-md-8 -->
     </div><!-- /.p-denim__content -->
 

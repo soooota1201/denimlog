@@ -12,7 +12,8 @@ class DenimRecord extends Model
       'denim_id',
       'wearing_day',
       'wearing_place',
-      'body'
+      'body',
+      'bland_type'
     ];
 
     public function user()

@@ -58,7 +58,8 @@ class DenimRecordController extends Controller
           'denim_id' => $denim->id,
           'wearing_day' => $request->wearing_day,
           'wearing_place' => $request->wearing_place,
-          'body' => $request->body
+          'body' => $request->body,
+          'bland_type' => $denim->bland_type
         ]);
 
         $images = $request->file('denim_record_image');
