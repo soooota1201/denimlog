@@ -46,7 +46,7 @@
                     </span>
                   </p>
                   <p class="profile-text mt-2">{{$user->user_profile}}</p>
-                  <a href="{{route('users.edit', $user->id)}}" class="btn btn-lg btn-block btn-outline-dark profile-edit">プロフィールを編集する</a>
+                  {{-- <a href="{{route('users.edit', $user->id)}}" class="btn btn-lg btn-block btn-outline-dark profile-edit">プロフィールを編集する</a> --}}
                 </div>
               </div>
             </div>
@@ -153,7 +153,7 @@
                       </a>
                     @endforeach
                     <div class="mb-5 text-center">
-                      <a href="{{route('users.denims.index', Auth::id())}}" class="btn btn-outline-dark mt4">デニム一覧へ<i class="fas fa-chevron-right ml-2"></i></a>
+                      <a href="{{route('users.denims.index', $user->id)}}" class="btn btn-outline-dark mt4">デニム一覧へ<i class="fas fa-chevron-right ml-2"></i></a>
                     </div>
                   @else {{-- デニムが登録されていない場合 --}}
                     <p>お気に入りのデニムを登録しましょう！</p>

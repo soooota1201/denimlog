@@ -43,3 +43,5 @@ Route::get('/reply/unlike/{record}', 'RepliesController@unlike')->name('reply.un
 
 Route::post('comments/{id}', 'CommentController@store')->name('comments.store');
 Route::delete('comments/{id}', 'CommentController@destroy')->name('comments.destroy');
+
+Route::get('/home', 'FollowController@followList')->name('home.index');

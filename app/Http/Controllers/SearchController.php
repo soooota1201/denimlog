@@ -6,11 +6,14 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Denim;
 use App\DenimRecord;
+use Illuminate\Support\Facades\Auth;
 
 class SearchController extends Controller
 {
 
     public function index(User $user) {
+      // $user = User::where('id', Auth::id());
+      // dd($user);
       return view('search_results.index', compact('user'));
     }
 
