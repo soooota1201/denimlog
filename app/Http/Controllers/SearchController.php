@@ -9,6 +9,11 @@ use App\DenimRecord;
 
 class SearchController extends Controller
 {
+
+    public function index(User $user) {
+      return view('search_results.index', compact('user'));
+    }
+
     public function searchRecord(Request $request, User $user)
     {
       $record = request()->query('record');
