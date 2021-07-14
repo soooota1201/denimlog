@@ -29,7 +29,11 @@
                 @endif 
               @endif
               <div class="row justify-content-between align-items-center">
-                <figure class="col-md-4 col-4 profile-img--wrapper"><img class="profile-img" src="{{$user->thumbnail_image_path}}" alt=""></figure>
+                @if (empty($user->thumbnail_image_path))
+                  <figure class="col-md-4 col-4 profile-img--wrapper"><img class="profile-img" src="{{Gravatar::src($user->email)}}" alt=""></figure>  
+                @else
+                  <figure class="col-md-4 col-4 profile-img--wrapper"><img class="profile-img" src="{{$user->thumbnail_image_path}}" alt=""></figure>
+                @endif
                 <div class="col-8">
                   <p class="profile-name">{{$user->name}}</p>
                   <p class=" profile-data"><span class="mr-2">身長：{{$user->height}}cm</span><span>体重：{{$user->weight}}kg</span></p>
