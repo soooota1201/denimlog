@@ -8,7 +8,7 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
           <div class="container">
             <h3 class="mb-3">"{{ request()->query('record')}}"の検索結果</h3>
             @forelse ($records as $record)

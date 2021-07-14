@@ -1,5 +1,5 @@
 <template>
-  <div class="vuejs-heatmap" :class="selector"></div>
+  <div class="vuejs-heatmap" :class="selector" style="overflow-x: scroll;  direction: rtl;"></div>
 </template>
 
 <script>

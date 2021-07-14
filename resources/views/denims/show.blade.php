@@ -7,7 +7,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center p-denim__top">
-        <div class="col-md-8">
+        <div class="col-md-12">
           <div class="d-flex justify-content-between mb-3">
             <h2 class="p-denim__name">{{$denim->bland_type}}</h2>
           </div><!-- /.p-denim__name -->
@@ -78,7 +78,7 @@
     </div><!-- /.p-denim__top -->
 
     <div class="row justify-content-center p-denim__content">
-      <div class="col-md-8">
+      <div class="col-md-12">
         <ul class="nav nav-tabs p-denim__tab" id="myTab" role="tablist">
           <li class="nav-item">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Record</a>
