@@ -18,7 +18,7 @@ class CreateDenimImagesTable extends Migration
             $table->unsignedBigInteger('denim_id');
             $table->text('cloud_image_id')->nullable();
             $table->text('cloud_image_path')->nullable();
-            $table->foreign('denim_id')->references('id')->on('denims');
+            $table->foreign('denim_id')->references('id')->on('denims')->onDelete('cascade');
             $table->timestamps();
         });
     }

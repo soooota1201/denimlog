@@ -29,9 +29,13 @@
       
         @include('layouts._flash_message')
         
-        <main>
-          @yield('content')
+        <main class="l-main">
+          <div class="l-main__inner mt-5 mb-5">
+            @yield('content')
+          </div><!-- /.l-main__inner -->
         </main>
+
+        @yield('footer')
     </div>
     @yield('script')
 </body>

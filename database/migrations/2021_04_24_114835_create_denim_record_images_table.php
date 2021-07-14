@@ -18,7 +18,7 @@ class CreateDenimRecordImagesTable extends Migration
             $table->unsignedBigInteger('denim_record_id');
             $table->text('cloud_record_image_id')->nullable();
             $table->text('cloud_record_image_path')->nullable();
-            $table->foreign('denim_record_id')->references('id')->on('denim_records');
+            $table->foreign('denim_record_id')->references('id')->on('denim_records')->onDelete('cascade');
             $table->timestamps();
         });
     }

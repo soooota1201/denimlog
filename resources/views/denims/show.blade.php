@@ -74,7 +74,11 @@
             @endif
             </div>
           </div><!-- /.row -->
-          <div id="map" style="height: 500px"></div>
+          @if ($denim->denimRecords->count() == 0)
+            <p>登録したデニムの成長を記録しましょう！</p>
+          @else
+            <div id="map" style="height: 500px"></div>
+          @endif
         </div>
     </div>
 

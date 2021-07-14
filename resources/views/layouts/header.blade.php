@@ -1,4 +1,4 @@
-<header class="mb-5">
+<header>
   <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm l-header">
       <div class="container">
           <a class="navbar-brand text-white header-logo" href="/users">

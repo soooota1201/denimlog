@@ -29,15 +29,15 @@
               </div>
               <div class="form-group">
                 <label for="">履いた日</label>
-                <input type="date" class="form-control" value="{{$record->wearing_day}}" name="wearing_day">
+                <input type="date" class="form-control" value="{{old("wearing_day", $record->wearing_day)}}" name="wearing_day">
               </div>
               <div class="form-group">
                 <label for="">履いて行った場所</label>
-                <input type="text" class="form-control" name="wearing_place" value="{{$record->wearing_place}}">
+                <input type="text" class="form-control" name="wearing_place" value="{{old("wearing_place", $record->wearing_place)}}">
               </div>
               <div class="form-group">
                 <label for="">テキスト</label>
-                <textarea cols="10" rows="7" type="text" class="form-control" name="body">{{$record->body}}</textarea>
+                <textarea cols="10" rows="7" type="text" class="form-control" name="body">{{old("body", $record->body)}}</textarea>
               </div>
               
               <button type="submit" class="btn btn-lg btn-block btn-outline-dark">変更する<i class="fas fa-angle-right ml-4"></i></button>

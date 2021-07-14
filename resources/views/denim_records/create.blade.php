@@ -20,7 +20,7 @@
               @csrf
               <div class="form-group">
                 <label for="">デニム画像</label>
-                <input type="file" class="form-control" placeholder="" name="denim_record_image[]" value="" multiple>
+                <input type="file" class="form-control" placeholder="" name="denim_record_image[]"  multiple>
               </div>
               <div class="form-group">
                 <label for="">履いた日</label>
@@ -32,7 +32,7 @@
               </div>
               <div class="form-group">
                 <label for="">テキスト</label>
-                <textarea cols="10" rows="10" type="text" class="form-control" placeholder="" name="body" value="{{ old("body") }}"></textarea>
+                <textarea cols="10" rows="10" type="text" class="form-control" placeholder="" name="body">{{ old("body") }}</textarea>
               </div>
               <button type="submit" class="btn btn-lg btn-block btn-outline-dark">登録する<i class="fas fa-angle-right ml-4"></i></button>
             </form>
