@@ -19,6 +19,7 @@ class DenimRecords extends Migration
             $table->date('wearing_day');
             $table->string('wearing_place')->nullable();
             $table->text('body')->nullable();
+            $table->text('bland_type')->nullable();
             $table->foreign('denim_id')->references('id')->on('denims')->onDelete('cascade');;
             $table->timestamps();
         });
