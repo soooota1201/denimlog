@@ -8,7 +8,7 @@
 
 <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-8">
+      <div class="col-md-12">
         <div class="mb-3">
           <a href="{{route('users.denims.show', [$user->id, $denim->id])}}" class="text-dark mr-2"><i class="fas fa-arrow-left"></i><span class="record-denim ml-2">{{$record->denim->bland_type}}</span></a>
         </div>

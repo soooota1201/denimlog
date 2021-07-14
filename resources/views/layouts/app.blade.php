@@ -30,9 +30,28 @@
         @include('layouts._flash_message')
         
         <main class="l-main">
-          <div class="l-main__inner mt-5 mb-5">
-            @yield('content')
-          </div><!-- /.l-main__inner -->
+          <div class="container mt-5">
+            <div class="row justify-content-center">
+              <div class="col-md-3 order-0">
+                <div class="sticky-top pt-4">
+                  <ul class="list-group">
+                    <li class="list-group-item"><a href="#">Home</a></li><!-- /.list-group-item -->
+                    <li class="list-group-item"><a href="#">Explore</a></li><!-- /.list-group-item -->
+                    <li class="list-group-item"><a href="#">Profile</a></li><!-- /.list-group-item -->
+                  </ul><!-- /.list-group -->
+                </div><!-- /.sticky-top -->
+                
+              </div><!-- /.col-md-4 -->
+  
+              <div class="col-md-8">
+                
+                @yield('content')
+              
+              </div><!-- /.col-md-8 -->
+  
+            </div>
+          </div><!-- /.container -->
+
         </main>
 
         @yield('footer')

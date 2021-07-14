@@ -8,7 +8,7 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class=" mb-4">
                 <h2>ユーザープロフィール画面</h2>
                 <p>user_name : {{$user->name}}</p>
