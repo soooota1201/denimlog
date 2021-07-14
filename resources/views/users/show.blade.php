@@ -63,6 +63,10 @@
               <li class="nav-item">
                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Your Denim</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" id="allVisitedPlaces-tab" data-toggle="tab" href="#allVisitedPlaces" role="tab" aria-controls="allVisitedPlaces" aria-selected="false">All Visited Places</a>
+              </li>
+              
             </ul>
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -116,8 +120,6 @@
                 @endif
               </div>
               <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                {{-- デニム一覧 --}}
-
                 @if (!$denims->count() == 0)
                 <div class="d-flex justify-content-between align-items-center mt-3">
                   <p class="profile-denim">デニム一覧</p>
@@ -158,6 +160,9 @@
                     <br>
                   @endif
                 </div>
+              </div>
+              <div class="tab-pane fade" id="allVisitedPlaces" role="tabpanel" aria-labelledby="allVisitedPlaces-tab">
+                
               </div>
             </div>
             

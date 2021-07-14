@@ -28,11 +28,11 @@
               </div>
               <div class="form-group">
                 <label for="">ウエスト（任意）</label>
-                <input type="text" class="form-control" placeholder="30" name="waist" value="{{ old('waist') }}">
+                <input type="number" class="form-control" placeholder="30" min="0" name="waist" value="{{ old('waist') }}">
               </div>
               <div class="form-group">
                 <label for="">履き込み回数（任意、新品は空欄）</label>
-                <input type="text" class="form-control" placeholder="30" name="wearing_count" value="{{ old('wearing_count') }}">
+                <input type="number" min="0" class="form-control" placeholder="30" name="wearing_count" value="{{ old('wearing_count') }}">
               </div>
               <div class="form-group">
                 <label for="">デニム画像</label>
