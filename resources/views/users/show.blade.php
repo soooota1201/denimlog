@@ -38,12 +38,12 @@
                   <p class="profile-name">{{$user->name}}</p>
                   <p class=" profile-data"><span class="mr-2">身長：{{$user->height}}cm</span><span>体重：{{$user->weight}}kg</span></p>
                   <p>
-                    <span>
+                    <a href="{{route('users.following.user.index', $user->id)}}">
                       following {{$user->followings()->count()}}
-                    </span>
-                    <span>
+                    </a>
+                    <a href="{{route('users.followed.user.index', $user->id)}}">
                       follower {{$user->followers()->count()}}
-                    </span>
+                    </a>
                   </p>
                   <p class="profile-text mt-2">{{$user->user_profile}}</p>
                   {{-- <a href="{{route('users.edit', $user->id)}}" class="btn btn-lg btn-block btn-outline-dark profile-edit">プロフィールを編集する</a> --}}

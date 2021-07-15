@@ -75,4 +75,9 @@ class User extends Authenticatable
         $this->followings()->detach($userId);
       }
     }
+
+    public function getFollowUsersId($user_id, $following_ids)
+    {
+      return $this->whereIn('id', $following_ids)->get();
+    }
 }

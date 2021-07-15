@@ -10,7 +10,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
           <div class="container">
-            <form class="input-group mr-2 pt-4" action="{{url('/search/records')}}" method="GET">
+            <form class="input-group mr-2 pt-4" action="{{route('users.search.records', Auth::id())}}" method="GET">
               <input type="text" class="form-control search-input" name="record" placeholder="search denim and records" value="{{ request()->query('record') }}">
               <button type="submit" class="btn btn-success">Success</button>
             </form>

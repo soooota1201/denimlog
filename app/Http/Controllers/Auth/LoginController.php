@@ -32,7 +32,7 @@ class LoginController extends Controller
       if(! Auth::user()) {
           return '/login';
       }
-      return route('users.show', Auth::id());
+      return route('users.home.index', Auth::id());
     }
 
     /**
