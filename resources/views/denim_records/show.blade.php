@@ -40,7 +40,15 @@
                       @endif
                     </div>
                   </div>
+                  <div>
+                    {{-- likecomponent --}}
+                    <like-component
+                    :record="{{ json_encode($record)}}"
+                    ></like-component>
+                    {{-- likecomponent --}}
+                  </div>
                     <div>
+                      {{-- {{dd($record->is_liked_by_auth_user())}} --}}
                       @if($record->is_liked_by_auth_user())
                         <a href="{{ route('reply.unlike', $record->id) }}" class="btn btn-success btn-sm">いいね<span class="badge">{{ $record->likes->count() }}</span></a>
                       @else

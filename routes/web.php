@@ -21,7 +21,7 @@ Route::get('/users', function() {
   if(!Auth::user()) {
     return redirect('login');
   }
-  return redirect()->route('home.index', Auth::id());
+  return redirect()->route('users.home.index', Auth::id());
 });
 
 Route::resource('users', 'UserController')->only('show', 'edit', 'update');
