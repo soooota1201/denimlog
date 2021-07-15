@@ -20,9 +20,21 @@
           <div class="d-flex justify-content-between mb-3">
             <h2>{{$user->name}}のデニム一覧</h2>
             @if (Auth::id() === $user->id)
-              <a href="{{route('users.denims.create', $user->id)}}" type="button" class="btn btn-success">登録する</a>
+              @if ($denims->count() != 0)
+                <a href="{{route('users.denims.create', $user->id)}}" type="button" class="btn btn-success">登録する</a>
+              @endif
             @endif
           </div>
+          @endif
+
+          @if ($denims->count() == 0)
+            <div class="mt-3">
+              <p>お気に入りのデニムを登録しましょう！</p>
+              <br>
+              @if (Auth::id() === $user->id)
+                <a href="{{route('users.denims.create', $user->id)}}" class="btn text-white profile-denim-btn">登録する<i class="fas fa-chevron-right ml-2"></i></a>
+            </div><!-- /.mt-3 -->
+            @endif
           @endif
 
           @if (request()->query('denim'))
