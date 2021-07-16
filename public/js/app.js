@@ -1950,17 +1950,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['record'],
+  data: function data() {
+    return {
+      count: "",
+      result: "false"
+    };
+  },
   mounted: function mounted() {
-    console.log(this.record);
+    this.countlikes();
+    this.hasLikes();
   },
   methods: {
     like: function like() {
-      axios.get('/reply/like' + this.record.id)["catch"](function (error) {
+      var _this = this;
+
+      axios.get('/users/' + this.record.user_id + '/denims/' + this.record.denim_id + '/records/' + this.record.id + '/like').then(function (res) {
+        _this.count = res.data.count;
+      })["catch"](function (error) {
         console.log(error);
       });
     },
     unlike: function unlike() {
-      axios.get('/reply/unlike' + this.record.id)["catch"](function (error) {
+      var _this2 = this;
+
+      axios.get('/users/' + this.record.user_id + '/denims/' + this.record.denim_id + '/records/' + this.record.id + '/unlike').then(function (res) {
+        _this2.count = res.data.count;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    countlikes: function countlikes() {
+      var _this3 = this;
+
+      axios.get('/users/' + this.record.user_id + '/denims/' + this.record.denim_id + '/records/' + this.record.id + '/count').then(function (res) {
+        console.log(res.data);
+        _this3.count = res.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    hasLikes: function hasLikes() {
+      var _this4 = this;
+
+      axios.get('/users/' + this.record.user_id + '/denims/' + this.record.denim_id + '/records/' + this.record.id + '/haslikes').then(function (res) {
+        _this4.result = res.data;
+      })["catch"](function (error) {
         console.log(error);
       });
     }
@@ -82237,25 +82271,33 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "a",
-      {
-        staticClass: "btn btn-success btn-sm",
-        attrs: { href: "" },
-        on: { click: _vm.like }
-      },
-      [_vm._v("いいね"), _c("span", { staticClass: "badge" })]
-    ),
-    _vm._v(" "),
-    _c(
-      "a",
-      {
-        staticClass: "btn btn-secondary btn-sm",
-        attrs: { href: "" },
-        on: { click: _vm.unlike }
-      },
-      [_vm._v("いいね"), _c("span", { staticClass: "badge" })]
-    )
+    _vm.result
+      ? _c(
+          "a",
+          {
+            staticClass: "btn btn-success btn-sm",
+            attrs: { href: "" },
+            on: { click: _vm.unlike }
+          },
+          [
+            _c("i", { staticClass: "far fa-thumbs-up" }),
+            _vm._v(_vm._s(_vm.count)),
+            _c("span", { staticClass: "badge" })
+          ]
+        )
+      : _c(
+          "a",
+          {
+            staticClass: "btn btn-secondary btn-sm",
+            attrs: { href: "" },
+            on: { click: _vm.like }
+          },
+          [
+            _c("i", { staticClass: "far fa-thumbs-up" }),
+            _vm._v(_vm._s(_vm.count)),
+            _c("span", { staticClass: "badge" })
+          ]
+        )
   ])
 }
 var staticRenderFns = []

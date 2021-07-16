@@ -39,9 +39,17 @@ class LikeController extends Controller
     public function store(User $user, Denim $denim, DenimRecord $record)
     {
         // dd($record->users());
-        $record->users()->attach(Auth::id());
 
-        return redirect()->route('users.records.show', compact('user', 'denim', 'record'));
+        $record = DenimRecord::find($record->id);
+        $record->users()->attach(Auth::id());
+        $count = $record->users()->count();
+        $result = true;
+        return response()->json([
+          'result' => $result,
+          'count' => $count,
+        ]);
+
+        // return redirect()->route('users.records.show', compact('user', 'denim', 'record'));
     }
 
     /**
@@ -86,8 +94,31 @@ class LikeController extends Controller
      */
     public function destroy(User $user, Denim $denim, DenimRecord $record)
     {
+        $record = DenimRecord::find($record->id);
         $record->users()->detach(Auth::id());
+        $count = $record->users()->count();
+        $result = false;
+        return response()->json([
+          'result' => $result,
+          'count' => $count,
+        ]);
+        // return redirect()->route('users.records.show', compact('user', 'denim', 'record'));
+    }
 
-        return redirect()->route('users.records.show', compact('user', 'denim', 'record'));
+    public function count (User $user, Denim $denim, DenimRecord $record)
+    {
+        $record = DenimRecord::find($record->id);
+        $count = $record->users()->count();
+        return response()->json($count);
+    }
+
+    public function hasLike(User $user, Denim $denim, DenimRecord $record) {
+      $record = DenimRecord::find($record->id);
+      if ($record->users()->where('user_id', Auth::id())->exists()) {
+          $result = true;
+      } else {
+          $result = false;
+      }
+      return response()->json($result);
     }
 }

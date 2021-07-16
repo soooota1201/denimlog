@@ -32,8 +32,10 @@ Route::group(['prefix' => 'users/{user}', 'as' => 'users.'], function() {
     Route::delete('unfollow', 'FollowController@destroy')->name('unfollow');
     Route::group(['prefix' => 'denims/{denim}'], function () {
       Route::resource('records', 'DenimRecordController');
-      Route::post('records/{record}/like', 'LikeController@store')->name('like');
-      Route::post('records/{record}/unlike', 'LikeController@destroy')->name('unlike');
+      Route::get('records/{record}/like', 'LikeController@store')->name('like');
+      Route::get('records/{record}/unlike', 'LikeController@destroy')->name('unlike');
+      Route::get('records/{record}/count', 'LikeController@count')->name('count');
+      Route::get('records/{record}/haslikes', 'LikeController@hasLike')->name('haslikes');
     });
     Route::get('home', 'FollowController@followList')->name('home.index');
     Route::get('following', 'FollowListController@followingUserIndex')->name('following.user.index');
