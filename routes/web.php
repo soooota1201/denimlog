@@ -28,8 +28,9 @@ Route::resource('users', 'UserController')->only('show', 'edit', 'update');
 
 Route::group(['prefix' => 'users/{user}', 'as' => 'users.'], function() {
     Route::resource('denims', 'DenimController');
-    Route::post('follow', 'FollowController@store')->name('follow');
-    Route::delete('unfollow', 'FollowController@destroy')->name('unfollow');
+    Route::get('follow', 'FollowController@store')->name('follow');
+    Route::get('unfollow', 'FollowController@destroy')->name('unfollow');
+    Route::get('hasfollow', 'FollowController@hasFollow')->name('hasfollow');
     Route::group(['prefix' => 'denims/{denim}'], function () {
       Route::resource('records', 'DenimRecordController');
       Route::get('records/{record}/like', 'LikeController@store')->name('like');

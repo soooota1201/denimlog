@@ -40,13 +40,18 @@
                       @endif
                     </div>
                   </div>
-                  <div>
-                    {{-- likecomponent --}}
-                    <like-component
-                    :record="{{ json_encode($record)}}"
-                    ></like-component>
-                    {{-- likecomponent --}}
-                  </div>
+                  <div class="row align-items-center">
+                    <div class="mr-2">
+                      {{-- likecomponent --}}
+                      <like-component
+                      :record="{{ json_encode($record)}}"
+                      ></like-component>
+                      {{-- likecomponent --}}
+                    </div>
+                    <div>
+                       <a type="button" data-toggle="modal" data-target="#modal-comment{{$record->id}}" class="btn btn-outline-dark btn-sm"><i class="far fa-comment"></i></a>
+                    </div>
+                  </div><!-- /.row -->
                     <p class="record-card-user_name">{{$record->user->name}}</p>
                     <p class="card-text record-card-text">{{$record->body}}</p>
                     <p class="mt-3 record-card-date">記録日：{{$record->wearing_day}}</p>
@@ -96,7 +101,6 @@
     
       <form method="POST" action="{{ route('comments.store', $record->id)}}">
         @csrf
-        
           <!-- Modal -->
           <div class="modal fade" id="modal-comment{{$record->id}}" tabindex="-1" role="dialog" aria-hidden="true">
               <div class="modal-dialog" role="document">
@@ -121,8 +125,6 @@
               </div>
           </div>
       </form>
-
-      <a type="button" data-toggle="modal" data-target="#modal-comment{{$record->id}}" class="btn btn-lg btn-block  btn-outline-dark mt4">コメントする</a>
     
       <ul class="list-unstyled mt-4">
         @foreach ($comments as $comment)
