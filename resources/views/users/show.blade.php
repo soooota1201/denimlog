@@ -10,7 +10,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="mb-5">
-              @if (Auth::id() != $user->id)
+              {{-- @if (Auth::id() != $user->id)
                 @if (!Auth::user()->is_following($user->id))
                   <form action="{{route('users.follow', $user->id)}}" method="POST">
                     @csrf
@@ -27,7 +27,7 @@
                     </button>
                   </form>
                 @endif 
-              @endif
+              @endif --}}
               <div class="row justify-content-between align-items-center">
                 @if (empty($user->thumbnail_image_path))
                   <figure class="col-md-4 col-4 profile-img--wrapper"><img class="profile-img" src="{{Gravatar::src($user->email)}}" alt=""></figure>  
@@ -36,6 +36,13 @@
                 @endif
                 <div class="col-8">
                   <p class="profile-name">{{$user->name}}</p>
+                  @if (Auth::id() != $user->id)
+                    {{-- followcomponent --}}
+                    <follow-component
+                    :user="{{ json_encode($user)}}"
+                    ></follow-component>
+                    {{-- followcomponent --}}
+                  @endif
                   <p class=" profile-data"><span class="mr-2">身長：{{$user->height}}cm</span><span>体重：{{$user->weight}}kg</span></p>
                   <p>
                     <a href="{{route('users.following.user.index', $user->id)}}">
@@ -105,12 +112,19 @@
                           </a>
                           @endif
                           <div class="card-body record-card-body">
-                            <div>
+                            {{-- <div>
                               @if($record->is_liked_by_auth_user())
                                 <a href="{{ route('reply.unlike', $record->id) }}" class="btn btn-success btn-sm">いいね<span class="badge">{{ $record->likes->count() }}</span></a>
                               @else
                                 <a href="{{ route('reply.like', $record->id) }}" class="btn btn-secondary btn-sm">いいね<span class="badge">{{ $record->likes->count() }}</span></a>
                               @endif
+                            </div> --}}
+                            <div>
+                              {{-- likecomponent --}}
+                              <like-component
+                              :record="{{ json_encode($record)}}"
+                              ></like-component>
+                              {{-- likecomponent --}}
                             </div>
                             <p class="record-card-user_name">{{$record->user->name}}</p>
                             <p class="card-text record-card-text">{{$record->body}}</p>

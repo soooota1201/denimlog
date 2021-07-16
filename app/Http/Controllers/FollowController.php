@@ -15,18 +15,32 @@ class FollowController extends Controller
       $this->middleware('auth')->only(['store', 'destroy']);
     }
 
-    public function store($id)
+    public function store(User $user)
     {
-        Auth::user()->follow($id);
-        session()->flash('success', 'フォローしました');
-        return redirect()->back();
+        $user->follow(Auth::id());
+        $result = true;
+        return response()->json([
+          'result' => $result,
+        ]);
     }
 
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        Auth::user()->unfollow($id);
-        session()->flash('alert', 'フォローを外しました');
-        return redirect()->back();
+        $user->unfollow(Auth::id());
+        $result = false;
+        return response()->json([
+          'result' => $result,
+        ]);
+    }
+
+    public function hasFollow(User $user) {
+      $user = User::find($user->id);
+      if ($user->followings()->where('followed_id', Auth::id())->exists()) {
+          $result = true;
+      } else {
+          $result = false;
+      }
+      return response()->json($result);
     }
 
     public function followList(DenimRecord $record, UserFollow $follow, User $user)

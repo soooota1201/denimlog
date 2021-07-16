@@ -1,7 +1,7 @@
 <template>
     <div>
         <a @click="unlike" href="" class="btn btn-success btn-sm" v-if="result"><i class="far fa-thumbs-up"></i>{{ count }}<span class="badge"></span></a>
-        <a @click="like" href="" class="btn btn-secondary btn-sm" v-else><i class="far fa-thumbs-up"></i>{{ count }}<span class="badge"></span></a>
+        <a @click="like" href="" class="btn btn-outline-dark btn-sm" v-else><i class="far fa-thumbs-up"></i>{{ count }}<span class="badge"></span></a>
     </div>
 </template>
 

@@ -32,6 +32,7 @@ Vue.component('swiper-component', require('./components/SwiperComponent.vue').de
 // app.js
 
 Vue.component('like-component', require('./components/LikeComponent.vue').default);
+Vue.component('follow-component', require('./components/FollowComponent.vue').default);
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
