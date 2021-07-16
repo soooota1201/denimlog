@@ -84,8 +84,10 @@ class LikeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user, Denim $denim, DenimRecord $record)
     {
-        //
+        $record->users()->detach(Auth::id());
+
+        return redirect()->route('users.records.show', compact('user', 'denim', 'record'));
     }
 }
