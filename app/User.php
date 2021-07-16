@@ -80,4 +80,10 @@ class User extends Authenticatable
     {
       return $this->whereIn('id', $following_ids)->get();
     }
+
+    public function favorites()
+    {
+      return $this->belongsToMany('App\DenimRecord')->withTimestamps();
+    }
+
 }

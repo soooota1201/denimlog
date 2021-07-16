@@ -21,7 +21,7 @@ Route::get('/users', function() {
   if(!Auth::user()) {
     return redirect('login');
   }
-  return redirect()->route('home.index', Auth::id());
+  return redirect()->route('users.home.index', Auth::id());
 });
 
 Route::resource('users', 'UserController')->only('show', 'edit', 'update');
@@ -32,6 +32,10 @@ Route::group(['prefix' => 'users/{user}', 'as' => 'users.'], function() {
     Route::delete('unfollow', 'FollowController@destroy')->name('unfollow');
     Route::group(['prefix' => 'denims/{denim}'], function () {
       Route::resource('records', 'DenimRecordController');
+      Route::get('records/{record}/like', 'LikeController@store')->name('like');
+      Route::get('records/{record}/unlike', 'LikeController@destroy')->name('unlike');
+      Route::get('records/{record}/count', 'LikeController@count')->name('count');
+      Route::get('records/{record}/haslikes', 'LikeController@hasLike')->name('haslikes');
     });
     Route::get('home', 'FollowController@followList')->name('home.index');
     Route::get('following', 'FollowListController@followingUserIndex')->name('following.user.index');

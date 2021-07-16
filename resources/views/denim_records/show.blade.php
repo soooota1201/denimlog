@@ -40,13 +40,13 @@
                       @endif
                     </div>
                   </div>
-                    <div>
-                      @if($record->is_liked_by_auth_user())
-                        <a href="{{ route('reply.unlike', $record->id) }}" class="btn btn-success btn-sm">いいね<span class="badge">{{ $record->likes->count() }}</span></a>
-                      @else
-                        <a href="{{ route('reply.like', $record->id) }}" class="btn btn-secondary btn-sm">いいね<span class="badge">{{ $record->likes->count() }}</span></a>
-                      @endif
-                    </div>
+                  <div>
+                    {{-- likecomponent --}}
+                    <like-component
+                    :record="{{ json_encode($record)}}"
+                    ></like-component>
+                    {{-- likecomponent --}}
+                  </div>
                     <p class="record-card-user_name">{{$record->user->name}}</p>
                     <p class="card-text record-card-text">{{$record->body}}</p>
                     <p class="mt-3 record-card-date">記録日：{{$record->wearing_day}}</p>
