@@ -47,6 +47,20 @@
                     ></like-component>
                     {{-- likecomponent --}}
                   </div>
+                  <div class="row justify-content-center">
+                        <div class="col-md-3">
+                            <form action="{{ route('users.like', [$user->id, $denim->id, $record->id])}}" method="POST">
+                              @csrf
+                                <input type="submit" value="&#xf164;いいね" class="fas btn btn-success">
+                            </form>
+                        </div>
+                        <div class="col-md-3">
+                            <form action="{{ route('users.unlike', [$user->id, $denim->id, $record->id])}}" method="POST">
+                              @csrf
+                                <input type="submit" value="&#xf164;いいね取り消す" class="fas btn btn-danger">
+                            </form>
+                        </div>
+                    </div>
                     <div>
                       {{-- {{dd($record->is_liked_by_auth_user())}} --}}
                       @if($record->is_liked_by_auth_user())

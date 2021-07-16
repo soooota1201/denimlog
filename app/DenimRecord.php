@@ -72,4 +72,9 @@ class DenimRecord extends Model
     {
         return $this->whereIn('user_id', $follow_ids)->orderBy('created_at', 'DESC')->paginate();
     }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User')->withTimestamps();
+    }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class DenimRecordUserTable extends Migration
+class CreateDenimrecordUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,13 +15,11 @@ class DenimRecordUserTable extends Migration
     {
         Schema::create('denim_record_user', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->timestamps();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('denim_record_id');
-            $table->timestamps();
-
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('denim_record_id')->references('id')->on('denim_records')->onDelete('cascade');
-
             $table->unique(['user_id', 'denim_record_id']);
         });
     }
@@ -33,6 +31,6 @@ class DenimRecordUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('denim_record_user');
+        Schema::dropIfExists('denimrecord_user');
     }
 }
