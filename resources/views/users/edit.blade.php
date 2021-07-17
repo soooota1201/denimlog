@@ -29,6 +29,10 @@
                 <input type="text" class="form-control" placeholder="" name="name" value="{{$user->name}}">
               </div>
               <div class="form-group">
+                <label for="">メールアドレス</label>
+                <input type="text" class="form-control" placeholder="" name="email" value="{{$user->email}}">
+              </div>
+              <div class="form-group">
                 <label for="">身長</label>
                 <input type="text" class="form-control" placeholder="" name="height" value="{{$user->height}}">
               </div>
