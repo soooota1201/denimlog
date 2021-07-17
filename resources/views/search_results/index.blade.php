@@ -10,9 +10,9 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
           <div class="container">
-            <form class="input-group mr-2 pt-4" action="{{route('users.search.records', Auth::id())}}" method="GET">
-              <input type="text" class="form-control search-input" name="record" placeholder="search denim and records" value="{{ request()->query('record') }}">
-              <button type="submit" class="btn btn-success">Success</button>
+            <form class="input-group pt-3" action="{{route('users.search.records', Auth::id())}}" method="GET">
+              <input type="text" class="form-control search-input mr-3" name="record" placeholder="search denim and records" value="{{ request()->query('record') }}" style="display: block;">
+              <button type="submit" class="btn btn-outline-success">検索する</button>
             </form>
             @if (isset($records))
               <h3 class="mb-3 mt-5">"{{ request()->query('record')}}"の検索結果</h3>
@@ -35,7 +35,7 @@
                       <p class="card-text p-record-text">{{$record->body}}</p>
                       <p class="mt-3 p-record-place">ブランド：{{$record->bland_type}}</p>
                       <p class="p-record-date">記録日：{{$record->wearing_day}}</p>
-                      <p class="p-record-place">履き込み地：{{$record->wearing_place}}</p>
+                      <p class="p-record-place">訪問先：{{$record->wearing_place}}</p>
                     </div>
                   </div>
                 </div><!-- /.p-record -->

@@ -141,7 +141,7 @@ export let calendarHeatmap = {
     .attr('width', width)
     .attr('class', 'calendar-heatmap')
     .attr('height', height)
-    .style('padding', '36px')
+    .style('padding', '20px')
 
     dayRects = svg.selectAll('.day-cell')
       .data(dateRange)  //  array of days for the last yr

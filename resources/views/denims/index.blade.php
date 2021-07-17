@@ -6,29 +6,20 @@
 
 @section('content')
 
-<div class="container">
+<div class="container p-denimIndex">
     <div class="row justify-content-center">
         <div class="col-md-10">
-
-          @if (!request()->query('denim'))
-            <div class="mb-3">
-              <a href="{{route('users.show', $user->id)}}" class="text-dark mr-2"><i class="fas fa-arrow-left"></i><span class="d-inline-block ml-2">プロフィールへ戻る</span></a>
-            </div>
-          @endif
-
-          @if (!request()->query('denim'))
-          <div class="d-flex justify-content-between mb-3">
-            <h2>{{$user->name}}のデニム一覧</h2>
+          <div class="d-flex justify-content-between align-items-center mb-5">
+            <h2 class="p-denimIndex__heading"><a href="{{route('users.show', $user->id)}}">{{$user->name}}</a>のデニム一覧</h2>
             @if (Auth::id() === $user->id)
               @if ($denims->count() != 0)
-                <a href="{{route('users.denims.create', $user->id)}}" type="button" class="btn btn-success">登録する</a>
+                <a href="{{route('users.denims.create', $user->id)}}" type="button" class="btn btn-outline-dark">登録する</a>
               @endif
             @endif
           </div>
-          @endif
 
           @if ($denims->count() == 0)
-            <div class="mt-3">
+            <div class="mt-4">
               <p>お気に入りのデニムを登録しましょう！</p>
               <br>
               @if (Auth::id() === $user->id)
@@ -37,51 +28,26 @@
             @endif
           @endif
 
-          @if (request()->query('denim'))
-              @forelse ($denims as $denim)
-              <a href="{{route('users.denims.show', [$denim->user_id, $denim->id])}}" class="card mb-3" style="">
-                <div class="row no-gutters">
-                  <div class="col-md-4">
-                      @if (!$denim->denimImages->isEmpty())
-                      <img width="180" height="160" src="{{$denim->denimImages[0]->cloud_image_path}}" alt="">
-                      @endif
-                    </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 class="card-title">{{$denim->bland_type}}</h5>
-                      <p class="card-text">ウエスト：{{$denim->waist}}インチ</p>
-                      <p class="card-text">履き込み回数：{{$denim->wearing_count}}回</p>
-                    </div>
-                  </div> 
-                </div>
-              </a>
-            @empty
-              <p class="text-center">
-                No results found for query <strong>{{ request()->query('denim')}}</strong>
-              </p>
-            @endforelse
-            {{$denims->appends(['denim' => request()->query('denim')])->links()}}
-          @else
-            @foreach ($denims as $denim)
-              <a href="{{route('users.denims.show', [$user->id, $denim->id])}}" class="card mb-3" style="">
-                <div class="row no-gutters">
-                  <div class="col-md-4">
-                      @if (!$denim->denimImages->isEmpty())
-                      <img width="180" height="160" src="{{$denim->denimImages[0]->cloud_image_path}}" alt="">
-                      @endif
-                    </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 class="card-title">{{$denim->bland_type}}</h5>
-                      <p class="card-text">ウエスト：{{$denim->waist}}インチ</p>
-                      <p class="card-text">履き込み回数：{{$denim->wearing_count}}回</p>
-                    </div>
+          @foreach ($denims as $denim)
+            <a href="{{route('users.denims.show', [$user->id, $denim->id])}}" class="card mb-3 p-denimCard" style="">
+              <div class="row no-gutters">
+                <div class="col-4">
+                    @if (!$denim->denimImages->isEmpty())
+                    <img style="width: 100%; height: 120px; object-fit: cover;
+                    " src="{{$denim->denimImages[0]->cloud_image_path}}" alt="">
+                    @endif
+                  </div>
+                <div class="col-8">
+                  <div class="card-body">
+                    <h5 class="card-title">{{$denim->bland_type}}</h5>
+                    <p class="card-text">ウエスト：{{$denim->waist}}インチ</p>
+                    <p class="card-text">履き込み回数：{{$denim->wearing_count}}回</p>
                   </div>
                 </div>
-              </a>
-            @endforeach
-            {{ $denims->links() }}
-          @endif
+              </div>
+            </a>
+          @endforeach
+          {{ $denims->links() }}
         </div>
     </div>
 </div>

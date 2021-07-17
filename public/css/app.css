@@ -17056,7 +17056,7 @@ p {
   color: #000 !important;
   border-bottom: 1px solid #e0e0e0;
   position: fixed;
-  z-index: 99999;
+  z-index: 1000;
   width: 100%;
 }
 
@@ -17128,10 +17128,6 @@ p {
 
 .profile-denim-btn {
   background-color: #F1AC56;
-  padding: 2px 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .profile-img {
@@ -17197,6 +17193,14 @@ p {
   font-size: 20px;
 }
 
+.p-denimIndex__heading {
+  line-height: 1 !important;
+}
+
+.p-denimIndex__heading a {
+  color: #333333;
+}
+
 .login {
   height: 100vh;
   background: url(/images/login-bg.png?d68d88fa158835e2e02b410c0310e3cb);
@@ -17217,7 +17221,6 @@ p {
 }
 
 .p-record {
-  padding: 0px 10px 10px 10px;
   color: #333333 !important;
 }
 
@@ -17277,5 +17280,13 @@ p {
 .record-denim {
   margin-bottom: 0;
   font-size: 16px;
+}
+
+.p-denimCard {
+  overflow: hidden;
+}
+
+.p-denimCard .card-body {
+  color: #333333 !important;
 }
 

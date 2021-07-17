@@ -17,8 +17,8 @@
           <div class="container">
             @if (isset($timelines))
               @forelse ($timelines as $record)
-                <div class="p-record">
-                  <div class="card p-record mb-4">
+                <div class="row justify-content-center">
+                  <div class="card p-record col-12 mb-4">
                     <a href="{{route('users.show', $record->user->id)}}" class="p-record-user_name">{{$record->user->name}}</a>
                     @if (!$record->denimRecordImages->isEmpty())
                     <a href="{{route('users.records.show', [$record->user_id, $record->denim_id, $record->id])}}" class="p-record-img--wrapper">

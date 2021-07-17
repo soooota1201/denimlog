@@ -70,7 +70,7 @@
             </form>
 
             @if (Auth::id() === $user->id)
-              <a href="{{route('users.records.create', [$user->id, $denim->id])}}" class="btn btn-success">記録する</a>
+              <a href="{{route('users.records.create', [$user->id, $denim->id])}}" class="btn btn-outline-dark">記録する</a>
             @endif
             </div>
           </div><!-- /.p-denim__data -->
@@ -103,7 +103,7 @@
                     </div>
                   @else 
                     @foreach ($records as $record)
-                      <div class="row justify-content-center p-record">
+                      <div class="row justify-content-center">
                         <div class="card p-record col-12 mb-4">
                           <p class="p-record-user_name">{{$record->user->name}}</p>
                           @if (!$record->denimRecordImages->isEmpty())
@@ -120,7 +120,7 @@
                             <p class="p-record-user_name">{{$record->user->name}}</p>
                             <p class="card-text p-record-text">{{$record->body}}</p>
                             <p class="mt-3 p-record-date">記録日：{{$record->wearing_day}}</p>
-                            <p class="p-record-place">履き込み地：{{$record->wearing_place}}</p>
+                            <p class="p-record-place">訪問先：{{$record->wearing_place}}</p>
                             <!-- /.record map-->
                             {{-- <div class="text-center">
                               <div id="map" style="height: 200px"></div>
