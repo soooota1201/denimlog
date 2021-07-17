@@ -25,8 +25,8 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'weight' => 'integer',
-            'height' => 'integer',
+            'weight' => 'integer|nullable',
+            'height' => 'integer|nullable',
         ];
     }
 }

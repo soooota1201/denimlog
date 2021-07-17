@@ -25,10 +25,10 @@
 
 <!-- アラートメッセージ -->
 @if (session('alert'))
-  <button type="button" class="close" data-dismiss="alert">
-    <span aria-hidden="true">&times;</span>
-  </button>
   <div class="alert alert-danger">
       {{ session('alert') }}
+      <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+      </button>
   </div>
 @endif

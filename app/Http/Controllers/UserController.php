@@ -85,6 +85,7 @@ class UserController extends Controller
     {
         $user->update([
           'name' => $request->name,
+          'email' => $request->email,
           'height' => $request->height,
           'weight' => $request->weight,
           'user_profile' => $request->user_profile

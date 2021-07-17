@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Comment;
+use App\User;
+use App\Denim;
+use App\DenimRecord;
+use Mail;
 
 class CommentController extends Controller
 {
@@ -38,13 +42,33 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(User $user, Denim $denim, DenimRecord $record, Request $request)
     {
+        // dd($request->id);
         $comment = Comment::create([
           'user_id' => Auth::id(),
           'denim_record_id' => $request->id,
           'body' => $request->body
         ]);
+
+        // if($record->user_id !== Auth::id()) {
+          $data = [];
+          $email = $user->email;
+  
+          Mail::send(
+          'mails.contact', 
+          [
+            'sender' => Auth::user(),
+            'receiver' => $user,
+            'denim' => $denim,
+            'record' => $record,
+            'body' => $request->body,
+          ]
+          , function ($message) use ($email) {
+              $message->to($email)->subject('[DenimLog] あなたの投稿にコメントがありました！');
+          });
+        // }
+
         session()->flash('success', 'コメントされました！');
         return redirect()->back();
     }
@@ -89,9 +113,9 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user, Denim $denim, DenimRecord $record, Comment $comment)
     {
-        $comment = Comment::find($id);
+        $comment = Comment::find($comment->id);
         if($comment->user_id !== Auth::id())
         {
           abort(404);

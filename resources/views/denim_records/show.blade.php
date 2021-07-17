@@ -69,7 +69,7 @@
 
 <div class="container mt-3">
   <div class="row justify-content-center">
-    <div class="col-md-8">
+    <div class="col-md-12">
       <form method="POST" action="{{ route('users.records.destroy', [$user->id, $denim->id, $record->id])}}">
         @csrf
         @method('DELETE')
@@ -99,7 +99,7 @@
           </div>
       </form>
     
-      <form method="POST" action="{{ route('comments.store', $record->id)}}">
+      <form method="POST" action="{{ route('users.comments.store', [$user->id, $denim->id, $record->id, $record->id])}}">
         @csrf
           <!-- Modal -->
           <div class="modal fade" id="modal-comment{{$record->id}}" tabindex="-1" role="dialog" aria-hidden="true">
@@ -125,46 +125,54 @@
               </div>
           </div>
       </form>
-    
-      <ul class="list-unstyled mt-4">
-        @foreach ($comments as $comment)
-    
-          <li class="media pt-2 pb-2 border-bottom">
-            <div class="media-body">
-              <h5 class="mt-0 mb-1">{{$comment->user->name}}</h5>
-              {{$comment->body}}
-            </div>
-            @if ($comment->user_id === Auth::id())
-              <a type="button" data-toggle="modal" data-target="#modal-comment-delete{{$comment->id}}" class="btn btn-danger">削除する</a>
-            @endif
-          </li>
-          
-          {{-- modal --}}
-          <form method="POST" action="{{ route('comments.destroy', $comment->id)}}">
-            @csrf
-            @method('DELETE')
-            <!-- Modal -->
-            <div class="modal fade" id="modal-comment-delete{{$comment->id}}" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">コメントを本当に削除しますか？</h5>
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                        <button type="submit" class="btn btn-danger">
-                            削除
-                        </button>
+
+        <p>
+          <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            コメント
+          </a>
+        </p>
+        <div class="collapse" id="collapseExample">
+          <ul class="list-unstyled mt-4">
+            @foreach ($comments as $comment)
+              <li class="media pt-2 pb-2 border-bottom">
+                <div class="media-body">
+                  <h5 class="mt-0 mb-1">{{$comment->user->name}}</h5>
+                  {{$comment->body}}
+                </div>
+                @if ($comment->user_id === Auth::id())
+                  <a type="button" data-toggle="modal" data-target="#modal-comment-delete{{$comment->id}}" class="btn btn-danger">削除する</a>
+                @endif
+              </li>
+              
+              {{-- modal --}}
+              <form method="POST" action="{{ route('users.comments.destroy', [$user->id, $denim->id, $record->id, $comment->id])}}">
+                @csrf
+                @method('DELETE')
+                <!-- Modal -->
+                <div class="modal fade" id="modal-comment-delete{{$comment->id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">コメントを本当に削除しますか？</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                            <button type="submit" class="btn btn-danger">
+                                削除
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            </div>
-          </form>
-        @endforeach
-      </ul>      
+                </div>
+              </form>
+            @endforeach
+          </ul>      
+          
+        </div>
+    
     </div><!-- /.col-md-8 -->
   </div><!-- /.row justify-content-center -->
   
