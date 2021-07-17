@@ -6691,7 +6691,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.vuejs-heatmap text.month-name,\n.vuejs-heatmap text.calendar-heatmap-legend-text,\n.vuejs-heatmap text.day-initial {\n  font-size: 10px;\n  fill: inherit;\n  font-family: Helvetica, arial, 'Open Sans', sans-serif;\n}\n.vuejs-heatmap rect.day-cell:hover {\n  stroke: #555555;\n  stroke-width: 1px;\n}\n.vuejs-heatmap .day-cell-tooltip {\n  position: absolute;\n  z-index: 9999;\n  padding: 5px 9px;\n  color: #bbbbbb;\n  font-size: 12px;\n  background: rgba(0, 0, 0, 0.85);\n  border-radius: 3px;\n  text-align: center;\n}\n.vuejs-heatmap .day-cell-tooltip > span {\n  font-family: Helvetica, arial, 'Open Sans', sans-serif\n}\n.vuejs-heatmap .calendar-heatmap {\n  box-sizing: initial;\n  overflow: initial;\n}\n", ""]);
+exports.push([module.i, "\n.vuejs-heatmap text.month-name,\n.vuejs-heatmap text.calendar-heatmap-legend-text,\n.vuejs-heatmap text.day-initial {\n  font-size: 10px;\n  fill: inherit;\n  font-family: Helvetica, arial, 'Open Sans', sans-serif;\n}\n.vuejs-heatmap rect.day-cell:hover {\n  stroke: #555555;\n  stroke-width: 1px;\n}\n.vuejs-heatmap .day-cell-tooltip {\n  position: absolute;\n  z-index: 9999;\n  padding: 5px 9px;\n  color: #bbbbbb;\n  font-size: 12px;\n  background: rgba(0, 0, 0, 0.85);\n  border-radius: 3px;\n  text-align: center;\n}\n.vuejs-heatmap .day-cell-tooltip > span {\n  font-family: Helvetica, arial, 'Open Sans', sans-serif\n}\n.vuejs-heatmap .calendar-heatmap {\n  box-sizing: initial;\n  overflow: initial;\n}\n.vuejs-heatmap::-webkit-scrollbar {\n    display:none;\n}\n", ""]);
 
 // exports
 
@@ -82374,7 +82374,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "like-component" }, [
     _vm.result
       ? _c(
           "a",
@@ -82479,7 +82479,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", {
-    staticClass: "vuejs-heatmap",
+    staticClass: "vuejs-heatmap mb-4",
     class: _vm.selector,
     staticStyle: { "overflow-x": "scroll", direction: "rtl" }
   })
@@ -94786,7 +94786,7 @@ __webpack_require__.r(__webpack_exports__);
 var calendarHeatmap = {
   init: function init() {
     // defaults
-    var width = 750;
+    var width = 700;
     var height = 110;
     var legendWidth = 150;
     var selector = '.vuejs-heatmap';
@@ -94955,7 +94955,7 @@ var calendarHeatmap = {
       drawChart();
 
       function drawChart() {
-        var svg = d3__WEBPACK_IMPORTED_MODULE_1__["select"](chart.selector()).style('position', 'relative').append('svg').attr('width', width).attr('class', 'calendar-heatmap').attr('height', height).style('padding', '36px');
+        var svg = d3__WEBPACK_IMPORTED_MODULE_1__["select"](chart.selector()).style('position', 'relative').append('svg').attr('width', width).attr('class', 'calendar-heatmap').attr('height', height).style('padding', '20px');
         dayRects = svg.selectAll('.day-cell').data(dateRange); //  array of days for the last yr
 
         dayRects.enter().append('rect').attr('class', 'day-cell').attr('width', SQUARE_LENGTH).attr('height', SQUARE_LENGTH).attr('fill', function (d) {

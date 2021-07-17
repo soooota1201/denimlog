@@ -44,10 +44,10 @@ class CommentController extends Controller
      */
     public function store(User $user, Denim $denim, DenimRecord $record, Request $request)
     {
-        // dd($request->id);
+        // dd($record->id);
         $comment = Comment::create([
           'user_id' => Auth::id(),
-          'denim_record_id' => $request->id,
+          'denim_record_id' => $record->id,
           'body' => $request->body
         ]);
 

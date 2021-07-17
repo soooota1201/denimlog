@@ -1,9 +1,10 @@
-.record-card {
-  padding: 5px 10px 10px 10px;
+.p-record {
+  // padding: 0px 10px 10px;
   color: #333333 !important;
 
   &-user_name {
-    padding: 5px 0;
+    padding: 15px 0 5px;
+    line-height: 1;
   }
 
   &-img {
@@ -30,6 +31,10 @@
   &-user_name {
     font-size: 16px;
     font-weight: bold;
+    color: #333333;
+    &:hover {
+      color: #333333;
+    }
   }
 
   &-text {
@@ -38,6 +43,12 @@
 
   &-date {
     font-size: 12px;
+  }
+
+  &__bland {
+    a {
+      color: #333333;
+    }
   }
   
   &-place {

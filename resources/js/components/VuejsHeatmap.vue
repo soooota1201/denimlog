@@ -1,5 +1,5 @@
 <template>
-  <div class="vuejs-heatmap" :class="selector" style="overflow-x: scroll;  direction: rtl;"></div>
+  <div class="vuejs-heatmap mb-4" :class="selector" style="overflow-x: scroll;  direction: rtl;"></div>
 </template>
 
 <script>
@@ -89,5 +89,9 @@ export default {
 .vuejs-heatmap .calendar-heatmap {
   box-sizing: initial;
   overflow: initial;
+}
+
+.vuejs-heatmap::-webkit-scrollbar {
+    display:none;
 }
 </style>

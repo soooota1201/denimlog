@@ -8,8 +8,8 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
-            <div class="mb-5">
+        <div class="col-md-10 mb-5">
+            <div class="mb-2">
               {{-- @if (Auth::id() != $user->id)
                 @if (!Auth::user()->is_following($user->id))
                   <form action="{{route('users.follow', $user->id)}}" method="POST">
@@ -83,7 +83,7 @@
               <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                 @if ($denims->count() == 0)
                   <div class="mt-3">
-                    <p>お気に入りのデニムを登録しましょう！</p>
+                    <p class="mt-4">お気に入りのデニムを登録しましょう！</p>
                     <br>
                     @if (Auth::id() === $user->id)
                       <a href="{{route('users.denims.create', $user->id)}}" class="btn text-white profile-denim-btn">登録する<i class="fas fa-chevron-right ml-2"></i></a>
@@ -91,7 +91,7 @@
                   @endif
                 @endif
                 @if (!$denims->count() == 0 && $records->count() == 0)
-                  <div class="mt-3">
+                  <div class="mt-4">
                     <p>登録したデニムの成長を記録しましょう！</p>
                     <br>
                     @if (Auth::id() === $user->id)
@@ -101,17 +101,17 @@
                 @endif
                 {{-- 記録一覧 --}}
                 @if (!$denims->count() == 0 && !$records->count() == 0)
-                  <div class="container mt-3">
+                  <div class="container mt-4">
                     @foreach ($records as $record)
                       <div class="row justify-content-center">
-                        <div class="card record-card col-12 mb-4">
-                          <p class="record-card-user_name">{{$record->user->name}}</p>
+                        <div class="card p-record col-12 mb-4">
+                          <p class="p-record-user_name">{{$record->user->name}}</p>
                           @if (!$record->denimRecordImages->isEmpty())
-                          <a href="{{route('users.records.show', [$user->id, $record->denim_id, $record->id])}}" class="record-card-img--wrapper">
-                            <img class="bd-placeholder-img record-card-img" src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" alt="">
+                          <a href="{{route('users.records.show', [$user->id, $record->denim_id, $record->id])}}" class="p-record-img--wrapper">
+                            <img class="bd-placeholder-img p-record-img" src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" alt="">
                           </a>
                           @endif
-                          <div class="card-body record-card-body">
+                          <div class="card-body p-record-body">
                             {{-- <div>
                               @if($record->is_liked_by_auth_user())
                                 <a href="{{ route('reply.unlike', $record->id) }}" class="btn btn-success btn-sm">いいね<span class="badge">{{ $record->likes->count() }}</span></a>
@@ -126,10 +126,10 @@
                               ></like-component>
                               {{-- likecomponent --}}
                             </div>
-                            <p class="record-card-user_name">{{$record->user->name}}</p>
-                            <p class="card-text record-card-text">{{$record->body}}</p>
-                            <p class="mt-3 record-card-date">記録日：{{$record->wearing_day}}</p>
-                            <p class="record-card-place">履き込み地：{{$record->wearing_place}}</p>
+                            <p class="p-record-user_name">{{$record->user->name}}</p>
+                            <p class="card-text p-record-text">{{$record->body}}</p>
+                            <p class="mt-3 p-record-date">記録日：{{$record->wearing_day}}</p>
+                            <p class="p-record-place">訪問先：{{$record->wearing_place}}</p>
                           </div>
                         </div>
                       </div>
@@ -140,7 +140,6 @@
               <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 @if (!$denims->count() == 0)
                 <div class="d-flex justify-content-between align-items-center mt-3">
-                  <p class="profile-denim">デニム一覧</p>
                     @if (Auth::id() === $user->id)
                       <a href="{{route('users.denims.create', $user->id)}}" class="btn text-white profile-denim-btn">登録する<i class="fas fa-chevron-right ml-2"></i></a>
                     @endif
@@ -170,7 +169,7 @@
                       <a href="{{route('users.denims.index', $user->id)}}" class="btn btn-outline-dark mt4">デニム一覧へ<i class="fas fa-chevron-right ml-2"></i></a>
                     </div>
                   @else {{-- デニムが登録されていない場合 --}}
-                    <p>お気に入りのデニムを登録しましょう！</p>
+                    <p class="mt-4">お気に入りのデニムを登録しましょう！</p>
                     <br>
                     @if (Auth::id() === $user->id)
                       <a href="{{route('users.denims.create', $user->id)}}" class="btn text-white profile-denim-btn">登録する<i class="fas fa-chevron-right ml-2"></i></a>

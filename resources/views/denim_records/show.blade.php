@@ -8,38 +8,40 @@
 
 <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-12">
-        <div class="mb-3">
+      <div class="col-md-10 mb-5">
+        {{-- <div class="mb-3">
           <a href="{{route('users.denims.show', [$user->id, $denim->id])}}" class="text-dark mr-2"><i class="fas fa-arrow-left"></i><span class="record-denim ml-2">{{$record->denim->bland_type}}</span></a>
-        </div>
+        </div> --}}
         <div class="container">
             <div class="row justify-content-center">
-                <div class="card record-card col-12" href="{{route('users.records.show', [$user->id, $denim->id, $record->id])}}">
-                  <p class="record-card-user_name d-inline-block">{{$record->user->name}}</p>
+                <div class="card p-record col-12" href="{{route('users.records.show', [$user->id, $denim->id, $record->id])}}">
+                  <p class="p-record-user_name d-inline-block">{{$record->user->name}}</p>
                   
                   @if (!$record->denimRecordImages->isEmpty() && count($record->denimRecordImages) != 1)
                     <swiper-component :records="{{ json_encode($record->denimRecordImages) }}"></swiper-component>
                   @else
-                    <figure class="record-card-img--wrapper">
-                      <img src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" class="record-card-img">
+                    <figure class="p-record-img--wrapper">
+                      <img src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" class="p-record-img">
                     </figure>
                   @endif
 
-                  <div class="card-body record-card-body">
-                    <div class="btn-group float-right" role="group" aria-label="Button group with nested dropdown">
-                    <div class="" role="group">
-                      <button class="btn text-dark denim-edit-btn"  data-toggle="dropdown">
-                        <i class="fas fa-ellipsis-h"></i>
-                      </button>
-                      
-                      @if (Auth::id() === $user->id)
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-                          <a class="dropdown-item" href="{{route('users.records.edit', [$user->id, $denim->id, $record->id])}}">編集する</a>
-                          <a class="dropdown-item"type="button" data-toggle="modal" data-target="#modal{{$record->id}}">削除する</a>
+                  <div class="card-body p-record-body">
+                    @if (Auth::id() === $user->id)
+                      <div class="btn-group float-right" role="group" aria-label="Button group with nested dropdown">
+                        <div class="" role="group">
+                          <button class="btn text-dark denim-edit-btn"  data-toggle="dropdown">
+                            <i class="fas fa-ellipsis-h"></i>
+                          </button>
+                          
+                          @if (Auth::id() === $user->id)
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
+                              <a class="dropdown-item" href="{{route('users.records.edit', [$user->id, $denim->id, $record->id])}}">編集する</a>
+                              <a class="dropdown-item"type="button" data-toggle="modal" data-target="#modal{{$record->id}}">削除する</a>
+                            </div>
+                          @endif
                         </div>
-                      @endif
-                    </div>
-                  </div>
+                      </div>
+                    @endif
                   <div class="row align-items-center">
                     <div class="mr-2">
                       {{-- likecomponent --}}
@@ -52,10 +54,10 @@
                        <a type="button" data-toggle="modal" data-target="#modal-comment{{$record->id}}" class="btn btn-outline-dark btn-sm"><i class="far fa-comment"></i></a>
                     </div>
                   </div><!-- /.row -->
-                    <p class="record-card-user_name">{{$record->user->name}}</p>
-                    <p class="card-text record-card-text">{{$record->body}}</p>
-                    <p class="mt-3 record-card-date">記録日：{{$record->wearing_day}}</p>
-                    <p class="record-card-place">履き込み地：{{$record->wearing_place}}</p>
+                    <p class="p-record-user_name">{{$record->user->name}}</p>
+                    <p class="card-text p-record-text">{{$record->body}}</p>
+                    <p class="mt-3 p-record-date">記録日：{{$record->wearing_day}}</p>
+                    <p class="p-record-place">訪問先：{{$record->wearing_place}}</p>
                   </div>
                   <div class="text-center">
                     <div id="map" style="height: 200px"></div>
@@ -69,7 +71,7 @@
 
 <div class="container mt-3">
   <div class="row justify-content-center">
-    <div class="col-md-12">
+    <div class="col-md-10">
       <form method="POST" action="{{ route('users.records.destroy', [$user->id, $denim->id, $record->id])}}">
         @csrf
         @method('DELETE')
@@ -125,53 +127,57 @@
               </div>
           </div>
       </form>
-
-        <p>
-          <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-            コメント
-          </a>
-        </p>
-        <div class="collapse" id="collapseExample">
-          <ul class="list-unstyled mt-4">
-            @foreach ($comments as $comment)
-              <li class="media pt-2 pb-2 border-bottom">
-                <div class="media-body">
-                  <h5 class="mt-0 mb-1">{{$comment->user->name}}</h5>
-                  {{$comment->body}}
-                </div>
-                @if ($comment->user_id === Auth::id())
-                  <a type="button" data-toggle="modal" data-target="#modal-comment-delete{{$comment->id}}" class="btn btn-danger">削除する</a>
-                @endif
-              </li>
-              
-              {{-- modal --}}
-              <form method="POST" action="{{ route('users.comments.destroy', [$user->id, $denim->id, $record->id, $comment->id])}}">
-                @csrf
-                @method('DELETE')
-                <!-- Modal -->
-                <div class="modal fade" id="modal-comment-delete{{$comment->id}}" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">コメントを本当に削除しますか？</h5>
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                            <button type="submit" class="btn btn-danger">
-                                削除
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                </div>
-              </form>
-            @endforeach
-          </ul>      
-          
+        
+      @if ($comments->count() != 0)
+        <div class="p-comment">
+          <p class="">
+            <a class="btn btn-outline-dark" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              コメント
+            </a>
+          </p>
+          <div class="collapse mt-3" id="collapseExample">
+            <ul class="list-unstyled">
+              @foreach ($comments as $comment)
+                <li class="media pt-2 pb-2 border-bottom">
+                  <div class="media-body">
+                    <h5 class="mt-0 mb-1">{{$comment->user->name}}</h5>
+                    {{$comment->body}}
+                  </div>
+                  @if ($comment->user_id === Auth::id())
+                    <a type="button" data-toggle="modal" data-target="#modal-comment-delete{{$comment->id}}" class="btn btn-outline-danger">削除する</a>
+                  @endif
+                </li>
+                
+                {{-- modal --}}
+                <form method="POST" action="{{ route('users.comments.destroy', [$user->id, $denim->id, $record->id, $comment->id])}}">
+                  @csrf
+                  @method('DELETE')
+                  <!-- Modal -->
+                  <div class="modal fade" id="modal-comment-delete{{$comment->id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title">コメントを本当に削除しますか？</h5>
+                              <button type="button" class="close" data-dismiss="modal">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                              <button type="submit" class="btn btn-danger">
+                                  削除
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+                  </div>
+                </form>
+              @endforeach
+            </ul>      
+            
+          </div>
         </div>
+      @endif
     
     </div><!-- /.col-md-8 -->
   </div><!-- /.row justify-content-center -->

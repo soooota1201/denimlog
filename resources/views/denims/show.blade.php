@@ -7,7 +7,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center p-denim__top">
-        <div class="col-md-12">
+        <div class="col-md-10">
           <div class="d-flex justify-content-between mb-3">
             <h2 class="p-denim__name">{{$denim->bland_type}}</h2>
           </div><!-- /.p-denim__name -->
@@ -70,7 +70,7 @@
             </form>
 
             @if (Auth::id() === $user->id)
-              <a href="{{route('users.records.create', [$user->id, $denim->id])}}" class="btn btn-success">記録する</a>
+              <a href="{{route('users.records.create', [$user->id, $denim->id])}}" class="btn btn-outline-dark">記録する</a>
             @endif
             </div>
           </div><!-- /.p-denim__data -->
@@ -78,7 +78,7 @@
     </div><!-- /.p-denim__top -->
 
     <div class="row justify-content-center p-denim__content">
-      <div class="col-md-12">
+      <div class="col-md-10 mb-5">
         <ul class="nav nav-tabs p-denim__tab" id="myTab" role="tablist">
           <li class="nav-item">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Record</a>
@@ -103,24 +103,24 @@
                     </div>
                   @else 
                     @foreach ($records as $record)
-                      <div class="row justify-content-center p-record">
-                        <div class="card record-card col-12 mb-4">
-                          <p class="record-card-user_name">{{$record->user->name}}</p>
+                      <div class="row justify-content-center">
+                        <div class="card p-record col-12 mb-4">
+                          <p class="p-record-user_name">{{$record->user->name}}</p>
                           @if (!$record->denimRecordImages->isEmpty())
-                          <a href="{{route('users.records.show', [$user->id, $denim->id, $record->id])}}" class="record-card-img--wrapper">
-                            <img class="bd-placeholder-img record-card-img" src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" alt="">
+                          <a href="{{route('users.records.show', [$user->id, $denim->id, $record->id])}}" class="p-record-img--wrapper">
+                            <img class="bd-placeholder-img p-record-img" src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" alt="">
                           </a>
                           @endif
-                          <div class="card-body record-card-body">
+                          <div class="card-body p-record-body">
                             {{-- likecomponent --}}
                             <like-component
                             :record="{{ json_encode($record)}}"
                             ></like-component>
                             {{-- likecomponent --}}
-                            <p class="record-card-user_name">{{$record->user->name}}</p>
-                            <p class="card-text record-card-text">{{$record->body}}</p>
-                            <p class="mt-3 record-card-date">記録日：{{$record->wearing_day}}</p>
-                            <p class="record-card-place">履き込み地：{{$record->wearing_place}}</p>
+                            <p class="p-record-user_name">{{$record->user->name}}</p>
+                            <p class="card-text p-record-text">{{$record->body}}</p>
+                            <p class="mt-3 p-record-date">記録日：{{$record->wearing_day}}</p>
+                            <p class="p-record-place">訪問先：{{$record->wearing_place}}</p>
                             <!-- /.record map-->
                             {{-- <div class="text-center">
                               <div id="map" style="height: 200px"></div>

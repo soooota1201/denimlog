@@ -1,9 +1,24 @@
 .l-header {
-  background: url(../../img/denim-header-bg.png);
+  color: #000 !important;
+  border-bottom: 1px solid rgb(224, 224, 224);
+  position: fixed;
+  z-index: 1000;
   width: 100%;
 }
 
 .header-logo {
   font-size: 24px;
   font-weight: bold;
+}
+
+.header-login {
+  @include bp(sp) {
+    display: none;
+  }
+}
+
+.sp-logout {
+  @include bp(pc) {
+    display: none;
+  }
 }

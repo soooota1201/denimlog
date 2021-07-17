@@ -1,7 +1,7 @@
-<header>
-  <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm l-header">
+<header class="l-header">
+  <nav class="navbar navbar-expand-md navbar-light bg-white">
       <div class="container">
-          <a class="navbar-brand text-white header-logo" href="/users">
+          <a class="navbar-brand header-logo" href="/users" style="color: #333333;">
               {{ config('app.name', '') }}
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -9,11 +9,6 @@
           </button>
   
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <!-- Left Side Of Navbar -->
-              <ul class="navbar-nav mr-auto">
-  
-              </ul>
-  
               <!-- Right Side Of Navbar -->
               <ul class="navbar-nav ml-auto">
                   <!-- Authentication Links -->
@@ -23,21 +18,24 @@
                       </li>
                   @else
                       <li class="nav-item dropdown">
-                          <a id="navbarDropdown" class="nav-link dropdown-toggle text-white font-weight-bold" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                          <a id="navbarDropdown" class="nav-link dropdown-toggle font-weight-bold header-login" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                               {{ Auth::user()->name }} <span class="caret"></span>
                           </a>
+
+                          <a class="dropdown-item sp-logout" href="{{ route('logout') }}"
+                              onclick="event.preventDefault();
+                              document.getElementById('logout-form').submit();">
+                              {{ __('Logout') }}
+                          </a>
+
+                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                              @csrf
+                          </form>
                           
                           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                              @if (Auth::id() == $user->id)
-                                <a class="dropdown-item" href="{{route('users.show', $user->id)}}">プロフィール</a>
-                              @endif
-                              @if (Auth::id() == $user->id)
-                                <a class="dropdown-item" href="{{route('users.denims.index', $user->id)}}">デニム一覧</a>
-                              @endif
-                              
                               <a class="dropdown-item" href="{{ route('logout') }}"
                                   onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
+                                  document.getElementById('logout-form').submit();">
                                   {{ __('Logout') }}
                               </a>
   

@@ -9,8 +9,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <h2>プロフィールを更新してください</h2>
-
+            
             <form 
             method="POST" 
             action="{{
@@ -49,7 +48,7 @@
                 <input type="file" class="form-control" placeholder="" name="thumbnail_image" value="">
               </div>
               
-              <button type="submit" class="btn btn-primary">更新する</button>
+              <button type="submit" class="btn btn-outline-dark">更新する</button>
             </form>
         </div>
     </div>

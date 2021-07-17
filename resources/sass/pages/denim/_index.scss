@@ -1,0 +1,14 @@
+.p-denimIndex {
+  &__heading {
+    line-height: 1 !important;
+    margin: 0 !important;
+
+    @include bp(sp) {
+      font-size: 22px !important;
+    }
+
+    a {
+      color: #333333;
+    }
+  }
+}
