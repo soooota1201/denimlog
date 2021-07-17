@@ -1,7 +1,7 @@
-<header>
-  <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm l-header">
+<header class="l-header">
+  <nav class="navbar navbar-expand-md navbar-light bg-white">
       <div class="container">
-          <a class="navbar-brand text-white header-logo" href="/users">
+          <a class="navbar-brand header-logo" href="/users">
               {{ config('app.name', '') }}
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -23,7 +23,7 @@
                       </li>
                   @else
                       <li class="nav-item dropdown">
-                          <a id="navbarDropdown" class="nav-link dropdown-toggle text-white font-weight-bold" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                          <a id="navbarDropdown" class="nav-link dropdown-toggle font-weight-bold" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                               {{ Auth::user()->name }} <span class="caret"></span>
                           </a>
                           

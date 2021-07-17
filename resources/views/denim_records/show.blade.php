@@ -8,24 +8,24 @@
 
 <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-12">
+      <div class="col-md-10">
         <div class="mb-3">
           <a href="{{route('users.denims.show', [$user->id, $denim->id])}}" class="text-dark mr-2"><i class="fas fa-arrow-left"></i><span class="record-denim ml-2">{{$record->denim->bland_type}}</span></a>
         </div>
         <div class="container">
             <div class="row justify-content-center">
-                <div class="card record-card col-12" href="{{route('users.records.show', [$user->id, $denim->id, $record->id])}}">
-                  <p class="record-card-user_name d-inline-block">{{$record->user->name}}</p>
+                <div class="card p-record col-12" href="{{route('users.records.show', [$user->id, $denim->id, $record->id])}}">
+                  <p class="p-record-user_name d-inline-block">{{$record->user->name}}</p>
                   
                   @if (!$record->denimRecordImages->isEmpty() && count($record->denimRecordImages) != 1)
                     <swiper-component :records="{{ json_encode($record->denimRecordImages) }}"></swiper-component>
                   @else
-                    <figure class="record-card-img--wrapper">
-                      <img src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" class="record-card-img">
+                    <figure class="p-record-img--wrapper">
+                      <img src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" class="p-record-img">
                     </figure>
                   @endif
 
-                  <div class="card-body record-card-body">
+                  <div class="card-body p-record-body">
                     <div class="btn-group float-right" role="group" aria-label="Button group with nested dropdown">
                     <div class="" role="group">
                       <button class="btn text-dark denim-edit-btn"  data-toggle="dropdown">
@@ -52,10 +52,10 @@
                        <a type="button" data-toggle="modal" data-target="#modal-comment{{$record->id}}" class="btn btn-outline-dark btn-sm"><i class="far fa-comment"></i></a>
                     </div>
                   </div><!-- /.row -->
-                    <p class="record-card-user_name">{{$record->user->name}}</p>
-                    <p class="card-text record-card-text">{{$record->body}}</p>
-                    <p class="mt-3 record-card-date">記録日：{{$record->wearing_day}}</p>
-                    <p class="record-card-place">履き込み地：{{$record->wearing_place}}</p>
+                    <p class="p-record-user_name">{{$record->user->name}}</p>
+                    <p class="card-text p-record-text">{{$record->body}}</p>
+                    <p class="mt-3 p-record-date">記録日：{{$record->wearing_day}}</p>
+                    <p class="p-record-place">履き込み地：{{$record->wearing_place}}</p>
                   </div>
                   <div class="text-center">
                     <div id="map" style="height: 200px"></div>
@@ -69,7 +69,7 @@
 
 <div class="container mt-3">
   <div class="row justify-content-center">
-    <div class="col-md-12">
+    <div class="col-md-10">
       <form method="POST" action="{{ route('users.records.destroy', [$user->id, $denim->id, $record->id])}}">
         @csrf
         @method('DELETE')

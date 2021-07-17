@@ -22,29 +22,27 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body style="background: rgb(250, 252, 255);">
     <div id="app">
       
         @yield('header')
       
         @include('layouts._flash_message')
-        
-        <main class="l-main">
-          <div class="container mt-5">
-            <div class="row justify-content-center">
-              
-              @include('layouts.sidebar')
-              
-              <div class="col-md-8">
-                
-                @yield('content')
-              
-              </div><!-- /.col-md-8 -->
-  
-            </div>
-          </div><!-- /.container -->
 
-        </main>
+        <div>
+          <div class="l-wrapper">
+            <div class="l-sidebar">
+              @include('layouts.sidebar')
+            </div><!-- /.l-sidebar -->
+            
+            <main class="l-main">
+              @yield('content')
+            </main>
+            
+          </div>
+        </div>
+
+
 
         @yield('footer')
     </div>

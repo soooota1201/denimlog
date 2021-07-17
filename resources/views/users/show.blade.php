@@ -104,14 +104,14 @@
                   <div class="container mt-3">
                     @foreach ($records as $record)
                       <div class="row justify-content-center">
-                        <div class="card record-card col-12 mb-4">
-                          <p class="record-card-user_name">{{$record->user->name}}</p>
+                        <div class="card p-record col-12 mb-4">
+                          <p class="p-record-user_name">{{$record->user->name}}</p>
                           @if (!$record->denimRecordImages->isEmpty())
-                          <a href="{{route('users.records.show', [$user->id, $record->denim_id, $record->id])}}" class="record-card-img--wrapper">
-                            <img class="bd-placeholder-img record-card-img" src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" alt="">
+                          <a href="{{route('users.records.show', [$user->id, $record->denim_id, $record->id])}}" class="p-record-img--wrapper">
+                            <img class="bd-placeholder-img p-record-img" src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" alt="">
                           </a>
                           @endif
-                          <div class="card-body record-card-body">
+                          <div class="card-body p-record-body">
                             {{-- <div>
                               @if($record->is_liked_by_auth_user())
                                 <a href="{{ route('reply.unlike', $record->id) }}" class="btn btn-success btn-sm">いいね<span class="badge">{{ $record->likes->count() }}</span></a>
@@ -126,10 +126,10 @@
                               ></like-component>
                               {{-- likecomponent --}}
                             </div>
-                            <p class="record-card-user_name">{{$record->user->name}}</p>
-                            <p class="card-text record-card-text">{{$record->body}}</p>
-                            <p class="mt-3 record-card-date">記録日：{{$record->wearing_day}}</p>
-                            <p class="record-card-place">履き込み地：{{$record->wearing_place}}</p>
+                            <p class="p-record-user_name">{{$record->user->name}}</p>
+                            <p class="card-text p-record-text">{{$record->body}}</p>
+                            <p class="mt-3 p-record-date">記録日：{{$record->wearing_day}}</p>
+                            <p class="p-record-place">履き込み地：{{$record->wearing_place}}</p>
                           </div>
                         </div>
                       </div>

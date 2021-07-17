@@ -1,5 +1,8 @@
 .l-header {
-  background: url(../../img/denim-header-bg.png);
+  color: #000 !important;
+  border-bottom: 1px solid rgb(224, 224, 224);
+  position: fixed;
+  z-index: 99999;
   width: 100%;
 }
 
