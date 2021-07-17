@@ -9,11 +9,11 @@
 <div class="container p-denimIndex">
     <div class="row justify-content-center">
         <div class="col-md-10">
-          <div class="d-flex justify-content-between align-items-center mb-5">
+          <div class="d-flex justify-content-between align-items-md-center align-items-start flex-md-row flex-column mb-5">
             <h2 class="p-denimIndex__heading"><a href="{{route('users.show', $user->id)}}">{{$user->name}}</a>のデニム一覧</h2>
             @if (Auth::id() === $user->id)
               @if ($denims->count() != 0)
-                <a href="{{route('users.denims.create', $user->id)}}" type="button" class="btn btn-outline-dark">登録する</a>
+                <a href="{{route('users.denims.create', $user->id)}}" type="button" class="btn btn-outline-dark mt-md-0 mt-3">登録する</a>
               @endif
             @endif
           </div>

@@ -78,7 +78,7 @@
     </div><!-- /.p-denim__top -->
 
     <div class="row justify-content-center p-denim__content">
-      <div class="col-md-10">
+      <div class="col-md-10 mb-5">
         <ul class="nav nav-tabs p-denim__tab" id="myTab" role="tablist">
           <li class="nav-item">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Record</a>

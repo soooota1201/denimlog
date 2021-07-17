@@ -17069,6 +17069,18 @@ p {
   font-weight: bold;
 }
 
+@media (max-width: 768px) {
+  .header-login {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .sp-logout {
+    display: none;
+  }
+}
+
 .p-sidebar__item a {
   color: #333333;
 }
@@ -17205,6 +17217,13 @@ p {
 
 .p-denimIndex__heading {
   line-height: 1 !important;
+  margin: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .p-denimIndex__heading {
+    font-size: 22px !important;
+  }
 }
 
 .p-denimIndex__heading a {

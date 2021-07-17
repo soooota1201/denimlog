@@ -8,7 +8,7 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-10 mb-5">
             <div class="mb-2">
               {{-- @if (Auth::id() != $user->id)
                 @if (!Auth::user()->is_following($user->id))

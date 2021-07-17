@@ -10,3 +10,15 @@
   font-size: 24px;
   font-weight: bold;
 }
+
+.header-login {
+  @include bp(sp) {
+    display: none;
+  }
+}
+
+.sp-logout {
+  @include bp(pc) {
+    display: none;
+  }
+}
