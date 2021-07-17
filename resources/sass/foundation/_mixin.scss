@@ -1,0 +1,425 @@
+/* ------------------------------------------------------------------
+ Mixin
+------------------------------------------------------------------ */
+// font
+@mixin arial {
+    font-family: Arial, sans-serif;
+}
+
+@mixin gill-sans {
+    font-family: gill-sans-nova, sans-serif;
+}
+
+@mixin arial-narrow {
+    font-family: 'Arial Narrow', sans-serif;
+}
+
+@mixin TsukuBRdGothic {
+    font-family: 'TsukuBRdGothic-Regular', sans-serif;
+}
+
+@mixin gothic {
+    font-family: 'Hiragino Gothic ProN', "ヒラギノ角ゴ Pro W3", 'Noto Sans JP', sans-serif;
+    font-weight: 500;
+
+    @media all and (-ms-high-contrast: none) {
+        font-family: 'Hiragino Gothic ProN', "ヒラギノ角ゴ Pro W3", 'Noto Sans JP', sans-serif;
+    }
+}
+
+@mixin mincho {
+    font-family: "Yu Mincho", "游明朝", YuMincho, "游明朝体", 'ヒラギノ明朝 ProN', 'Hiragino Mincho ProN', 'Noto Serif JP', serif;
+
+    @media all and (-ms-high-contrast: none) {
+        font-family: 'ヒラギノ明朝 ProN', 'Hiragino Mincho ProN', 'Noto Serif JP', serif;
+    }
+}
+
+// box-shadow
+@mixin shadow {
+    box-shadow: 0 0 18px 0 rgba(#080808, 0.54);
+}
+
+// position center
+@mixin pCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin pYCenter {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@mixin pXCenter {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+// flexbox center
+@mixin fCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// bg center
+@mixin bgCenter {
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+// anchor hover
+@mixin aHover {
+    transition: opacity 0.3s;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+// text ellipsis
+@mixin ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+// text lineclamp
+@mixin lineclamp($num) {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $num;
+}
+
+// fonttelo icon font
+@mixin fontello ($content) {
+    font-family: "fontello";
+    content: $content;
+}
+
+// 複数行 アンダーライン
+@mixin line ($color: #ff0, $height: 65%) {
+    background: linear-gradient(transparent $height, $color 0%);
+    display: inline;
+}
+
+// list width margin
+@mixin list ($ElmCount, $width, $mtValue) {
+    $ElmCountPlusOne: $ElmCount + 1;
+    $ElmCountMinusOne: $ElmCount - 1;
+    $mlValue: (100% - ($width * $ElmCount)) / $ElmCountMinusOne;
+    width: $width;
+
+    &:not(:nth-child(#{$ElmCount}n + 1)) {
+        margin-left: $mlValue;
+    }
+
+    &:nth-child(n + #{$ElmCountPlusOne}) {
+        margin-top: $mtValue;
+    }
+}
+
+// flex 3row ::after
+@mixin flexAfter($colWidth) {
+    &::after {
+        content: "";
+        display: block;
+        height: 0;
+        width: $colWidth;
+    }
+}
+
+// browser　
+@mixin browser ($type) {
+    @if $type==ie {
+
+        // Internet Explorer
+        @media all and (-ms-high-contrast: none) {
+            @content;
+        }
+    }
+
+    @if $type==ff {
+
+        // Firefox
+        @-moz-document url-prefix() {
+            @content;
+        }
+    }
+
+    @if $type==ch {
+
+        // google Chrome
+        @media screen and (-webkit-min-device-pixel-ratio: 0) {
+            @content;
+        }
+    }
+
+    @if $type==sa {
+
+        // Safari
+        @media screen and (-webkit-min-device-pixel-ratio: 0) {
+
+            _::-webkit-full-page-media,
+            _:future,
+            :root body {
+                @content;
+            }
+        }
+    }
+}
+
+// Medie Query
+@mixin bp($point) {
+    @if $point==sp {
+        @media (max-width: 768px) {
+            @content;
+        }
+    }
+
+    @if $point==pc {
+        @media (min-width: 769px) {
+            @content;
+        }
+    }
+
+    @if $point==full {
+        @media (min-width: 1400px) {
+            @content;
+        }
+    }
+}
+
+// vw計算
+$pc-w:1920; //pcのデザインカンプの幅を入力
+$sp-w: 750; //spのデザインカンプの幅を入力
+
+@mixin vw($wid, $property, $size) {
+    @if $wid==pc {
+        $winW: $pc-w;
+
+        @if $property==w {
+            width: ($size / $winW) * 100 + vw;
+            max-width: $size + px;
+        }
+
+        @if $property==h {
+            height: ($size / $winW) * 100 + vw;
+            max-height: $size + px;
+        }
+
+        @if $property==fz {
+            font-size: ($size / $winW) * 100 + vw;
+
+            @media (min-width: $pc-w + px) {
+                font-size: ($size * 0.1) + rem;
+            }
+        }
+
+        @if $property==m {
+            margin: ($size / $winW) * 100 + vw;
+
+            @media (min-width: $pc-w + px) {
+                margin: $size + px;
+            }
+        }
+
+        @if $property==mt {
+            margin-top: ($size / $winW) * 100 + vw;
+
+            @media (min-width: $pc-w + px) {
+                margin-top: $size + px;
+            }
+        }
+
+        @if $property==mb {
+            margin-bottom: ($size / $winW) * 100 + vw;
+
+            @media (min-width: $pc-w + px) {
+                margin-bottom: $size + px;
+            }
+        }
+
+        @if $property==mr {
+            margin-right: ($size / $winW) * 100 + vw;
+
+            @media (min-width: $pc-w + px) {
+                margin-right: $size + px;
+            }
+        }
+
+        @if $property==ml {
+            margin-left: ($size / $winW) * 100 + vw;
+
+            @media (min-width: $pc-w + px) {
+                margin-left: $size + px;
+            }
+        }
+
+        @if $property==p {
+            padding: ($size / $winW) * 100 + vw;
+
+            @media (min-width: $pc-w + px) {
+                padding: $size + px;
+            }
+        }
+
+        @if $property==pt {
+            padding-top: ($size / $winW) * 100 + vw;
+
+            @media (min-width: $pc-w + px) {
+                padding-top: $size + px;
+            }
+        }
+
+        @if $property==pb {
+            padding-bottom: ($size / $winW) * 100 + vw;
+
+            @media (min-width: $pc-w + px) {
+                padding-bottom: $size + px;
+            }
+        }
+
+        @if $property==pr {
+            padding-right: ($size / $winW) * 100 + vw;
+
+            @media (min-width: $pc-w + px) {
+                padding-right: $size + px;
+            }
+        }
+
+        @if $property==pl {
+            padding-left: ($size / $winW) * 100 + vw;
+
+            @media (min-width: $pc-w + px) {
+                padding-left: $size + px;
+            }
+        }
+
+        @if $property==t {
+            top: ($size / $winW) * 100 + vw;
+
+            @media (min-width: $pc-w + px) {
+                top: $size + px;
+            }
+        }
+
+        @if $property==b {
+            bottom: ($size / $winW) * 100 + vw;
+
+            @media (min-width: $pc-w + px) {
+                bottom: $size + px;
+            }
+        }
+
+        @if $property==r {
+            right: ($size / $winW) * 100 + vw;
+
+            @media (min-width: $pc-w + px) {
+                right: $size + px;
+            }
+        }
+
+        @if $property==l {
+            left: ($size / $winW) * 100 + vw;
+
+            @media (min-width: $pc-w + px) {
+                left: $size + px;
+            }
+        }
+    }
+
+    @if $wid==sp {
+        $winW: $sp-w;
+
+        @if $property==fz {
+            font-size: ($size / $winW) * 100 + vw;
+        }
+
+        @if $property==w {
+            width: ($size / $winW) * 100 + vw;
+        }
+
+        @if $property==h {
+            height: ($size / $winW) * 100 + vw;
+        }
+
+        @if $property==minW {
+            min-width: ($size / $winW) * 100 + vw;
+        }
+
+        @if $property==minH {
+            min-height: ($size / $winW) * 100 + vw;
+        }
+
+        @if $property==maxW {
+            max-width: ($size / $winW) * 100 + vw;
+        }
+
+        @if $property==maxH {
+            max-height: ($size / $winW) * 100 + vw;
+        }
+
+        @if $property==m {
+            margin: ($size / $winW) * 100 + vw;
+        }
+
+        @if $property==mt {
+            margin-top: ($size / $winW) * 100 + vw;
+        }
+
+        @if $property==mb {
+            margin-bottom: ($size / $winW) * 100 + vw;
+        }
+
+        @if $property==mr {
+            margin-right: ($size / $winW) * 100 + vw;
+        }
+
+        @if $property==ml {
+            margin-left: ($size / $winW) * 100 + vw;
+        }
+
+        @if $property==p {
+            padding: ($size / $winW) * 100 + vw;
+        }
+
+        @if $property==pt {
+            padding-top: ($size / $winW) * 100 + vw;
+        }
+
+        @if $property==pb {
+            padding-bottom: ($size / $winW) * 100 + vw;
+        }
+
+        @if $property==pr {
+            padding-right: ($size / $winW) * 100 + vw;
+        }
+
+        @if $property==pl {
+            padding-left: ($size / $winW) * 100 + vw;
+        }
+
+        @if $property==t {
+            top: ($size / $winW) * 100 + vw;
+        }
+
+        @if $property==b {
+            bottom: ($size / $winW) * 100 + vw;
+        }
+
+        @if $property==r {
+            right: ($size / $winW) * 100 + vw;
+        }
+
+        @if $property==l {
+            left: ($size / $winW) * 100 + vw;
+        }
+    }
+}

@@ -43,7 +43,7 @@
         </div>
 
 
-
+        @include('layouts.sp-menu')
         @yield('footer')
     </div>
     @yield('script')

@@ -26,20 +26,22 @@
                   @endif
 
                   <div class="card-body p-record-body">
-                    <div class="btn-group float-right" role="group" aria-label="Button group with nested dropdown">
-                    <div class="" role="group">
-                      <button class="btn text-dark denim-edit-btn"  data-toggle="dropdown">
-                        <i class="fas fa-ellipsis-h"></i>
-                      </button>
-                      
-                      @if (Auth::id() === $user->id)
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-                          <a class="dropdown-item" href="{{route('users.records.edit', [$user->id, $denim->id, $record->id])}}">編集する</a>
-                          <a class="dropdown-item"type="button" data-toggle="modal" data-target="#modal{{$record->id}}">削除する</a>
+                    @if (Auth::id() === $user->id)
+                      <div class="btn-group float-right" role="group" aria-label="Button group with nested dropdown">
+                        <div class="" role="group">
+                          <button class="btn text-dark denim-edit-btn"  data-toggle="dropdown">
+                            <i class="fas fa-ellipsis-h"></i>
+                          </button>
+                          
+                          @if (Auth::id() === $user->id)
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
+                              <a class="dropdown-item" href="{{route('users.records.edit', [$user->id, $denim->id, $record->id])}}">編集する</a>
+                              <a class="dropdown-item"type="button" data-toggle="modal" data-target="#modal{{$record->id}}">削除する</a>
+                            </div>
+                          @endif
                         </div>
-                      @endif
-                    </div>
-                  </div>
+                      </div>
+                    @endif
                   <div class="row align-items-center">
                     <div class="mr-2">
                       {{-- likecomponent --}}

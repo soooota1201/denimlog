@@ -94786,7 +94786,7 @@ __webpack_require__.r(__webpack_exports__);
 var calendarHeatmap = {
   init: function init() {
     // defaults
-    var width = 750;
+    var width = 700;
     var height = 110;
     var legendWidth = 150;
     var selector = '.vuejs-heatmap';
