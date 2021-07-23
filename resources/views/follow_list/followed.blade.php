@@ -19,22 +19,10 @@
                     <td>{{$user->name}}</td>
                     <td>
                       @if (Auth::id() != $user->id)
-                        @if (!Auth::user()->is_following($user->id))
-                          <form action="{{route('users.follow', $user->id)}}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-primary">
-                              follow
-                            </button>
-                          </form>
-                        @else
-                          <form action="{{route('users.unfollow', $user->id)}}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-success">
-                              following
-                            </button>
-                          </form>
-                        @endif 
+                        <follow-component
+                        :user="{{ json_encode($user)}}"
+                        ></follow-component>
+                        {{-- followcomponent --}}
                       @endif
                     </td>
                   </tr>

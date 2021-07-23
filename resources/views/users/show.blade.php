@@ -45,11 +45,11 @@
                   @endif
                   <p class=" profile-data"><span class="mr-2">身長：{{$user->height}}cm</span><span>体重：{{$user->weight}}kg</span></p>
                   <p>
-                    <a href="{{route('users.following.user.index', $user->id)}}">
-                      following {{$user->followings()->count()}}
-                    </a>
                     <a href="{{route('users.followed.user.index', $user->id)}}">
-                      follower {{$user->followers()->count()}}
+                      following {{$user->followers()->count()}}
+                    </a>
+                    <a href="{{route('users.following.user.index', $user->id)}}">
+                      follower {{$user->followings()->count()}}
                     </a>
                   </p>
                   <p class="profile-text mt-2">{{$user->user_profile}}</p>
