@@ -21,7 +21,7 @@ Route::get('/users', function() {
   if(!Auth::user()) {
     return redirect('login');
   }
-  return redirect()->route('home.index', Auth::id());
+  return redirect()->route('users.home.index', Auth::id());
 });
 
 Route::resource('users', 'UserController')->only('show', 'edit', 'update');
@@ -49,7 +49,7 @@ Route::group(['prefix' => 'users/{user}', 'as' => 'users.'], function() {
 
     Route::get('following', 'FollowListController@followingUserIndex')->name('following.user.index');
     Route::get('followed', 'FollowListController@followedUserIndex')->name('followed.user.index');
-    
+
     Route::get('search', 'SearchController@index')->name('search');
     Route::get('search/records', 'SearchController@searchRecord')->name('search.records');
 });
