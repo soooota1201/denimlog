@@ -31,6 +31,11 @@ class CreateDenimrecordUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('denimrecord_user');
+        // Schema::dropIfExists('denim_record_user');
+
+        Schema::table('denim_record_user', function (Blueprint $table) {
+            $table->dropForeign('denim_record_user_denim_record_id_foreign');
+            $table->dropColumn('denim_record_id');
+        });
     }
 }

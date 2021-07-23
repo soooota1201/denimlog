@@ -1,192 +1,288 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Creative - Start Bootstrap Theme</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Bootstrap Icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
-        <!-- SimpleLightbox plugin CSS-->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <!-- Styles -->
-        <link href="{{ asset('css/lp.css') }}" rel="stylesheet">
-    </head>
-    <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">DenimLog</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- Masthead-->
-        <header class="masthead">
-            <div class="container px-4 px-lg-5 h-100">
-                <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
-                    <div class="col-lg-8 align-self-end">
-                        <p class="center-icon"><span>👖</span></p>
-                        <h1 class="text-white font-weight-bold">Denim Log</h1>
-                        <hr class="divider" />
-                    </div>
-                    <div class="col-lg-8 align-self-baseline">
-                        <p class="text-white-75 mb-5">「お気に入りのデニムの成長を記録しよう」</p>
-                        <a class="btn btn-primary btn-xl" href="#about">ログイン</a>
-                        <a class="btn btn-primary btn-xl" href="#about">新規登録</a>
-                    </div>
-                </div>
-            </div>
-        </header>
-        
-        <!-- Services-->
-        <section class="page-section" id="services">
-            <div class="container px-4 px-lg-5">
-                <h2 class="text-center mt-0">Feature</h2>
-                <hr class="divider" />
-                <div class="row gx-4 gx-lg-5">
-                    <div class="col-md-6 text-center">
-                        <div class="mt-5">
-                            <div class="mb-2"><i class="bi-gem fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">自分のデニムを管理</h3>
-                            <p class="text-muted mb-0">自分の持っているデニムを一括管理できます</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 text-center">
-                        <div class="mt-5">
-                            <div class="mb-2"><i class="bi-laptop fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">デニムの履き込み経過を記録</h3>
-                            <p class="text-muted mb-0">デニムの写真を登録することで、履き込み経過を記録し<br>色落ちや経年変化を楽しむことができます</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 text-center">
-                        <div class="mt-5">
-                            <div class="mb-2"><i class="bi-globe fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">履いた日を可視化</h3>
-                            <p class="text-muted mb-0">履いた日時、ヒートマップで表示することで可視化します</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 text-center">
-                        <div class="mt-5">
-                            <div class="mb-2"><i class="bi-heart fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">デニムを履いて行った場所を登録</h3>
-                            <p class="text-muted mb-0">デニムとともに行った場所を登録し地図上に表示することで<br>思い出を振り返ることができます</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Call to action-->
-        <section class="page-section bg-dark text-white">
-            <div class="container px-4 px-lg-5 text-center">
-                <h2 class="mb-4">Free Download at Start Bootstrap!</h2>
-                <a class="btn btn-light btn-xl" href="https://startbootstrap.com/theme/creative/">Download Now!</a>
-            </div>
-        </section>
-        <!-- Contact-->
-        <section class="page-section" id="contact">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8 col-xl-6 text-center">
-                        <h2 class="mt-0">Let's Get In Touch!</h2>
-                        <hr class="divider" />
-                        <p class="text-muted mb-5">Ready to start your next project with us? Send us a messages and we will get back to you as soon as possible!</p>
-                    </div>
-                </div>
-                <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
-                    <div class="col-lg-6">
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- * * SB Forms Contact Form * *-->
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- This form is pre-integrated with SB Forms.-->
-                        <!-- To make this form functional, sign up at-->
-                        <!-- https://startbootstrap.com/solution/contact-forms-->
-                        <!-- to get an API token!-->
-                        <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                            <!-- Name input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                <label for="name">Full name</label>
-                                <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-                            </div>
-                            <!-- Email address input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
-                                <label for="email">Email address</label>
-                                <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                                <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-                            </div>
-                            <!-- Phone number input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
-                                <label for="phone">Phone number</label>
-                                <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
-                            </div>
-                            <!-- Message input-->
-                            <div class="form-floating mb-3">
-                                <textarea class="form-control" id="message" type="text" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>
-                                <label for="message">Message</label>
-                                <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
-                            </div>
-                            <!-- Submit success message-->
-                            <!---->
-                            <!-- This is what your users will see when the form-->
-                            <!-- has successfully submitted-->
-                            <div class="d-none" id="submitSuccessMessage">
-                                <div class="text-center mb-3">
-                                    <div class="fw-bolder">Form submission successful!</div>
-                                    To activate this form, sign up at
-                                    <br />
-                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                </div>
-                            </div>
-                            <!-- Submit error message-->
-                            <!---->
-                            <!-- This is what your users will see when there is-->
-                            <!-- an error submitting the form-->
-                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-                            <!-- Submit Button-->
-                            <div class="d-grid"><button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit">Submit</button></div>
-                        </form>
-                    </div>
-                </div>
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-4 text-center mb-5 mb-lg-0">
-                        <i class="bi-phone fs-2 mb-3 text-muted"></i>
-                        <div>+1 (555) 123-4567</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Footer-->
-        <footer class="bg-light py-5">
-            <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2021 - Company Name</div></div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- SimpleLightbox plugin JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    </body>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Denim Log</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="" />
+
+  <!--
+	//////////////////////////////////////////////////////
+
+	FREE HTML5 TEMPLATE
+	DESIGNED & DEVELOPED by FREEHTML5.CO
+
+	Website: 		http://freehtml5.co/
+	Email: 			info@freehtml5.co
+	Twitter: 		http://twitter.com/fh5co
+	Facebook: 		https://www.facebook.com/fh5co
+
+	//////////////////////////////////////////////////////
+	 -->
+
+  	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<!-- <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700,900' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700" rel="stylesheet"> -->
+
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="css/lp/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/lp/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="css/lp/bootstrap.css">
+	<!-- animatedresponsiveImagegrid  -->
+	<link rel="stylesheet" href="css/lp/animatedresponsiveImagegrid.css">
+	<!-- Magnifoc Popup  -->
+	<link rel="stylesheet" href="css/lp/magnific-popup.css">
+
+	<link rel="stylesheet" href="css/lp/style.css">
+
+
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+	</head>
+	<body>
+
+	<nav id="fh5co-main-nav" role="navigation">
+		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle active"><i></i></a>
+		<div class="js-fullheight fh5co-table">
+			<div class="fh5co-table-cell js-fullheight">
+				<ul>
+					<li class="active"><a href="index.html">Home</a></li>
+					<li><a href="gallery.html">Gallery</a></li>
+					<li><a href="services.html">Services</a></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="fh5co-page">
+		<header>
+			<div class="container">
+				<div class="fh5co-navbar-brand">
+					<h1 class="text-center" style="font-size: 80px">👖</h1>
+					<!-- <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a> -->
+				</div>
+			</div>
+		</header>
+		<div id="fh5co-intro-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 animate-box text-center">
+						<h2 class="intro-heading">Denim Log</h2>
+						<p><span style="font-size: 20px;">Collect And Record Your Favorite Denims</span></p>
+					</div>
+				</div>
+        <div class="text-center">
+          <a href="{{route('login')}}" class="btn btn-default" style="width: 180px; display: inline-block">LOGIN</a><!-- /.btn btn-primary -->
+          <a href="{{route('register')}}" class="btn btn-primary" style="width: 180px; display: inline-block">REGISTER</a><!-- /.btn btn-primary -->
+        </div><!-- /.text-center -->
+			</div>
+		</div>
+		<div id="fh5co-photos-section">
+			<div class="container">
+				<div id="ri-grid" class="ri-grid animate-box">
+					<img class="ri-loading-image" src="images/loading.gif"/>
+					<ul>
+						<li>
+							<a href="#" style="pointer-events: none">
+							  <img src="images/denims/denim01.png"/>
+							</a>
+						</li>
+						<li>
+							<a href="#" style="pointer-events: none">
+								<img src="images/denims/denim02.png"/>
+							</a>
+						</li>
+						<li>
+							<a href="#" style="pointer-events: none">
+								<img src="images/denims/denim03.png"/>
+							</a>
+						</li>
+						<li>
+							<a href="#" style="pointer-events: none">
+								<img src="images/denims/denim04.png"/>
+							</a>
+						</li>
+						<li>
+							<a href="#" style="pointer-events: none">
+								<img src="images/denims/denim05.png"/>
+							</a>
+						</li>
+						<li>
+							<a href="#" style="pointer-events: none">
+								<img src="images/denims/denim06.png"/>
+							</a>
+						</li>
+						<li>
+							<a href="#" style="pointer-events: none">
+								<img src="images/denims/denim07.png"/>
+							</a>
+						</li>
+						<li>
+							<a href="#" style="pointer-events: none">
+								<img src="images/denims/denim08.png"/>
+							</a>
+						</li>
+						<li>
+							<a href="#" style="pointer-events: none">
+								<img src="images/denims/denim09.png"/>
+							</a>
+						</li>
+						<li>
+							<a href="#" style="pointer-events: none">
+								<img src="images/denims/denim10.png"/>
+							</a>
+						</li>
+						<li>
+							<a href="#" style="pointer-events: none">
+								<img src="images/denims/denim11.png"/>
+							</a>
+						</li>
+						<li>
+							<a href="#" style="pointer-events: none">
+								<img src="images/denims/denim12.png"/>
+							</a>
+						</li>
+						<li>
+							<a href="#" style="pointer-events: none">
+								<img src="images/denims/denim13.png"/>
+							</a>
+						</li>
+						<li>
+							<a href="#" style="pointer-events: none">
+								<img src="images/denims/denim14.png"/>
+							</a>
+						</li>
+						<li>
+							<a href="#" style="pointer-events: none">
+								<img src="images/denims/denim15.png"/>
+							</a>
+						</li>
+						<li>
+							<a href="#" style="pointer-events: none">
+								<img src="images/denims/denim16.png"/>
+							</a>
+						</li>
+						<li>
+							<a href="#" style="pointer-events: none">
+								<img src="images/denims/denim17.png"/>
+							</a>
+						</li>
+						<li>
+							<a href="#" style="pointer-events: none">
+								<img src="images/denims/denim18.png"/>
+							</a>
+						</li>
+						<li>
+							<a href="#" style="pointer-events: none">
+								<img src="images/denims/denim01.png"/>
+							</a>
+						</li>
+						<li>
+							<a href="#" style="pointer-events: none">
+								<img src="images/denims/denim02.png"/>
+							</a>
+						</li>
+						<li>
+							<a href="#" style="pointer-events: none">
+								<img src="images/denims/denim03.png"/>
+							</a>
+						</li>
+						<li>
+							<a href="#" style="pointer-events: none">
+								<img src="images/denims/denim04.png"/>
+							</a>
+						</li>
+						<li>
+							<a href="#" style="pointer-events: none">
+								<img src="images/denims/denim05.png"/>
+							</a>
+						</li>
+						<li>
+							<a href="#" style="pointer-events: none">
+								<img src="images/denims/denim06.png"/>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<footer>
+			<div id="footer">
+				<div class="container">
+					<div class="row copy-right">
+						<div class="col-md-6 col-md-offset-3 text-center">
+							<p>Copyright 2021 Denim Log</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+	</div>
+
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<!-- Counters -->
+	<script src="js/jquery.countTo.js"></script>
+	<!-- gridrotator -->
+	<script type="text/javascript" src="js/jquery.gridrotator.js"></script>
+	<!-- Magnific Popup -->
+	<script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+
+	<!-- Main JS (Do not remove) -->
+	<script src="js/main.js"></script>
+
+	<script type="text/javascript">
+		$(function() {
+
+			$( '#ri-grid' ).gridrotator( {
+				rows : 3,
+				// number of columns
+				columns : 6,
+				w1024 : { rows : 3, columns : 5 },
+				w768 : {rows : 3,columns : 4 },
+				w480 : {rows : 3,columns : 3 },
+				w320 : {rows : 2,columns : 2 },
+				w240 : {rows : 1,columns : 1 },
+				preventClick : false
+			} );
+
+		});
+	</script>
+
+	</body>
 </html>
