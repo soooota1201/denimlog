@@ -45,8 +45,8 @@ class FollowController extends Controller
 
     public function followList(DenimRecord $record, UserFollow $follow, User $user)
     {
-        $follow_ids = $follow->followingIds($user->id);
-        $following_ids = $follow_ids->pluck('followed_id')->toArray();
+        $follow_ids = $follow->followedIds($user->id);
+        $following_ids = $follow_ids->pluck('following_id')->toArray();
         $timelines = $record->getTimelines($user->id, $following_ids);
         return view('timeline.index',compact('timelines', 'user'));
     }
