@@ -19,17 +19,19 @@ class SearchController extends Controller
 
     public function searchRecord(Request $request, User $user)
     {
-      $record = request()->query('record');
-      if($record)
-      {
-        $records = DenimRecord::where('body', 'LIKE', "%{$record}%")
+        $record = request()->query('record');
+
+        if($record)
+        {
+        $rawRecords = DenimRecord::where('body', 'LIKE', "%{$record}%")
         ->orWhere('wearing_place','LIKE', "%{$record}%")
         ->orWhere('wearing_day','LIKE', "%{$record}%")
         ->orWhere('bland_type','LIKE', "%{$record}%")->get();
-      } else {
-        $records = DenimRecord::simplePaginate(3);
-      };
-      return view('search_results.index', compact('records', 'user'));
+        } else {
+            $records = DenimRecord::simplePaginate(3);
+        };
+        $records = urldecode($rawRecords);
+        return view('search_results.index', compact('records', 'user'));
     }
 }
 
