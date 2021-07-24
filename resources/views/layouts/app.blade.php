@@ -27,8 +27,6 @@
 
         @yield('header')
 
-        @include('layouts._flash_message')
-
         <div>
           <div class="l-wrapper pb-5">
             <div class="l-sidebar">
