@@ -105,7 +105,7 @@
                     @foreach ($records as $record)
                       <div class="row justify-content-center">
                         <div class="card p-record col-12 mb-4">
-                          <p class="p-record-user_name">{{$record->user->name}}</p>
+                          <a href="{{route('users.show', $record->user->id)}}" class="p-record-user_name">{{$record->user->name}}</a>
                           @if (!$record->denimRecordImages->isEmpty())
                           <a href="{{route('users.records.show', [$user->id, $denim->id, $record->id])}}" class= "c-img--wrapper">
                             <img class="bd-placeholder-img c-img" src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" alt="">
@@ -117,7 +117,7 @@
                             :record="{{ json_encode($record)}}"
                             ></like-component>
                             {{-- likecomponent --}}
-                            <p class="p-record-user_name">{{$record->user->name}}</p>
+                            <a href="{{route('users.show', $record->user->id)}}" class="p-record-user_name">{{$record->user->name}}</a>
                             <p class="card-text p-record-text">{{$record->body}}</p>
                             <p class="mt-3 p-record-date">記録日：{{$record->wearing_day}}</p>
                             <p class="p-record-place">訪問先：{{$record->wearing_place}}</p>

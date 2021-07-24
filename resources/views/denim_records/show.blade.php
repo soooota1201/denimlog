@@ -54,7 +54,7 @@
                        <a type="button" data-toggle="modal" data-target="#modal-comment{{$record->id}}" class="btn btn-outline-dark btn-sm"><i class="far fa-comment"></i></a>
                     </div>
                   </div><!-- /.row -->
-                    <p class="p-record-user_name">{{$record->user->name}}</p>
+                    <a href="{{route('users.show', $record->user->id)}}" class="p-record-user_name">{{$record->user->name}}</a>
                     <p class="card-text p-record-text">{{$record->body}}</p>
                     <p class="mt-3 p-record-date">記録日：{{$record->wearing_day}}</p>
                     <p class="p-record-place">訪問先：{{$record->wearing_place}}</p>

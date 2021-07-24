@@ -19,7 +19,7 @@
               @forelse ($records as $record)
                 <div class="p-record">
                   <div class="card p-record mb-4 col-12">
-                    <p class="p-record-user_name">{{$record->user->name}}</p>
+                    <a href="{{route('users.show', $record->user->id)}}" class="p-record-user_name">{{$record->user->name}}</a>
                     @if (!$record->denimRecordImages->isEmpty())
                     <a href="{{route('users.records.show', [$record->user_id, $record->denim_id, $record->id])}}" class="c-img--wrapper">
                       <img class="bd-placeholder-img c-img" src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" alt="">
@@ -31,7 +31,7 @@
                       :record="{{ json_encode($record)}}"
                       ></like-component>
                       {{-- likecomponent --}}
-                      <p class="p-record-user_name">{{$record->user->name}}</p>
+                      <a href="{{route('users.show', $record->user->id)}}" class="p-record-user_name">{{$record->user->name}}</a>
                       <p class="card-text p-record-text">{{$record->body}}</p>
                       <p class="mt-3 p-record-place">ブランド：{{$record->bland_type}}</p>
                       <p class="p-record-date">記録日：{{$record->wearing_day}}</p>
