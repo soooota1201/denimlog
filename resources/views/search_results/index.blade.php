@@ -18,7 +18,7 @@
               <h3 class="mb-3 mt-5">"{{ request()->query('record')}}"の検索結果</h3>
               @forelse ($records as $record)
                 <div class="p-record">
-                  <div class="card p-record mb-4">
+                  <div class="card p-record mb-4 col-12">
                     <p class="p-record-user_name">{{$record->user->name}}</p>
                     @if (!$record->denimRecordImages->isEmpty())
                     <a href="{{route('users.records.show', [$record->user_id, $record->denim_id, $record->id])}}" class="c-img--wrapper">

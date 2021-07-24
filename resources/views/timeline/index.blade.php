@@ -41,7 +41,7 @@
                 </div><!-- /.p-record -->
               @empty
                 <p class="text-center">
-                  他のユーザーをフォローしましょう！
+                  まだ投稿がありません
                 </p>
               @endforelse
             @endif

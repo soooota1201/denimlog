@@ -55,12 +55,13 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-      $denims = Denim::where('user_id', $user->id)->take(3)->latest()->get();
-      $records = DenimRecord::where('user_id', $user->id)->get();
-      $wearing_days = [];
-      $wearing_days_query = DenimRecord::where('user_id', $user->id)->select('wearing_day')->get();
-      $wearing_days = json_encode($wearing_days_query);
-      return view('users.show', compact('user', 'denims', 'records', 'wearing_days'));
+        $denims = Denim::where('user_id', $user->id)->take(3)->latest()->get();
+        $records = DenimRecord::where('user_id', $user->id)->get();
+        $wearing_days = [];
+        $wearing_days_query = DenimRecord::where('user_id', $user->id)->select('wearing_day')->get();
+        $wearing_days = json_encode($wearing_days_query);
+        $wearing_places = DenimRecord::where('user_id', $user->id)->pluck('wearing_place')->toArray();
+        return view('users.show', compact('user', 'denims', 'records', 'wearing_days', 'wearing_places'));
     }
 
     /**
@@ -104,7 +105,7 @@ class UserController extends Controller
             $user->thumbnail_public_id  = $publicId;
             $user->save();
         }
-        
+
         return redirect(route('users.show', compact('user')))->with('success', 'プロフィールの編集が完了しました！');
     }
 

@@ -41,13 +41,18 @@ class User extends Authenticatable
     {
       return $this->hasMany(Denim::class);
     }
-    
+
+    public function denimRecords()
+    {
+      return $this->hasMany(DenimRecord::class);
+    }
+
     public function followings()
     {
       return $this->belongsToMany(User::class, 'user_follows', 'following_id', 'followed_id')->withTimestamps();
     }
 
-    
+
     public function followers()
     {
       return $this->belongsToMany(User::class, 'user_follows', 'followed_id', 'following_id')->withTimestamps();
@@ -57,7 +62,7 @@ class User extends Authenticatable
     {
       return $this->followings()->where('followed_id', $userId)->exists();
     }
-    
+
     public function follow($userId)
     {
       $existing = $this->is_following($userId);
@@ -66,7 +71,7 @@ class User extends Authenticatable
           $this->followings()->attach($userId);
       }
     }
-    
+
     public function unfollow($userId)
     {
       $existing = $this->is_following($userId);
@@ -79,6 +84,11 @@ class User extends Authenticatable
     public function getFollowUsersId($user_id, $following_ids)
     {
       return $this->whereIn('id', $following_ids)->get();
+    }
+
+    public function getFollowedUsersId($user_id, $followed_ids)
+    {
+      return $this->whereIn('id', $followed_ids)->get();
     }
 
     public function favorites()

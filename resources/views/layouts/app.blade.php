@@ -24,24 +24,23 @@
 </head>
 <body style="background: rgb(250, 252, 255);">
     <div id="app">
-      
+
         @yield('header')
-      
+
         @include('layouts._flash_message')
 
         <div>
-          <div class="l-wrapper">
+          <div class="l-wrapper pb-5">
             <div class="l-sidebar">
               @include('layouts.sidebar')
             </div><!-- /.l-sidebar -->
-            
+
             <main class="l-main">
               @yield('content')
             </main>
-            
+
           </div>
         </div>
-
 
         @include('layouts.sp-menu')
         @yield('footer')

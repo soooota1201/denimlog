@@ -19,7 +19,7 @@ class FollowListController extends Controller
     public function followedUserIndex(User $user, UserFollow $follow) {
       $follow_ids = $follow->followedIds($user->id);
       $followed_ids = $follow_ids->pluck('following_id')->toArray();
-      $followedUsers = $user->getFollowUsersId($user->id, $followed_ids);
+      $followedUsers = $user->getFollowedUsersId($user->id, $followed_ids);
       return view('follow_list.followed',compact('followedUsers', 'user'));
     }
 }

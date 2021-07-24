@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-  @include('layouts.header') 
+  @include('layouts.header')
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10 pt-4">
-          <h2>フォローワー</h2>
+          <h2>Following</h2>
             @if ($followedUsers->count() > 0)
               <table class="table">
                 <tbody>
