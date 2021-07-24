@@ -17130,6 +17130,15 @@ p {
   margin-top: 10px;
 }
 
+.profile-data span {
+  display: inline-block;
+}
+
+.profile-follow a {
+  color: #212529;
+  display: inline-block;
+}
+
 .profile-text {
   font-size: 14px;
   line-height: 1.2;
@@ -17349,5 +17358,19 @@ p {
 
 .p-denimCard .card-body {
   color: #333333 !important;
+}
+
+.c-img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: initial !important;
+}
+
+.c-img--wrapper {
+  position: relative;
+  padding-top: 85%;
+  overflow: hidden;
 }
 

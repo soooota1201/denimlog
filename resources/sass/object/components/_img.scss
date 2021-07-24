@@ -1,0 +1,14 @@
+.c-img
+{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: initial !important;
+
+    &--wrapper {
+        position: relative;
+        padding-top: 85%;
+        overflow: hidden;
+    }
+}

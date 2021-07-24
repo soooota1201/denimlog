@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('header')
-  @include('layouts.header') 
+  @include('layouts.header')
 @endsection
 
 @section('content')
 
 <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-10 mb-5">
+      <div class="col-md-10 mb-2">
         {{-- <div class="mb-3">
           <a href="{{route('users.denims.show', [$user->id, $denim->id])}}" class="text-dark mr-2"><i class="fas fa-arrow-left"></i><span class="record-denim ml-2">{{$record->denim->bland_type}}</span></a>
         </div> --}}
@@ -16,12 +16,12 @@
             <div class="row justify-content-center">
                 <div class="card p-record col-12" href="{{route('users.records.show', [$user->id, $denim->id, $record->id])}}">
                   <p class="p-record-user_name d-inline-block">{{$record->user->name}}</p>
-                  
+
                   @if (!$record->denimRecordImages->isEmpty() && count($record->denimRecordImages) != 1)
                     <swiper-component :records="{{ json_encode($record->denimRecordImages) }}"></swiper-component>
                   @else
-                    <figure class="p-record-img--wrapper">
-                      <img src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" class="p-record-img">
+                    <figure class="c-img--wrapper">
+                      <img src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" class="c-img">
                     </figure>
                   @endif
 
@@ -32,7 +32,7 @@
                           <button class="btn text-dark denim-edit-btn"  data-toggle="dropdown">
                             <i class="fas fa-ellipsis-h"></i>
                           </button>
-                          
+
                           @if (Auth::id() === $user->id)
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
                               <a class="dropdown-item" href="{{route('users.records.edit', [$user->id, $denim->id, $record->id])}}">編集する</a>
@@ -100,7 +100,7 @@
               </div>
           </div>
       </form>
-    
+
       <form method="POST" action="{{ route('users.comments.store', [$user->id, $denim->id, $record->id, $record->id])}}">
         @csrf
           <!-- Modal -->
@@ -127,12 +127,12 @@
               </div>
           </div>
       </form>
-        
+
       @if ($comments->count() != 0)
-        <div class="p-comment">
+        <div class="p-comment mb-5">
           <p class="">
             <a class="btn btn-outline-dark" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-              コメント
+              コメントを見る
             </a>
           </p>
           <div class="collapse mt-3" id="collapseExample">
@@ -147,7 +147,7 @@
                     <a type="button" data-toggle="modal" data-target="#modal-comment-delete{{$comment->id}}" class="btn btn-outline-danger">削除する</a>
                   @endif
                 </li>
-                
+
                 {{-- modal --}}
                 <form method="POST" action="{{ route('users.comments.destroy', [$user->id, $denim->id, $record->id, $comment->id])}}">
                   @csrf
@@ -173,16 +173,14 @@
                   </div>
                 </form>
               @endforeach
-            </ul>      
-            
+            </ul>
+
           </div>
         </div>
       @endif
-    
+
     </div><!-- /.col-md-8 -->
   </div><!-- /.row justify-content-center -->
-  
-
 </div><!-- /.container -->
 
 @endsection

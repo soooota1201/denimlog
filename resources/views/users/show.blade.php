@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-  @include('layouts.header') 
+  @include('layouts.header')
 @endsection
 
 @section('content')
@@ -26,11 +26,11 @@
                       following
                     </button>
                   </form>
-                @endif 
+                @endif
               @endif --}}
               <div class="row justify-content-between align-items-center">
                 @if (empty($user->thumbnail_image_path))
-                  <figure class="col-md-4 col-4 profile-img--wrapper"><img class="profile-img" src="{{Gravatar::src($user->email)}}" alt=""></figure>  
+                  <figure class="col-md-4 col-4 profile-img--wrapper"><img class="profile-img" src="{{Gravatar::src($user->email)}}" alt=""></figure>
                 @else
                   <figure class="col-md-4 col-4 profile-img--wrapper"><img class="profile-img" src="{{$user->thumbnail_image_path}}" alt=""></figure>
                 @endif
@@ -43,20 +43,32 @@
                     ></follow-component>
                     {{-- followcomponent --}}
                   @endif
-                  <p class=" profile-data"><span class="mr-2">身長：{{$user->height}}cm</span><span>体重：{{$user->weight}}kg</span></p>
-                  <p>
-                    <a href="{{route('users.followed.user.index', $user->id)}}">
-                      following {{$user->followers()->count()}}
+                  @if (isset($user->height) || isset($user->weight))
+                  <p class="profile-data">
+                    <span class="mr-2">
+                        @if (isset($user->height))
+                            身長：{{$user->height}}cm
+                        @endif
+                    </span>
+                    <span>
+                        @if (isset($user->weight))
+                            体重：{{$user->weight}}kg</span>
+                        @endif
+                    </p>
+                @endif
+                <p class="profile-follow">
+                    <a href="{{route('users.followed.user.index', $user->id)}}" class="mr-2">
+                        following {{$user->followers()->count()}}
                     </a>
                     <a href="{{route('users.following.user.index', $user->id)}}">
-                      follower {{$user->followings()->count()}}
+                        follower {{$user->followings()->count()}}
                     </a>
-                  </p>
-                  <p class="profile-text mt-2">{{$user->user_profile}}</p>
-                  {{-- <a href="{{route('users.edit', $user->id)}}" class="btn btn-lg btn-block btn-outline-dark profile-edit">プロフィールを編集する</a> --}}
+                </p>
+                <p class="profile-text mt-2">{{$user->user_profile}}</p>
+                {{-- <a href="{{route('users.edit', $user->id)}}" class="btn btn-lg btn-block btn-outline-dark profile-edit">プロフィールを編集する</a> --}}
                 </div>
-              </div>
             </div>
+        </div>
 
             <vuejs-heatmap
             :entries="{{$wearing_days}}"
@@ -77,7 +89,7 @@
               <li class="nav-item">
                 <a class="nav-link" id="allVisitedPlaces-tab" data-toggle="tab" href="#allVisitedPlaces" role="tab" aria-controls="allVisitedPlaces" aria-selected="false">All Visited Places</a>
               </li>
-              
+
             </ul>
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -107,8 +119,8 @@
                         <div class="card p-record col-12 mb-4">
                           <p class="p-record-user_name">{{$record->user->name}}</p>
                           @if (!$record->denimRecordImages->isEmpty())
-                          <a href="{{route('users.records.show', [$user->id, $record->denim_id, $record->id])}}" class="p-record-img--wrapper">
-                            <img class="bd-placeholder-img p-record-img" src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" alt="">
+                          <a href="{{route('users.records.show', [$user->id, $record->denim_id, $record->id])}}" class="c-img--wrapper">
+                            <img class="bd-placeholder-img c-img" src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" alt="">
                           </a>
                           @endif
                           <div class="card-body p-record-body">
@@ -139,7 +151,8 @@
               </div>
               <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 @if (!$denims->count() == 0)
-                <div class="d-flex justify-content-between align-items-center mt-3">
+                <div class="d-flex justify-content-end align-items-center mt-3">
+                    <a href="{{route('users.denims.index', $user->id)}}" class="btn btn-outline-dark mr-2">デニム一覧へ<i class="fas fa-chevron-right ml-2"></i></a>
                     @if (Auth::id() === $user->id)
                       <a href="{{route('users.denims.create', $user->id)}}" class="btn text-white profile-denim-btn">登録する<i class="fas fa-chevron-right ml-2"></i></a>
                     @endif
@@ -148,7 +161,7 @@
                 <div class="mt-3">
                   @if (!$denims->count() == 0) {{-- デニムが登録されている場合 --}}
                     @foreach ($denims as $denim)
-                      <a href="{{route('users.denims.show', [$user->id, $denim->id])}}" class="card mb-3" style="">
+                      <a href="{{route('users.denims.show', [$user->id, $denim->id])}}" class="card mb-3 p-denimCard" style="">
                         <div class="row no-gutters">
                           <div class="col-4">
                             @if (!$denim->denimImages->isEmpty())
@@ -165,9 +178,6 @@
                         </div>
                       </a>
                     @endforeach
-                    <div class="mb-5 text-center">
-                      <a href="{{route('users.denims.index', $user->id)}}" class="btn btn-outline-dark mt4">デニム一覧へ<i class="fas fa-chevron-right ml-2"></i></a>
-                    </div>
                   @else {{-- デニムが登録されていない場合 --}}
                     <p class="mt-4">お気に入りのデニムを登録しましょう！</p>
                     <br>
@@ -179,15 +189,15 @@
                 </div>
               </div>
               <div class="tab-pane fade" id="allVisitedPlaces" role="tabpanel" aria-labelledby="allVisitedPlaces-tab">
-                
+
               </div>
             </div>
-            
+
         </div>
     </div>
 </div>
 @endsection
 
 @section('script')
-    
+
 @endsection

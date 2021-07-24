@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-  @include('layouts.header') 
+  @include('layouts.header')
 @endsection
 
 @section('content')
@@ -33,7 +33,7 @@
                     </div>
                   </div>
                 </div>
-              @endif  
+              @endif
               <div class="mb-2">
                 <p>ウエスト：{{$denim->waist}} インチ</p>
               </div>
@@ -44,7 +44,7 @@
               @csrf
 
               @method('DELETE')
-              
+
               <!-- Modal -->
               <div class="modal fade" id="modal{{$denim->id}}" tabindex="-1" role="dialog" aria-hidden="true">
                   <div class="modal-dialog" role="document">
@@ -87,7 +87,7 @@
             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Visited Places</a>
           </li>
         </ul>
-    
+
         <div class="tab-content p-denim__records" id="myTabContent">
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div class="container mt-2 p-denim__recordIndex">
@@ -101,14 +101,14 @@
                         <a href="{{route('users.records.create', [$user->id, $denim->id])}}" class="btn text-white profile-denim-btn">記録する</a>
                       @endif
                     </div>
-                  @else 
+                  @else
                     @foreach ($records as $record)
                       <div class="row justify-content-center">
                         <div class="card p-record col-12 mb-4">
                           <p class="p-record-user_name">{{$record->user->name}}</p>
                           @if (!$record->denimRecordImages->isEmpty())
-                          <a href="{{route('users.records.show', [$user->id, $denim->id, $record->id])}}" class="p-record-img--wrapper">
-                            <img class="bd-placeholder-img p-record-img" src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" alt="">
+                          <a href="{{route('users.records.show', [$user->id, $denim->id, $record->id])}}" class= "c-img--wrapper">
+                            <img class="bd-placeholder-img c-img" src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" alt="">
                           </a>
                           @endif
                           <div class="card-body p-record-body">
@@ -151,7 +151,7 @@
                     @else
                     <!-- /.record all map-->
                       <div id="map" style="height: 500px"></div>
-                    <!-- /.record all map-->  
+                    <!-- /.record all map-->
                     @endif
                   </div><!-- /.col-md-12 -->
                 </div><!-- /.row -->
@@ -187,8 +187,8 @@
       function geo(callback){
         var cRef = addresses.length;
         for (var i = 0; i < addresses.length; i++) {
-          (function (i) { 
-            geocoder.geocode({'address': addresses[i]}, 
+          (function (i) {
+            geocoder.geocode({'address': addresses[i]},
               function(results, status) { // 結果
                 if (status === google.maps.GeocoderStatus.OK) { // ステータスがOKの場合
                   latlng[i]=results[0].geometry.location;// マーカーを立てる位置をセット

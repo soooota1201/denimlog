@@ -6,7 +6,7 @@
 @extends('layouts.app')
 
 @section('header')
-  @include('layouts.header') 
+  @include('layouts.header')
 @endsection
 
 @section('content')
@@ -21,8 +21,8 @@
                   <div class="card p-record col-12 mb-4">
                     <a href="{{route('users.show', $record->user->id)}}" class="p-record-user_name">{{$record->user->name}}</a>
                     @if (!$record->denimRecordImages->isEmpty())
-                    <a href="{{route('users.records.show', [$record->user_id, $record->denim_id, $record->id])}}" class="p-record-img--wrapper">
-                      <img class="bd-placeholder-img p-record-img" src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" alt="">
+                    <a href="{{route('users.records.show', [$record->user_id, $record->denim_id, $record->id])}}" class="c-img--wrapper">
+                      <img class="bd-placeholder-img c-img" src="{{$record->denimRecordImages[0]->cloud_record_image_path}}" alt="">
                     </a>
                     @endif
                     <div class="card-body p-record-body">
