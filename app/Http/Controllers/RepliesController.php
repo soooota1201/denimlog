@@ -14,7 +14,6 @@ class RepliesController extends Controller
     }
 
     public function like($record) {
-      // dd($record->id);
       Like::create([
         'user_id' => Auth::id(),
         'denim_record_id' => $record
