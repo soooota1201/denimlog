@@ -23,14 +23,14 @@ class SearchController extends Controller
 
         if($record)
         {
-        $rawRecords = DenimRecord::where('body', 'LIKE', "%{$record}%")
+        $records = DenimRecord::where('body', 'LIKE', "%{$record}%")
         ->orWhere('wearing_place','LIKE', "%{$record}%")
         ->orWhere('wearing_day','LIKE', "%{$record}%")
         ->orWhere('bland_type','LIKE', "%{$record}%")->get();
+        dd($records);
         } else {
             $records = DenimRecord::simplePaginate(3);
         };
-        $records = urldecode($rawRecords);
         return view('search_results.index', compact('records', 'user'));
     }
 }
