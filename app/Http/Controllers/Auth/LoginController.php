@@ -29,10 +29,10 @@ class LoginController extends Controller
      */
 
     protected function redirectTo() {
-      if(! Auth::user()) {
-          return '/login';
-      }
-      return route('users.home.index', Auth::id());
+        if(! Auth::user()) {
+            return '/login';
+        }
+        return route('users.home.index', Auth::id());
     }
 
     /**
