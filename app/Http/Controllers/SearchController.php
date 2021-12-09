@@ -27,7 +27,6 @@ class SearchController extends Controller
         ->orWhere('wearing_place','LIKE', "%{$record}%")
         ->orWhere('wearing_day','LIKE', "%{$record}%")
         ->orWhere('bland_type','LIKE', "%{$record}%")->get();
-        dd($records);
         } else {
             $records = DenimRecord::simplePaginate(3);
         };
