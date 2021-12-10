@@ -1,0 +1,61 @@
+version: '3'
+
+services:
+  mysql:
+    build:
+      context: .
+      dockerfile: ./docker/mysql/Dockerfile
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
+      MYSQL_DATABASE: ${DB_DATABASE:-denim_log}
+    ports:
+      - 63306:3306
+    volumes:
+      - ./docker/mysql/tmp/mysql:/var/lib/mysql
+  php:
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    environment:
+      DB_HOST: ${DB_HOST:-mysql}
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/usr/src/DenimLog
+      - ./node_modules:/usr/src/DenimLog/node_modules
+      - ./vendor:/usr/src/DenimLog/vendor
+    depends_on:
+      - mysql
+  nginx:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    volumes:
+      - ./public:/usr/src/DenimLog/public
+    ports:
+      - 8020:80
+    depends_on:
+      - php
+  # redis:
+  #   image: library/redis:6.0.10-alpine
+  queue:
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    environment:
+      DB_HOST: ${DB_HOST:-mysql}
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/usr/src/DenimLog
+      - ./node_modules:/usr/src/DenimLog/node_modules
+      - ./vendor:/usr/src/DenimLog/vendor
+    entrypoint:
+      - "/usr/bin/supervisord"
+      - "-n"
+      - "-c"
+      - "/etc/supervisord.conf"
+  mail:
+    image: mailhog/mailhog
+    ports:
+      - 18025:8025
