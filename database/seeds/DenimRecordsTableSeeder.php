@@ -11,6 +11,6 @@ class DenimRecordsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\DenimRecord::class, 1)->create();
     }
 }

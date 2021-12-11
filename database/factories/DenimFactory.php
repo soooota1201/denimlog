@@ -19,8 +19,9 @@ $factory->define(Denim::class, function (Faker $faker) {
     ];
 
     return [
+        'user_id'       => factory(App\User::class),
         'bland_type'    => $faker->randomElement($denims),
-        'waist'         => $faker->randomNumber(),
-        'wearing_count' => $faker->randomNumber(),
+        'waist'         => $faker->numberBetween(25, 40),
+        'wearing_count' => $faker->numberBetween(0, 100),
     ];
 });

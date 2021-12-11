@@ -11,6 +11,14 @@ class DenimsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('denims')->insert(
+            [
+                'user_id'       =>  1,
+                'bland_type'    => 'nudiejeans',
+                'waist'         => 31,
+                'wearing_count' => 10
+            ],
+        );
+
     }
 }
