@@ -25,6 +25,9 @@
                         {{-- followcomponent --}}
                       @endif
                     </td>
+                    <td>
+                        <a href="{{route('chat', $user->id)}}"><button class="btn btn-primary">DM</button></a>
+                    </td>
                   </tr>
                   @endforeach
                 </tbody>

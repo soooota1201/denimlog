@@ -52,7 +52,6 @@ class User extends Authenticatable
       return $this->belongsToMany(User::class, 'user_follows', 'following_id', 'followed_id')->withTimestamps();
     }
 
-
     public function followers()
     {
       return $this->belongsToMany(User::class, 'user_follows', 'followed_id', 'following_id')->withTimestamps();
@@ -94,6 +93,10 @@ class User extends Authenticatable
     public function favorites()
     {
       return $this->belongsToMany('App\DenimRecord')->withTimestamps();
+    }
+
+    public function messages() {
+        return $this->hasMany(Message::class);
     }
 
 }

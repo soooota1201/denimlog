@@ -25,7 +25,9 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.3",
+        "laravel-echo": "^1.11.3",
         "moment": "^2.29.1",
+        "pusher-js": "^7.0.3",
         "swiper": "^6.6.1",
         "vue-awesome-swiper": "^4.1.1",
         "vuejs-heatmap": "^1.1.7"

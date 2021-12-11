@@ -19,10 +19,12 @@ class UsersTableSeeder extends Seeder
             ],
         );
 
-        // factory(App\User::class, 10)->create()
-        // ->each(function ($user) {
-        //     $user->denims()->createMany(factory(App\Denim::class, 5)->make()->toArray()
-        //     );
-        // });
+        factory(App\User::class, 10)->create()
+        ->each(function ($user) {
+            $user->denims()->createMany(factory(App\Denim::class, 5)->make()->toArray()
+            );
+            $user->denimRecords()->createMany(factory(App\DenimRecord::class, 5)->make()->toArray()
+            );
+        });
     }
 }
