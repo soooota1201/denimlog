@@ -48,8 +48,6 @@ Route::group(['prefix' => 'users/{user}', 'as' => 'users.'], function() {
     Route::get('home', 'FollowController@followList')->name('home.index');
 
     Route::get('chat', 'ChatsController@index')->name('chat');
-    Route::get('messages', 'ChatsController@fetchMessages')->name('fetchMessages');
-    Route::post('messages', 'ChatsController@sendMessage')->name('sendMessages');
 
     Route::get('following', 'FollowListController@followingUserIndex')->name('following.user.index');
     Route::get('followed', 'FollowListController@followedUserIndex')->name('followed.user.index');
@@ -58,6 +56,8 @@ Route::group(['prefix' => 'users/{user}', 'as' => 'users.'], function() {
     Route::get('search/records', 'SearchController@searchRecord')->name('search.records');
 });
 
+Route::get('messages', 'ChatsController@fetchMessages')->name('fetchMessages');
+Route::post('messages', 'ChatsController@sendMessage')->name('sendMessages');
 
 // Route::get('/reply/like/{record}', 'RepliesController@like')->name('reply.like');
 // Route::get('/reply/unlike/{record}', 'RepliesController@unlike')->name('reply.unlike');

@@ -49,5 +49,5 @@
           </div>
       </div>
   </nav>
-  @include('layouts._flash_message')
 </header>
+@include('layouts._flash_message')
