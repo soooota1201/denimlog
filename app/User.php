@@ -47,6 +47,16 @@ class User extends Authenticatable
       return $this->hasMany(DenimRecord::class);
     }
 
+    public function threads()
+    {
+      return $this->hasMany(Thread::class);
+    }
+
+    public function messages()
+    {
+      return $this->hasMany(Message::class);
+    }
+
     public function followings()
     {
       return $this->belongsToMany(User::class, 'user_follows', 'following_id', 'followed_id')->withTimestamps();
@@ -93,10 +103,6 @@ class User extends Authenticatable
     public function favorites()
     {
       return $this->belongsToMany('App\DenimRecord')->withTimestamps();
-    }
-
-    public function messages() {
-        return $this->hasMany(Message::class);
     }
 
 }

@@ -36,8 +36,8 @@ services:
       - 8020:80
     depends_on:
       - php
-  # redis:
-  #   image: library/redis:6.0.10-alpine
+  redis:
+    image: library/redis:6.0.10-alpine
   queue:
     build:
       context: .
